@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<YouTubeSearch>("com.example", 1, 0, "YouTubeSearch");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/MainLayout.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 
