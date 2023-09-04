@@ -8,8 +8,46 @@ GridLayout {
     width: 886
     height: 50
 
-    property var youTubeSearch
-    property var webEngineView
+    signal searchDefaultRequested()
+
+    Button {
+        text: "Home"
+        implicitWidth: 50
+        implicitHeight: 50
+        background: Rectangle {
+            color: "transparent"
+        }
+        contentItem: Image {
+            source: "/images/home_button.png"
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+        }
+
+        onClicked: {
+            contentsLayout.visible = false
+            menuLayout.visible = true
+        }
+    }
+
+    Button {
+        text: "Youtube"
+        implicitWidth: 50
+        implicitHeight: 50
+        background: Rectangle{
+            color: "transparent"
+        }
+        contentItem: Image {
+            source: "/images/youtube_button.png"
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+        }
+
+        onClicked: {
+            contentsLayout.visible = true
+            menuLayout.visible = false
+            searchDefaultRequested()
+        }
+    }
 
     TextField {
         id: textField
@@ -18,27 +56,5 @@ GridLayout {
         placeholderText: "Search YouTube"
         placeholderTextColor: "#000000"
         Layout.fillWidth: true
-    }
-
-    Button {
-        text: "Search"
-        width: 100
-        height: 50
-
-
-        onClicked: {
-            webEngineView.visible = false;
-            youTubeSearch.searchVideos(textField.text)
-        }
-    }
-
-    Button {
-        text: "Back"
-        width: 100
-        height: 50
-
-        onClicked: {
-            webEngineView.visible = false;
-        }
     }
 }

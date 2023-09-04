@@ -40,4 +40,11 @@ GridLayout {
             webEngineView.visible = false;
         }
     }
+
+    signal searchDefaultRequested
+
+    function searchDefault() {
+        textField.text = "";
+        youTubeSearch.searchVideos(textField.text);
+    }
 }

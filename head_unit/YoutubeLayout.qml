@@ -7,12 +7,13 @@ GridLayout {
     width: 886
     height: 503
 
+    property var youTubeSearch
     property var searchResults
     property alias webEngineView: webEngineView
 
     Connections {
         target: youTubeSearch
-        function onSearchResultsReady(results) {
+        onSearchResultsReady: function(results) {
             searchResults = results;
         }
     }

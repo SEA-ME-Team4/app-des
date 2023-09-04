@@ -5,26 +5,38 @@ import com.example 1.0
 import QtQuick.Layouts 1.3
 
 GridLayout {
-    //id: contentsLayout
     width: 886
     height: 553
     columns: 1
 
-    property var youTubeSearch
-    property var searchResults
+    property var youTubeSearch: null
+
+    Connections {
+        target: toolbarLayout
+        onSearchDefaultRequested: {
+            searchLayout.searchDefault()
+        }
+    }
+
+    YouTubeSearch {
+        id: youTubeSearchInternal
+    }
 
     YoutubeLayout {
         id: youtubeLayout
-        width: contentsLayout.width
-        height: contentsLayout.height * 0.75
-        searchResults: contentsLayout.searchResults
+        width: parent.width
+        height: parent.height * 0.75
+        youTubeSearch: youTubeSearchInternal
     }
 
     SearchLayout {
         id: searchLayout
-        width: contentsLayout.width
-        height: contentsLayout.height * 0.25
-        youTubeSearch: contentsLayout.youTubeSearch
+        width: parent.width
+        height: parent.height * 0.25
+        youTubeSearch: youTubeSearchInternal
         webEngineView: youtubeLayout.webEngineView
+        onSearchDefaultRequested: {
+            searchDefault();
+        }
     }
 }

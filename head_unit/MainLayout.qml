@@ -35,50 +35,22 @@ ApplicationWindow {
         anchors.top: parent.top
     }
 
-
-//    ContentsLayout {
-//        id: contentsLayout
-//        anchors.left: gearLayout.right
-//        anchors.right: parent.right
-//        anchors.top: toolbarLayout.bottom
-//        anchors.bottom: parent.bottom
-//        youTubeSearch: youTubeSearch
-//    }
-
-    StackView {
-        id: stackView
+    MenuLayout {
+        id: menuLayout
         anchors.left: gearLayout.right
         anchors.right: parent.right
         anchors.top: toolbarLayout.bottom
         anchors.bottom: parent.bottom
-        initialItem: menuLayoutComponent
+        visible: true
     }
 
-    Component {
-        id: menuLayoutComponent
-        MenuLayout {
-        }
-    }
-
-    Component {
-        id: contentsLayoutComponent
-        ContentsLayout {
-            youTubeSearch: youTubeSearch
-            searchResults: []
-        }
-    }
-
-    Button {
-        text: "Go to Content Layout"
-        anchors.bottom: parent.bottom
+    ContentsLayout {
+        id: contentsLayout
+        anchors.left: gearLayout.right
         anchors.right: parent.right
-        onClicked: stackView.push(contentsLayoutComponent)
-    }
-
-    Button {
-        text: "Go to Menu Layout"
+        anchors.top: toolbarLayout.bottom
         anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        onClicked: stackView.push(menuLayoutComponent)
+        youTubeSearch: youTubeSearch
+        visible: false
     }
 }

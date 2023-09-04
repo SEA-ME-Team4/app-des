@@ -11,9 +11,10 @@ GridLayout {
     property ButtonGroup buttonGroup
 
     Button {
-        id: button
+        id: gear_P
         implicitWidth: 100
         implicitHeight: 100
+        Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
@@ -25,17 +26,21 @@ GridLayout {
 
         contentItem: Text {
             text: qsTr("  P")
-            color: button.checked ? "white" : "grey"
-            font.pointSize: button.checked ? 24 : 20
+            color: gear_P.checked ? "white" : "grey"
+            font.pointSize: gear_P.checked ? 24 : 20
             font.bold: true
             anchors.centerIn: parent
+        }
+        onClicked: {
+           menuLayout.isGearSSelected = false;
         }
     }
 
     Button {
-        id: button1
+        id: gear_R
         implicitWidth: 100
         implicitHeight: 100
+        Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
@@ -47,17 +52,23 @@ GridLayout {
 
         contentItem: Text {
             text: qsTr("  R")
-            color: button1.checked ? "white" : "grey"
-            font.pointSize: button1.checked ? 24 : 20
+            color: gear_R.checked ? "white" : "grey"
+            font.pointSize: gear_R.checked ? 24 : 20
             font.bold: true
             anchors.centerIn: parent
+        }
+        onClicked: {
+           contentsLayout.visible = false;
+           menuLayout.visible = true;
+            menuLayout.isGearSSelected = false;
         }
     }
 
     Button {
-        id: button2
+        id: gear_N
         implicitWidth: 100
         implicitHeight: 100
+        Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
@@ -69,17 +80,21 @@ GridLayout {
 
         contentItem: Text {
             text: qsTr("  N")
-            color: button2.checked ? "white" : "grey"
-            font.pointSize: button2.checked ? 24 : 20
+            color: gear_N.checked ? "white" : "grey"
+            font.pointSize: gear_N.checked ? 24 : 20
             font.bold: true
             anchors.centerIn: parent
+        }
+        onClicked: {
+           menuLayout.isGearSSelected = false;
         }
     }
 
     Button {
-        id: button3
+        id: gear_D
         implicitWidth: 100
         implicitHeight: 100
+        Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
@@ -91,17 +106,23 @@ GridLayout {
 
         contentItem: Text {
             text: qsTr("  D")
-            color: button3.checked ? "white" : "grey"
-            font.pointSize: button3.checked ? 24 : 20
+            color: gear_D.checked ? "white" : "grey"
+            font.pointSize: gear_D.checked ? 24 : 20
             font.bold: true
             anchors.centerIn: parent
+        }
+        onClicked: {
+           contentsLayout.visible = false;
+           menuLayout.visible = true;
+           menuLayout.isGearSSelected = false;
         }
     }
 
     Button {
-        id: button4
+        id: gear_S
         implicitWidth: 100
         implicitHeight: 100
+        Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
@@ -111,10 +132,15 @@ GridLayout {
 
         contentItem: Text {
             text: qsTr("  S")
-            color: button4.checked ? "red" : "grey"
-            font.pointSize: button4.checked ? 24 : 20
+            color: gear_S.checked ? "red" : "grey"
+            font.pointSize: gear_S.checked ? 24 : 20
             font.bold: true
             anchors.centerIn: parent
+        }
+        onClicked: {
+           contentsLayout.visible = false;
+           menuLayout.visible = true;
+           menuLayout.isGearSSelected = true;
         }
     }
 }
