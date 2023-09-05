@@ -6,7 +6,7 @@ YouTubeSearch::YouTubeSearch() {
 }
 
 void YouTubeSearch::searchVideos(const QString& query) {
-    manager->get(QNetworkRequest(QUrl("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=5&key=")));
+    manager->get(QNetworkRequest(QUrl("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=5&key=AIzaSyC2CGURgrCoILPCAUa2OGE_fuK3AyYYBa4")));
 }
 
 void YouTubeSearch::handleNetworkData(QNetworkReply *reply) {
