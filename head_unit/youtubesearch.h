@@ -24,13 +24,9 @@ signals:
 
 private slots:
     void handleNetworkData(QNetworkReply *reply);
-    void handleVideoDetails(QNetworkReply *reply);
 
 private:
     QNetworkAccessManager *manager;
-    QJsonArray filteredResults;
-    QStringList videoIdList;
-    int videoCount;
 };
 
 #endif
