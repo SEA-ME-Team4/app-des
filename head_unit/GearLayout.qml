@@ -8,139 +8,223 @@ GridLayout {
     columns: 1
     rows: 5
 
+    property int text_size: 30
+    property int button_size: 70
+    property real min_opacity: 0.7
+    property real access_opacity: 0.75
+    property real default_opacity: 1
+    property int  opacity_interval: 1000
     property ButtonGroup buttonGroup
+
+    function resetOpacity() {
+       gear_P.opacity = default_opacity;
+       gear_R.opacity = default_opacity;
+       gear_N.opacity = default_opacity;
+       gear_D.opacity = default_opacity;
+       gear_S.opacity = default_opacity;
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            resetOpacity();
+        }
+    }
 
     Button {
         id: gear_P
-        implicitWidth: 100
-        implicitHeight: 100
+        implicitWidth: button_size
+        implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
-        font.pointSize: checked ? 24 : 20
-        font.bold: true
+        Layout.topMargin: 20
+        opacity: default_opacity
         background: Rectangle {
             color: "transparent"
         }
 
+        enabled: opacity >= access_opacity
+
         contentItem: Text {
-            text: qsTr("  P")
-            color: gear_P.checked ? "white" : "grey"
-            font.pointSize: gear_P.checked ? 24 : 20
+            text: qsTr("P")
+            horizontalAlignment: Text.AlignHCenter
+            color: gear_P.checked ? "white" : "#403f3f"
+            font.pointSize: text_size
             font.bold: true
             anchors.centerIn: parent
+            opacity: gear_P.opacity
         }
+
         onClicked: {
-           menuLayout.isGearSSelected = false;
+                menuLayout.isGearSSelected = false;
+
+                gear_R.opacity = min_opacity
+                gear_N.opacity = min_opacity
+                gear_D.opacity = min_opacity
+                gear_S.opacity = min_opacity
+        }
+
+        Behavior on opacity {
+            NumberAnimation { duration: opacity_interval }
         }
     }
 
     Button {
         id: gear_R
-        implicitWidth: 100
-        implicitHeight: 100
+        implicitWidth: button_size
+        implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
-        font.pointSize: checked ? 24 : 20
-        font.bold: true
+        opacity: default_opacity
         background: Rectangle {
             color: "transparent"
         }
 
+        enabled: opacity >= access_opacity
+
         contentItem: Text {
-            text: qsTr("  R")
-            color: gear_R.checked ? "white" : "grey"
-            font.pointSize: gear_R.checked ? 24 : 20
+            text: qsTr("R")
+            horizontalAlignment: Text.AlignHCenter
+            color: gear_R.checked ? "white" : "#403f3f"
+            font.pointSize: text_size
             font.bold: true
             anchors.centerIn: parent
+            opacity: gear_R.opacity
         }
+
         onClicked: {
-           contentsLayout.visible = false;
-           menuLayout.visible = true;
-           menuLayout.isGearSSelected = false;
+            contentsLayout.visible = false;
+            menuLayout.visible = true;
+            menuLayout.isGearSSelected = false;
+            gear_P.opacity = min_opacity
+            gear_N.opacity = min_opacity
+            gear_D.opacity = min_opacity
+            gear_S.opacity = min_opacity
+        }
+
+        Behavior on opacity {
+            NumberAnimation { duration: opacity_interval }
         }
     }
 
     Button {
         id: gear_N
-        implicitWidth: 100
-        implicitHeight: 100
+        implicitWidth: button_size
+        implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
-        font.pointSize: checked ? 24 : 20
-        font.bold: true
+        opacity: default_opacity
         background: Rectangle {
             color: "transparent"
         }
 
+        enabled: opacity >= access_opacity
+
         contentItem: Text {
-            text: qsTr("  N")
-            color: gear_N.checked ? "white" : "grey"
-            font.pointSize: gear_N.checked ? 24 : 20
+            text: qsTr("N")
+            horizontalAlignment: Text.AlignHCenter
+            color: gear_N.checked ? "white" : "#403f3f"
+            font.pointSize: text_size
             font.bold: true
             anchors.centerIn: parent
+            opacity: gear_N.opacity
         }
         onClicked: {
-           menuLayout.isGearSSelected = false;
+            menuLayout.isGearSSelected = false;
+            gear_P.opacity = min_opacity
+            gear_R.opacity = min_opacity
+            gear_D.opacity = min_opacity
+            gear_S.opacity = min_opacity
+        }
+
+        Behavior on opacity {
+            NumberAnimation { duration: opacity_interval }
         }
     }
 
     Button {
         id: gear_D
-        implicitWidth: 100
-        implicitHeight: 100
+        implicitWidth: button_size
+        implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
-        font.pointSize: checked ? 24 : 20
-        font.bold: true
+        opacity: default_opacity
         background: Rectangle {
             color: "transparent"
         }
 
+        enabled: opacity >= access_opacity
+
         contentItem: Text {
-            text: qsTr("  D")
-            color: gear_D.checked ? "white" : "grey"
-            font.pointSize: gear_D.checked ? 24 : 20
+            text: qsTr("D")
+            horizontalAlignment: Text.AlignHCenter
+            color: gear_D.checked ? "white" : "#403f3f"
+            font.pointSize: text_size
             font.bold: true
             anchors.centerIn: parent
+            opacity: gear_D.opacity
         }
         onClicked: {
-           contentsLayout.visible = false;
-           menuLayout.visible = true;
-           menuLayout.isGearSSelected = false;
+            contentsLayout.visible = false;
+            menuLayout.visible = true;
+            menuLayout.isGearSSelected = false;
+            gear_P.opacity = min_opacity
+            gear_R.opacity = min_opacity
+            gear_N.opacity = min_opacity
+            gear_S.opacity = min_opacity
+        }
+
+        Behavior on opacity {
+            NumberAnimation { duration: opacity_interval }
         }
     }
 
     Button {
         id: gear_S
-        implicitWidth: 100
-        implicitHeight: 100
+        implicitWidth: button_size
+        implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
         ButtonGroup.group: buttonGroup
+        opacity: default_opacity
         background: Rectangle {
             color: "transparent"
         }
 
+        enabled: opacity >= access_opacity
+
         contentItem: Text {
-            text: qsTr("  S")
-            color: gear_S.checked ? "red" : "grey"
-            font.pointSize: gear_S.checked ? 24 : 20
+            text: qsTr("S")
+            horizontalAlignment: Text.AlignHCenter
+            color: gear_S.checked ? "red" : "#403f3f"
+            font.pointSize: text_size
             font.bold: true
             anchors.centerIn: parent
+            opacity: gear_S.opacity
         }
+
         onClicked: {
-           contentsLayout.visible = false;
-           menuLayout.visible = true;
-           menuLayout.isGearSSelected = true;
+            contentsLayout.visible = false;
+            menuLayout.visible = true;
+            menuLayout.isGearSSelected = true;
+            gear_P.opacity = min_opacity
+            gear_R.opacity = min_opacity
+            gear_N.opacity = min_opacity
+            gear_D.opacity = min_opacity
+        }
+
+        Behavior on opacity {
+            NumberAnimation { duration: opacity_interval }
         }
     }
 }
+
