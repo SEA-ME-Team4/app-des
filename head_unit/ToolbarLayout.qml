@@ -4,11 +4,9 @@ import QtQuick.Layouts 1.3
 import QtWebEngine 1.8
 
 GridLayout {
-    columns: 3
+    columns: 4
     width: 886
     height: 50
-
-    signal searchDefaultRequested()
 
     Button {
         text: "Home"
@@ -45,16 +43,49 @@ GridLayout {
         onClicked: {
             contentsLayout.visible = true
             menuLayout.visible = false
-            searchDefaultRequested()
         }
     }
 
-    TextField {
-        id: textField
-        width: 500
+    Rectangle {
+        id: rectangle
+        width: 600
         height: 50
-        placeholderText: "Search YouTube"
-        placeholderTextColor: "#000000"
-        Layout.fillWidth: true
+        color: "#000000"
     }
+
+    Text {
+        id: clockText
+        width: 150
+        height: 50
+        color: "#ffffff"
+        verticalAlignment: Text.AlignVCenter
+        font.bold: true
+        font.pointSize: 20
+        horizontalAlignment: Text.AlignHCenter
+
+        Component.onCompleted: {
+            updateClock();
+            clockTimer.start();
+        }
+
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+
+            if (hours < 10) { hours = "0" + hours; }
+            if (minutes < 10) { minutes = "0" + minutes; }
+
+            clockText.text = hours + ":" + minutes + " ";
+        }
+    }
+
+    Timer {
+        id: clockTimer
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: clockText.updateClock()
+    }
+
 }

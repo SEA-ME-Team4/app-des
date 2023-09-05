@@ -60,7 +60,7 @@ GridLayout {
         onClicked: {
            contentsLayout.visible = false;
            menuLayout.visible = true;
-            menuLayout.isGearSSelected = false;
+           menuLayout.isGearSSelected = false;
         }
     }
 

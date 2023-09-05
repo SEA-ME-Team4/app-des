@@ -11,13 +11,6 @@ GridLayout {
 
     property var youTubeSearch: null
 
-    Connections {
-        target: toolbarLayout
-        onSearchDefaultRequested: {
-            searchLayout.searchDefault()
-        }
-    }
-
     YouTubeSearch {
         id: youTubeSearchInternal
     }
@@ -35,8 +28,5 @@ GridLayout {
         height: parent.height * 0.25
         youTubeSearch: youTubeSearchInternal
         webEngineView: youtubeLayout.webEngineView
-        onSearchDefaultRequested: {
-            searchDefault();
-        }
     }
 }

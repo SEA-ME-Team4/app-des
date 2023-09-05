@@ -28,7 +28,8 @@ GridLayout {
         delegate: Rectangle {
             width: listView.width
             height: 100
-            color: "white"
+            color: "black"
+
 
             Image {
                 source: modelData.snippet.thumbnails.default.url
@@ -38,7 +39,7 @@ GridLayout {
 
             Text {
                 text: modelData.snippet.title
-                color: "black"
+                color: "white"
                 x: 110
                 width: listView.width - 110
                 wrapMode: Text.Wrap
