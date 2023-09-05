@@ -9,9 +9,9 @@
         <file>images/car-highlights.png</file>
         <file>images/field.png</file>
         <file>ContentsLayout.qml</file>
-        <file>images/sports_effect.gif</file>
         <file>images/home_button.png</file>
         <file>images/youtube_button.png</file>
-        <file>images/youtubeMain.gif</file>
+        <file>images/search_glass.png</file>
+        <file>images/X.png</file>
     </qresource>
 </RCC>
