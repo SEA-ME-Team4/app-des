@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>MainLayout.qml</file>
+        <file>SearchLayout.qml</file>
+        <file>GearLayout.qml</file>
+        <file>YoutubeLayout.qml</file>
+        <file>ToolbarLayout.qml</file>
+        <file>MenuLayout.qml</file>
+        <file>images/car-highlights.png</file>
+        <file>images/field.png</file>
+        <file>ContentsLayout.qml</file>
+        <file>images/home_button.png</file>
+        <file>images/youtube_button.png</file>
+        <file>images/search_glass.png</file>
+        <file>images/X.png</file>
+    </qresource>
+</RCC>
