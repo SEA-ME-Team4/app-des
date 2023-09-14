@@ -2,7 +2,11 @@
 *.pro.user
 /**/*Debug
 /**/*Release
-/build
+/**/build
 /**/.DS_Store
 pri*
 *.gif
+
+capicxx-someip-runtime/
+capicxx-core-runtime/
+vsomeip/
