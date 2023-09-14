@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/InstrumentCluster.qml</file>
+        <file>qml/GearSelection.qml</file>
+        <file>qml/LeftCluster.qml</file>
+        <file>qml/RightCluster.qml</file>
+        <file>qml/CenterCar.qml</file>
+        <file>qml/StatusIndicator.qml</file>
+        <file>images/arrow-0.png</file>
+        <file>images/assets-phone-list-pseudo-mask.png</file>
+        <file>images/field.png</file>
+        <file>images/top-line.png</file>
+        <file>images/needle-standard-sport.png</file>
+        <file>images/highlight-standard-sport.png</file>
+        <file>images/car-highlights.png</file>
+        <file>images/brakestatus.png</file>
+        <file>images/brakecheck.png</file>
+        <file>images/batterystatus.png</file>
+        <file>images/left.png</file>
+        <file>images/needle.png</file>
+        <file>images/batterycheck.png</file>
+        <file>images/right.png</file>
+        <file>images/shadow.png</file>
+        <file>images/speedometercheck.png</file>
+        <file>images/speedstatus.png</file>
+        <file>images/temperaturecheck.png</file>
+        <file>images/tempstatus.png</file>
+        <file>images/turn_left.png</file>        
+        <file>images/turn_right.png</file>
+        <file>images/white-line-left.png</file>
+        <file>images/white-line-right.png</file>
+        <file>images/red-border-right.png</file>
+        <file>images/red-border-left.png</file>
+    </qresource>
+</RCC>

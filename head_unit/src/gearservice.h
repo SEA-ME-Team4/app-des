@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include <CommonAPI/CommonAPI.hpp>
-#include "HeadUnitStubImpl.hpp"
+#include "GearStatusStubImpl.hpp"
 #include <QObject>
 
 class GearService: public QObject {
@@ -15,14 +15,14 @@ public:
     GearService(/* args */);
     ~GearService();
 
-    Q_INVOKABLE void sendGear(int gear);
+    Q_INVOKABLE void sendGear(quint8 gear);
 
 // public slots:
 //     void setGear(int gear);
 
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
-    std::shared_ptr<HeadUnitStubImpl> myService;
+    std::shared_ptr<GearStatusStubImpl> myService;
     int gear;
 };
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(head_unit LANGUAGES CXX)
+project(instrument_cluster LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -27,20 +27,21 @@ link_directories(
     ../common_api/vsomeip/build
 )
 
-find_package(Qt5 COMPONENTS Core Quick Gui Network Multimedia WebEngine REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Gui REQUIRED)
 
 add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/qml.qrc
-    src/youtubesearch.cpp
-    src/gearservice.cpp
-    src/GearStatusStubImpl.cpp
-    src-gen/v1/commonapi/GearStatusSomeIPStubAdapter.cpp
+    src/gearclient.cpp
+    src-gen/v1/commonapi/GearStatusSomeIPProxy.cpp
     src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
+    src/vehicleclient.cpp
+    src-gen/v1/commonapi/VehicleStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/VehicleStatusSomeIPDeployment.cpp
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${CMAKE_PROJECT_NAME}
-  PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Network Qt5::Multimedia Qt5::WebEngine
+  PRIVATE Qt5::Core Qt5::Quick Qt5::Gui
   CommonAPI CommonAPI-SomeIP vsomeip3)
