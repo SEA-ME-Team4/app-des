@@ -22,7 +22,7 @@ public:
 
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
-    std::shared_ptr<TestStubImpl> myService;
+    std::shared_ptr<HeadUnitStubImpl> myService;
     int gear;
 };
 

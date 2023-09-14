@@ -18,9 +18,5 @@ define org.genivi.commonapi.someip.deployment for provider as Service {
         InstanceId = "HeadUnit"
 
         SomeIpInstanceID = 22136
-
-        SomeIpUnicastAddress = "192.168.0.2"
-        SomeIpReliableUnicastPort = 30499
-        SomeIpUnreliableUnicastPort = 30500
     }
 }

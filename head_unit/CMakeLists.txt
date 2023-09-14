@@ -33,9 +33,14 @@ add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/qml.qrc
     src/youtubesearch.cpp
+    src/gearservice.cpp
+    src/HeadUnitStubImpl.cpp
+    src-gen/v1/commonapi/HeadUnitSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/HeadUnitSomeIPDeployment.cpp
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${CMAKE_PROJECT_NAME}
-  PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Network Qt5::Multimedia Qt5::WebEngine)
+  PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Network Qt5::Multimedia Qt5::WebEngine
+  CommonAPI CommonAPI-SomeIP vsomeip3)
