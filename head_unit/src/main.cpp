@@ -1,4 +1,5 @@
 #include "youtubesearch.h"
+#include "gearservice.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,7 +9,9 @@ int main(int argc, char *argv[])
 
     QtWebEngine::initialize();
 
-    qmlRegisterType<YouTubeSearch>("com.example", 1, 0, "YouTubeSearch");
+    qmlRegisterType<YouTubeSearch>("YouTubeSearch", 1, 0, "YouTubeSearch");
+
+    qmlRegisterType<GearService>("GearService", 1, 0, "GearService");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/qml/MainLayout.qml")));

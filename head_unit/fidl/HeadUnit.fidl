@@ -1,0 +1,7 @@
+package commonapi
+
+interface HeadUnit {
+    version {major 1 minor 0}
+  
+    attribute Int8 Gear
+}
