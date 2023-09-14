@@ -16,21 +16,22 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
 include_directories(
     src
     src-gen
-    ~/local_workspace/DES03/capicxx-core-runtime/include
-    ~/local_workspace/DES03/capicxx-someip-runtime/include
-    ~/local_workspace/DES03/vsomeip/interface
+    ../common_api/capicxx-core-runtime/include
+    ../common_api/capicxx-someip-runtime/include
+    ../common_api/vsomeip/interface
 )
 
 link_directories(
-    ~/local_workspace/DES03/capicxx-core-runtime/build
-    ~/local_workspace/DES03/capicxx-someip-runtime/build
-    ~/local_workspace/DES03/vsomeip/build
+    ../common_api/capicxx-core-runtime/build
+    ../common_api/capicxx-someip-runtime/build
+    ../common_api/vsomeip/build
 )
 
 find_package(Qt5 COMPONENTS Core Quick Gui Network Multimedia WebEngine REQUIRED)
 
 add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
+    src/qml.qrc
     src/youtubesearch.cpp
 )
 
