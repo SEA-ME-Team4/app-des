@@ -7,7 +7,4 @@
 pri*
 *.gif
 
-COMMONAPI/
-capicxx-someip-runtime/
-capicxx-core-runtime/
-vsomeip/
+common_api/
