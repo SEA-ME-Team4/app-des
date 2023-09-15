@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtWebEngine 1.8
-import com.example 1.0
+import YouTubeSearch 1.0
 import QtQuick.Layouts 1.3
 
 GridLayout {

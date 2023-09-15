@@ -2,7 +2,9 @@
 *.pro.user
 /**/*Debug
 /**/*Release
-/build
+/**/build
 /**/.DS_Store
 pri*
 *.gif
+
+common_api/

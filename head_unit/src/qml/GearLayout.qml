@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
+import GearService 1.0
 
 GridLayout {
     width: 138
@@ -79,6 +80,7 @@ GridLayout {
                 gear_N.opacity = min_opacity
                 gear_D.opacity = min_opacity
                 gear_S.opacity = min_opacity
+                gearservice.sendGear(0)
         }
 
         Behavior on opacity {
@@ -119,6 +121,7 @@ GridLayout {
             gear_N.opacity = min_opacity
             gear_D.opacity = min_opacity
             gear_S.opacity = min_opacity
+            gearservice.sendGear(1)
         }
 
         Behavior on opacity {
@@ -156,6 +159,7 @@ GridLayout {
             gear_R.opacity = min_opacity
             gear_D.opacity = min_opacity
             gear_S.opacity = min_opacity
+            gearservice.sendGear(2)
         }
 
         Behavior on opacity {
@@ -195,6 +199,7 @@ GridLayout {
             gear_R.opacity = min_opacity
             gear_N.opacity = min_opacity
             gear_S.opacity = min_opacity
+            gearservice.sendGear(3)
         }
 
         Behavior on opacity {
@@ -235,11 +240,16 @@ GridLayout {
             gear_R.opacity = min_opacity
             gear_N.opacity = min_opacity
             gear_D.opacity = min_opacity
+            gearservice.sendGear(4)
         }
 
         Behavior on opacity {
             NumberAnimation { duration: opacity_interval }
         }
+    }
+
+    GearService {
+        id: gearservice
     }
 }
 

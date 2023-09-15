@@ -1,0 +1,10 @@
+package commonapi
+
+interface VehicleStatus {
+    version {major 1 minor 0}
+  
+    attribute Int16 Speed
+    attribute UInt8 Battery
+    attribute Boolean Brake
+    attribute Int16 Temp
+}
