@@ -7,10 +7,10 @@
 * If a copy of the MPL was not distributed with this file, You can obtain one at
 * http://mozilla.org/MPL/2.0/.
 */
-#ifndef V1_COMMONAPI_Gear_Status_PROXY_BASE_HPP_
-#define V1_COMMONAPI_Gear_Status_PROXY_BASE_HPP_
+#ifndef V1_COMMONAPI_Temp_Status_PROXY_BASE_HPP_
+#define V1_COMMONAPI_Temp_Status_PROXY_BASE_HPP_
 
-#include <v1/commonapi/GearStatus.hpp>
+#include <v1/commonapi/TempStatus.hpp>
 
 
 
@@ -31,13 +31,13 @@
 namespace v1 {
 namespace commonapi {
 
-class GearStatusProxyBase
+class TempStatusProxyBase
     : virtual public CommonAPI::Proxy {
 public:
-    typedef CommonAPI::ObservableAttribute<uint8_t> GearAttribute;
+    typedef CommonAPI::ObservableAttribute<int16_t> TempAttribute;
 
 
-    virtual GearAttribute& getGearAttribute() = 0;
+    virtual TempAttribute& getTempAttribute() = 0;
 
     virtual std::future<void> getCompletionFuture() = 0;
 };
@@ -49,4 +49,4 @@ public:
 // Compatibility
 namespace v1_0 = v1;
 
-#endif // V1_COMMONAPI_Gear_Status_PROXY_BASE_HPP_
+#endif // V1_COMMONAPI_Temp_Status_PROXY_BASE_HPP_

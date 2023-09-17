@@ -7,10 +7,10 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-#ifndef V1_COMMONAPI_GEAR_STATUS_SOMEIP_PROXY_HPP_
-#define V1_COMMONAPI_GEAR_STATUS_SOMEIP_PROXY_HPP_
+#ifndef V1_COMMONAPI_TEMP_STATUS_SOMEIP_PROXY_HPP_
+#define V1_COMMONAPI_TEMP_STATUS_SOMEIP_PROXY_HPP_
 
-#include <v1/commonapi/GearStatusProxyBase.hpp>
+#include <v1/commonapi/TempStatusProxyBase.hpp>
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
 #define COMMONAPI_INTERNAL_COMPILATION
@@ -44,24 +44,24 @@
 namespace v1 {
 namespace commonapi {
 
-class GearStatusSomeIPProxy
-    : virtual public GearStatusProxyBase,
+class TempStatusSomeIPProxy
+    : virtual public TempStatusProxyBase,
       virtual public CommonAPI::SomeIP::Proxy {
 public:
-    GearStatusSomeIPProxy(
+    TempStatusSomeIPProxy(
         const CommonAPI::SomeIP::Address &_address,
         const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection);
 
-    virtual ~GearStatusSomeIPProxy();
+    virtual ~TempStatusSomeIPProxy();
 
-    virtual GearAttribute& getGearAttribute();
+    virtual TempAttribute& getTempAttribute();
 
     virtual void getOwnVersion(uint16_t &_major, uint16_t &_minor) const;
 
     virtual std::future<void> getCompletionFuture();
 
 private:
-    CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<GearAttribute, CommonAPI::SomeIP::IntegerDeployment<uint8_t>>> gear_;
+    CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<TempAttribute, CommonAPI::SomeIP::IntegerDeployment<int16_t>>> temp_;
 
     std::promise<void> completed_;
 };
@@ -69,4 +69,4 @@ private:
 } // namespace commonapi
 } // namespace v1
 
-#endif // V1_COMMONAPI_Gear_Status_SOMEIP_PROXY_HPP_
+#endif // V1_COMMONAPI_Temp_Status_SOMEIP_PROXY_HPP_

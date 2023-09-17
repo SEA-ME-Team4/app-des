@@ -7,7 +7,7 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-#include <v1/commonapi/GearStatusSomeIPProxy.hpp>
+#include <v1/commonapi/SpeedStatusSomeIPProxy.hpp>
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
 #define COMMONAPI_INTERNAL_COMPILATION
@@ -24,48 +24,48 @@
 namespace v1 {
 namespace commonapi {
 
-std::shared_ptr<CommonAPI::SomeIP::Proxy> createGearStatusSomeIPProxy(
+std::shared_ptr<CommonAPI::SomeIP::Proxy> createSpeedStatusSomeIPProxy(
     const CommonAPI::SomeIP::Address &_address,
     const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection) {
-    return std::make_shared< GearStatusSomeIPProxy>(_address, _connection);
+    return std::make_shared< SpeedStatusSomeIPProxy>(_address, _connection);
 }
 
-void initializeGearStatusSomeIPProxy() {
+void initializeSpeedStatusSomeIPProxy() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
-        "local:commonapi.GearStatus:v1_0:GearStatus",
-        0x1234, 0x5678, 1, 0);
+        "local:commonapi.SpeedStatus:v1_0:SpeedStatus",
+        0x1235, 0x5679, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerProxyCreateMethod(
-        "commonapi.GearStatus:v1_0",
-        &createGearStatusSomeIPProxy);
+        "commonapi.SpeedStatus:v1_0",
+        &createSpeedStatusSomeIPProxy);
 }
 
-INITIALIZER(registerGearStatusSomeIPProxy) {
-    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeGearStatusSomeIPProxy);
+INITIALIZER(registerSpeedStatusSomeIPProxy) {
+    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeSpeedStatusSomeIPProxy);
 }
 
-GearStatusSomeIPProxy::GearStatusSomeIPProxy(
+SpeedStatusSomeIPProxy::SpeedStatusSomeIPProxy(
     const CommonAPI::SomeIP::Address &_address,
     const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection)
         : CommonAPI::SomeIP::Proxy(_address, _connection),
-          gear_(*this, CommonAPI::SomeIP::eventgroup_id_t(0x80f2), CommonAPI::SomeIP::event_id_t(0x80f2), CommonAPI::SomeIP::method_id_t(0xbb8), true, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, CommonAPI::SomeIP::method_id_t(0xbb9), true, static_cast< CommonAPI::SomeIP::IntegerDeployment<uint8_t>* >(nullptr))
+          speed_(*this, CommonAPI::SomeIP::eventgroup_id_t(0x8110), CommonAPI::SomeIP::event_id_t(0x8110), CommonAPI::SomeIP::method_id_t(0xfa0), true, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, CommonAPI::SomeIP::method_id_t(0xfa1), true, static_cast< CommonAPI::SomeIP::IntegerDeployment<int16_t>* >(nullptr))
 {
 }
 
-GearStatusSomeIPProxy::~GearStatusSomeIPProxy() {
+SpeedStatusSomeIPProxy::~SpeedStatusSomeIPProxy() {
     completed_.set_value();
 }
 
-GearStatusSomeIPProxy::GearAttribute& GearStatusSomeIPProxy::getGearAttribute() {
-    return gear_;
+SpeedStatusSomeIPProxy::SpeedAttribute& SpeedStatusSomeIPProxy::getSpeedAttribute() {
+    return speed_;
 }
 
 
-void GearStatusSomeIPProxy::getOwnVersion(uint16_t& ownVersionMajor, uint16_t& ownVersionMinor) const {
+void SpeedStatusSomeIPProxy::getOwnVersion(uint16_t& ownVersionMajor, uint16_t& ownVersionMinor) const {
     ownVersionMajor = 1;
     ownVersionMinor = 0;
 }
 
-std::future<void> GearStatusSomeIPProxy::getCompletionFuture() {
+std::future<void> SpeedStatusSomeIPProxy::getCompletionFuture() {
     return completed_.get_future();
 }
 

@@ -7,7 +7,7 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-#include <v1/commonapi/GearStatusSomeIPProxy.hpp>
+#include <v1/commonapi/BatteryStatusSomeIPProxy.hpp>
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
 #define COMMONAPI_INTERNAL_COMPILATION
@@ -24,48 +24,48 @@
 namespace v1 {
 namespace commonapi {
 
-std::shared_ptr<CommonAPI::SomeIP::Proxy> createGearStatusSomeIPProxy(
+std::shared_ptr<CommonAPI::SomeIP::Proxy> createBatteryStatusSomeIPProxy(
     const CommonAPI::SomeIP::Address &_address,
     const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection) {
-    return std::make_shared< GearStatusSomeIPProxy>(_address, _connection);
+    return std::make_shared< BatteryStatusSomeIPProxy>(_address, _connection);
 }
 
-void initializeGearStatusSomeIPProxy() {
+void initializeBatteryStatusSomeIPProxy() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
-        "local:commonapi.GearStatus:v1_0:GearStatus",
-        0x1234, 0x5678, 1, 0);
+        "local:commonapi.BatteryStatus:v1_0:BatteryStatus",
+        0x1236, 0x567a, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerProxyCreateMethod(
-        "commonapi.GearStatus:v1_0",
-        &createGearStatusSomeIPProxy);
+        "commonapi.BatteryStatus:v1_0",
+        &createBatteryStatusSomeIPProxy);
 }
 
-INITIALIZER(registerGearStatusSomeIPProxy) {
-    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeGearStatusSomeIPProxy);
+INITIALIZER(registerBatteryStatusSomeIPProxy) {
+    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeBatteryStatusSomeIPProxy);
 }
 
-GearStatusSomeIPProxy::GearStatusSomeIPProxy(
+BatteryStatusSomeIPProxy::BatteryStatusSomeIPProxy(
     const CommonAPI::SomeIP::Address &_address,
     const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection)
         : CommonAPI::SomeIP::Proxy(_address, _connection),
-          gear_(*this, CommonAPI::SomeIP::eventgroup_id_t(0x80f2), CommonAPI::SomeIP::event_id_t(0x80f2), CommonAPI::SomeIP::method_id_t(0xbb8), true, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, CommonAPI::SomeIP::method_id_t(0xbb9), true, static_cast< CommonAPI::SomeIP::IntegerDeployment<uint8_t>* >(nullptr))
+          battery_(*this, CommonAPI::SomeIP::eventgroup_id_t(0x811a), CommonAPI::SomeIP::event_id_t(0x811a), CommonAPI::SomeIP::method_id_t(0x1388), true, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, CommonAPI::SomeIP::method_id_t(0x1389), true, static_cast< CommonAPI::SomeIP::IntegerDeployment<uint8_t>* >(nullptr))
 {
 }
 
-GearStatusSomeIPProxy::~GearStatusSomeIPProxy() {
+BatteryStatusSomeIPProxy::~BatteryStatusSomeIPProxy() {
     completed_.set_value();
 }
 
-GearStatusSomeIPProxy::GearAttribute& GearStatusSomeIPProxy::getGearAttribute() {
-    return gear_;
+BatteryStatusSomeIPProxy::BatteryAttribute& BatteryStatusSomeIPProxy::getBatteryAttribute() {
+    return battery_;
 }
 
 
-void GearStatusSomeIPProxy::getOwnVersion(uint16_t& ownVersionMajor, uint16_t& ownVersionMinor) const {
+void BatteryStatusSomeIPProxy::getOwnVersion(uint16_t& ownVersionMajor, uint16_t& ownVersionMinor) const {
     ownVersionMajor = 1;
     ownVersionMinor = 0;
 }
 
-std::future<void> GearStatusSomeIPProxy::getCompletionFuture() {
+std::future<void> BatteryStatusSomeIPProxy::getCompletionFuture() {
     return completed_.get_future();
 }
 

@@ -13,21 +13,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
 
+find_package(Qt5 COMPONENTS Core Quick Gui REQUIRED)
+find_package(CommonAPI REQUIRED CONFIG NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_SYSTEM_PATH)
+find_package(CommonAPI-SomeIP REQUIRED)
+find_package(vsomeip3 REQUIRED)
+
 include_directories(
     src
     src-gen
-    ../common_api/capicxx-core-runtime/include
-    ../common_api/capicxx-someip-runtime/include
-    ../common_api/vsomeip/interface
+    ${COMMONAPI_INCLUDE_DIRS}
+    ${COMMONAPI_SOMEIP_INCLUDE_DIRS}
+    ${VSOMEIP_INCLUDE_DIRS}
 )
 
-link_directories(
-    ../common_api/capicxx-core-runtime/build
-    ../common_api/capicxx-someip-runtime/build
-    ../common_api/vsomeip/build
-)
-
-find_package(Qt5 COMPONENTS Core Quick Gui REQUIRED)
+# link_directories(
+#     ../common_api/capicxx-core-runtime/build
+#     ../common_api/capicxx-someip-runtime/build
+#     ../common_api/vsomeip/build
+# )
 
 add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp

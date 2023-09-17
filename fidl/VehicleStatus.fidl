@@ -1,0 +1,31 @@
+package commonapi
+
+interface SpeedStatus {
+    version {major 1 minor 0}
+  
+    attribute Int16 Speed
+}
+
+interface BatteryStatus {
+    version {major 1 minor 0}
+  
+    attribute UInt8 Battery
+}
+
+interface BrakeStatus {
+    version {major 1 minor 0}
+  
+    attribute Boolean Brake
+}
+
+interface TempStatus {
+    version {major 1 minor 0}
+  
+    attribute Int16 Temp
+}
+
+interface GearStatus {
+    version {major 1 minor 0}
+  
+    attribute UInt8 Gear
+}

@@ -5,16 +5,16 @@ VehicleClient::VehicleClient() {
     runtime = CommonAPI::Runtime::get();
 
     speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "InstrumentCluster_Speed_Client");
-    batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Client");
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Client");
-    tempProxy = runtime->buildProxy<TempStatusProxy>("local", "TempStatus", "InstrumentCluster_Temp_Client");
-    gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Client");
+    // batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Client");
+    // brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Client");
+    // tempProxy = runtime->buildProxy<TempStatusProxy>("local", "TempStatus", "InstrumentCluster_Temp_Client");
+    // gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Client");
 
     speedClient();
-    batteryClient();
-    brakeClient();
-    tempClient();
-    gearClient();
+    // batteryClient();
+    // brakeClient();
+    // tempClient();
+    // gearClient();
 }
 
 VehicleClient::~VehicleClient() {
@@ -110,7 +110,7 @@ void VehicleClient::gearClient() {
     std::cout << "Available..." << std::endl;
 
     CommonAPI::CallStatus callStatus;
-    int8_t value = 0;
+    uint8_t value = 0;
     CommonAPI::CallInfo info(8000);
     gearProxy->getGearAttribute().getValue(callStatus, value, &info);
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
