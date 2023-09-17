@@ -7,10 +7,10 @@
 * If a copy of the MPL was not distributed with this file, You can obtain one at
 * http://mozilla.org/MPL/2.0/.
 */
-#ifndef V1_COMMONAPI_Vehicle_Status_PROXY_BASE_HPP_
-#define V1_COMMONAPI_Vehicle_Status_PROXY_BASE_HPP_
+#ifndef V1_COMMONAPI_Brake_Status_PROXY_BASE_HPP_
+#define V1_COMMONAPI_Brake_Status_PROXY_BASE_HPP_
 
-#include <v1/commonapi/VehicleStatus.hpp>
+#include <v1/commonapi/BrakeStatus.hpp>
 
 
 
@@ -31,19 +31,13 @@
 namespace v1 {
 namespace commonapi {
 
-class VehicleStatusProxyBase
+class BrakeStatusProxyBase
     : virtual public CommonAPI::Proxy {
 public:
-    typedef CommonAPI::ObservableAttribute<int16_t> SpeedAttribute;
-    typedef CommonAPI::ObservableAttribute<uint8_t> BatteryAttribute;
     typedef CommonAPI::ObservableAttribute<bool> BrakeAttribute;
-    typedef CommonAPI::ObservableAttribute<int16_t> TempAttribute;
 
 
-    virtual SpeedAttribute& getSpeedAttribute() = 0;
-    virtual BatteryAttribute& getBatteryAttribute() = 0;
     virtual BrakeAttribute& getBrakeAttribute() = 0;
-    virtual TempAttribute& getTempAttribute() = 0;
 
     virtual std::future<void> getCompletionFuture() = 0;
 };
@@ -55,4 +49,4 @@ public:
 // Compatibility
 namespace v1_0 = v1;
 
-#endif // V1_COMMONAPI_Vehicle_Status_PROXY_BASE_HPP_
+#endif // V1_COMMONAPI_Brake_Status_PROXY_BASE_HPP_

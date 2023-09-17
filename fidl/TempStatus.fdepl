@@ -1,0 +1,22 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "TempStatus.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.TempStatus {
+    SomeIpServiceID = 4664
+
+     attribute Temp {
+        SomeIpGetterID = 7000
+        SomeIpSetterID = 7001
+        SomeIpNotifierID = 33070
+        SomeIpNotifierEventGroups = { 33070 }
+
+        SomeIpAttributeReliable = true
+        }
+    }
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.TempStatus {
+        InstanceId = "TempStatus"
+
+        SomeIpInstanceID = 22140
+    }
+}

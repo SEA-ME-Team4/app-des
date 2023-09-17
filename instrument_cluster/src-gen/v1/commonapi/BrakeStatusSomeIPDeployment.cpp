@@ -7,11 +7,11 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-#include <v1/commonapi/VehicleStatusSomeIPDeployment.hpp>
+#include <v1/commonapi/BrakeStatusSomeIPDeployment.hpp>
 
 namespace v1 {
 namespace commonapi {
-namespace VehicleStatus_ {
+namespace BrakeStatus_ {
 
 // Type-specific deployments
 
@@ -21,6 +21,6 @@ namespace VehicleStatus_ {
 
 // Broadcast-specific deployments
 
-} // namespace VehicleStatus_
+} // namespace BrakeStatus_
 } // namespace commonapi
 } // namespace v1

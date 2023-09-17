@@ -7,10 +7,10 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-#ifndef V1_COMMONAPI_VEHICLE_STATUS_SOMEIP_PROXY_HPP_
-#define V1_COMMONAPI_VEHICLE_STATUS_SOMEIP_PROXY_HPP_
+#ifndef V1_COMMONAPI_TEMP_STATUS_SOMEIP_PROXY_HPP_
+#define V1_COMMONAPI_TEMP_STATUS_SOMEIP_PROXY_HPP_
 
-#include <v1/commonapi/VehicleStatusProxyBase.hpp>
+#include <v1/commonapi/TempStatusProxyBase.hpp>
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
 #define COMMONAPI_INTERNAL_COMPILATION
@@ -44,21 +44,15 @@
 namespace v1 {
 namespace commonapi {
 
-class VehicleStatusSomeIPProxy
-    : virtual public VehicleStatusProxyBase,
+class TempStatusSomeIPProxy
+    : virtual public TempStatusProxyBase,
       virtual public CommonAPI::SomeIP::Proxy {
 public:
-    VehicleStatusSomeIPProxy(
+    TempStatusSomeIPProxy(
         const CommonAPI::SomeIP::Address &_address,
         const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection);
 
-    virtual ~VehicleStatusSomeIPProxy();
-
-    virtual SpeedAttribute& getSpeedAttribute();
-
-    virtual BatteryAttribute& getBatteryAttribute();
-
-    virtual BrakeAttribute& getBrakeAttribute();
+    virtual ~TempStatusSomeIPProxy();
 
     virtual TempAttribute& getTempAttribute();
 
@@ -67,9 +61,6 @@ public:
     virtual std::future<void> getCompletionFuture();
 
 private:
-    CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<SpeedAttribute, CommonAPI::SomeIP::IntegerDeployment<int16_t>>> speed_;
-    CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<BatteryAttribute, CommonAPI::SomeIP::IntegerDeployment<uint8_t>>> battery_;
-    CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<BrakeAttribute>> brake_;
     CommonAPI::SomeIP::ObservableAttribute<CommonAPI::SomeIP::Attribute<TempAttribute, CommonAPI::SomeIP::IntegerDeployment<int16_t>>> temp_;
 
     std::promise<void> completed_;
@@ -78,4 +69,4 @@ private:
 } // namespace commonapi
 } // namespace v1
 
-#endif // V1_COMMONAPI_Vehicle_Status_SOMEIP_PROXY_HPP_
+#endif // V1_COMMONAPI_Temp_Status_SOMEIP_PROXY_HPP_

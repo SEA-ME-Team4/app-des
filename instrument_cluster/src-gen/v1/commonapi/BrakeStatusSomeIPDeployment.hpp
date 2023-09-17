@@ -8,8 +8,8 @@
  * http://mozilla.org/MPL/2.0/.
  */
 
-#ifndef V1_COMMONAPI_Vehicle_Status_SOMEIP_DEPLOYMENT_HPP_
-#define V1_COMMONAPI_Vehicle_Status_SOMEIP_DEPLOYMENT_HPP_
+#ifndef V1_COMMONAPI_Brake_Status_SOMEIP_DEPLOYMENT_HPP_
+#define V1_COMMONAPI_Brake_Status_SOMEIP_DEPLOYMENT_HPP_
 
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
@@ -24,7 +24,7 @@
 
 namespace v1 {
 namespace commonapi {
-namespace VehicleStatus_ {
+namespace BrakeStatus_ {
 
 // Interface-specific deployment types
 
@@ -36,8 +36,8 @@ namespace VehicleStatus_ {
 
 // Broadcast-specific deployments
 
-} // namespace VehicleStatus_
+} // namespace BrakeStatus_
 } // namespace commonapi
 } // namespace v1
 
-#endif // V1_COMMONAPI_Vehicle_Status_SOMEIP_DEPLOYMENT_HPP_
+#endif // V1_COMMONAPI_Brake_Status_SOMEIP_DEPLOYMENT_HPP_

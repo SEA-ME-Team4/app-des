@@ -19,7 +19,7 @@ Piracer::~Piracer() {
 
 double Piracer::getVoltage() {
     pVoltage = PyObject_CallMethod(pInstance, "get_battery_voltage", NULL);
-    voltage = PyFloat_AsDouble(pValue);
+    voltage = PyFloat_AsDouble(pVoltage);
     return voltage;
 }
 

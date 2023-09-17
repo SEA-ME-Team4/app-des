@@ -52,7 +52,6 @@ Rectangle {
 
     GearClient{
         id: gearclient
-        onGearChanged: {instrumentcluster.gear = gear}
     }
 
     VehicleClient {
@@ -61,6 +60,7 @@ Rectangle {
         onBatteryChanged: {instrumentcluster.battery = battery}
         onTempChanged: {instrumentcluster.temp = temp}
         onBrakeChanged: {instrumentcluster.brake = brake}
+        onGearChanged: {instrumentcluster.gear = gear}
     }
 
 //    Car2Qml{
