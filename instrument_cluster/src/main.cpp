@@ -1,7 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "gearclient.h"
 #include "vehicleclient.h"
 
 int main(int argc, char *argv[])
@@ -11,8 +10,6 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-
-    qmlRegisterType<GearClient>("GearClient", 1, 0, "GearClient");
 
     qmlRegisterType<VehicleClient>("VehicleClient", 1, 0, "VehicleClient");
 

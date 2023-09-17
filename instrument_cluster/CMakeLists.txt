@@ -32,12 +32,17 @@ find_package(Qt5 COMPONENTS Core Quick Gui REQUIRED)
 add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/qml.qrc
-    src/gearclient.cpp
+    src/vehicleclient.cpp
+    src-gen/v1/commonapi/SpeedStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/SpeedStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/BatteryStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/BatteryStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/TempStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/TempStatusSomeIPDeployment.cpp
     src-gen/v1/commonapi/GearStatusSomeIPProxy.cpp
     src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
-    src/vehicleclient.cpp
-    src-gen/v1/commonapi/VehicleStatusSomeIPProxy.cpp
-    src-gen/v1/commonapi/VehicleStatusSomeIPDeployment.cpp
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME}

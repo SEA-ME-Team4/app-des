@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <CommonAPI/CommonAPI.hpp>
 #include <v1/commonapi/SpeedStatusProxy.hpp>
-#include <v1/commonapi/BatterytatusProxy.hpp>
+#include <v1/commonapi/BatteryStatusProxy.hpp>
 #include <v1/commonapi/BrakeStatusProxy.hpp>
 #include <v1/commonapi/TempStatusProxy.hpp>
 #include <v1/commonapi/GearStatusProxy.hpp>
@@ -37,5 +37,5 @@ private:
     void batteryClient();
     void brakeClient();
     void tempClient();
-    void gaerClient();
+    void gearClient();
 };

@@ -63,20 +63,20 @@ void VehicleClient::batteryClient() {
 }
 void VehicleClient::brakeClient() {
     std::cout << "Checking Brake availability!" << std::endl;
-    while (!BrakeProxy->isAvailable())
+    while (!brakeProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
     
     CommonAPI::CallStatus callStatus;
     bool value = 0;
     CommonAPI::CallInfo info(6000);
-    BrakeProxy->getBrakeAttribute().getValue(callStatus, value, &info);
+    brakeProxy->getBrakeAttribute().getValue(callStatus, value, &info);
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
         std::cerr << "Remote call Brake failed!\n";
     }
     std::cout << "Got Brake: " << value << std::endl;
 
-    BrakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
+    brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
         // qDebug()<<brake;
         emit brakeChanged(brake);
     });
@@ -84,20 +84,20 @@ void VehicleClient::brakeClient() {
 
 void VehicleClient::tempClient() {
     std::cout << "Checking Temp availability!" << std::endl;
-    while (!TempProxy->isAvailable())
+    while (!tempProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
     
     CommonAPI::CallStatus callStatus;
     int16_t value = 0;
     CommonAPI::CallInfo info(7000);
-    TempProxy->getTempAttribute().getValue(callStatus, value, &info);
+    tempProxy->getTempAttribute().getValue(callStatus, value, &info);
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
         std::cerr << "Remote call Temp failed!\n";
     }
     std::cout << "Got Temp: " << value << std::endl;
 
-    TempProxy->getTempAttribute().getChangedEvent().subscribe([&](const int16_t& temp) {
+    tempProxy->getTempAttribute().getChangedEvent().subscribe([&](const int16_t& temp) {
         // qDebug()<<temp;
         emit tempChanged(temp);
     });
@@ -110,7 +110,7 @@ void VehicleClient::gearClient() {
     std::cout << "Available..." << std::endl;
 
     CommonAPI::CallStatus callStatus;
-    uint8_t value = 0;
+    int8_t value = 0;
     CommonAPI::CallInfo info(8000);
     gearProxy->getGearAttribute().getValue(callStatus, value, &info);
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {

@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import GearClient 1.0
 import VehicleClient 1.0
 
 Rectangle {
@@ -48,10 +47,6 @@ Rectangle {
     {
         x: 512
         y: 346
-    }
-
-    GearClient{
-        id: gearclient
     }
 
     VehicleClient {
