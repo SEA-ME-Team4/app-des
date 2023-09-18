@@ -34,3 +34,11 @@ bool Gamepad::read_data() {
     return true;
 }
 
+bool Gamepad::brake_status() {
+    if (gamepad_inputRY<0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}

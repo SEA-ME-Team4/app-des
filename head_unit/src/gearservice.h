@@ -12,7 +12,7 @@ class GearService: public QObject {
     Q_OBJECT
     
 public:
-    GearService(/* args */);
+    GearService();
     ~GearService();
 
     Q_INVOKABLE void sendGear(quint8 gear);

@@ -7,6 +7,7 @@ public:
     Gamepad();
     ~Gamepad();
     bool read_data();
+    bool brake_status();
     double gamepad_inputLX, gamepad_inputRY;
 
 private:

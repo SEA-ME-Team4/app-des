@@ -34,19 +34,24 @@ include_directories(
 # )
 
 add_executable(battery
-    src/battery.cpp
     src/piracer.cpp
-)
+    src/battery/battery.cpp
+    src/battery/BatteryStatusStubImpl.cpp
+    src-gen/v1/commonapi/BatteryStatusSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/BatteryStatusSomeIPDeployment.cpp
 
+)
 target_link_libraries(battery
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)
 
-add_executable(brake
-    src/brake.cpp
+add_executable(handler
     src/gamepad.cpp
+    src/brake/brake.cpp
+    src/brake/BrakeStatusStubImpl.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
 )
-
-target_link_libraries(brake
+target_link_libraries(handler
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)

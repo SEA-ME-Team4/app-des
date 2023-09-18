@@ -6,7 +6,7 @@ GearService::GearService() {
 
     std::string domain = "local";
     std::string instance = "GearStatus";
-    std::string connection = "HeadUnit_Service";
+    std::string connection = "HeadUnit_Gear_Service";
 
     myService = std::make_shared<GearStatusStubImpl>();
     while (!runtime->registerService(domain, instance, myService, connection)) {
