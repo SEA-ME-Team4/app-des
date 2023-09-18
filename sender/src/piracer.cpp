@@ -10,7 +10,6 @@ Piracer::Piracer() {
 
 Piracer::~Piracer() {
     Py_XDECREF(pVoltage);
-
     Py_XDECREF(pInstance);
     Py_XDECREF(pClass);
     Py_XDECREF(pModule);

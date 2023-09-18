@@ -3,6 +3,5 @@
 int main()
 {
     Piracer piracer = Piracer();
-    double voltage = piracer.getBattery();
-    
+    double voltage = piracer.getVoltage();
 }
