@@ -33,7 +33,7 @@ void VehicleClient::speedClient() {
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
         std::cerr << "Remote call Speed failed!\n";
     }
-    std::cout << "Got Speed: " << value << std::endl;
+    std::cout << "Got Speed: " << (int)value << std::endl;
 
     speedProxy->getSpeedAttribute().getChangedEvent().subscribe([&](const int16_t& speed) {
         // qDebug()<<speed;
@@ -54,7 +54,7 @@ void VehicleClient::batteryClient() {
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
         std::cerr << "Remote call Battery failed!\n";
     }
-    std::cout << "Got Battery: " << value << std::endl;
+    std::cout << "Got Battery: " << (int)value << std::endl;
 
     batteryProxy->getBatteryAttribute().getChangedEvent().subscribe([&](const uint8_t& battery) {
         // qDebug()<<battery;
@@ -74,7 +74,7 @@ void VehicleClient::brakeClient() {
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
         std::cerr << "Remote call Brake failed!\n";
     }
-    std::cout << "Got Brake: " << value << std::endl;
+    std::cout << "Got Brake: " << (int)value << std::endl;
 
     brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
         // qDebug()<<brake;
@@ -95,7 +95,7 @@ void VehicleClient::tempClient() {
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
         std::cerr << "Remote call Temp failed!\n";
     }
-    std::cout << "Got Temp: " << value << std::endl;
+    std::cout << "Got Temp: " << (int)value << std::endl;
 
     tempProxy->getTempAttribute().getChangedEvent().subscribe([&](const int16_t& temp) {
         // qDebug()<<temp;
@@ -116,7 +116,7 @@ void VehicleClient::gearClient() {
     if (callStatus != CommonAPI::CallStatus::SUCCESS) {
         std::cerr << "Remote call Gear failed!\n";
     }
-    std::cout << "Got Gear: " << value << std::endl;
+    std::cout << "Got Gear: " << (int)value << std::endl;
 
     gearProxy->getGearAttribute().getChangedEvent().subscribe([&](const uint8_t& gear) {
         // qDebug()<<gear;

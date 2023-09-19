@@ -13,12 +13,8 @@ int main()
 
     runtime = CommonAPI::Runtime::get();
 
-    std::string domain = "local";
-    std::string instance = "BatteryStatus";
-    std::string connection = "Battery_Service";
-
     batteryService = std::make_shared<BatteryStatusStubImpl>();
-    while (!runtime->registerService(domain, instance, batteryService, connection)) {
+    while (!runtime->registerService("local", "BatteryStatus", batteryService, "Battery_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }

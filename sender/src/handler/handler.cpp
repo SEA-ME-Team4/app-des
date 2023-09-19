@@ -5,7 +5,6 @@
 #include <iostream>
 #include <thread>
 #include <CommonAPI/CommonAPI.hpp>
-#include <stdint.h>
 
 using namespace v1::commonapi;
 
@@ -16,7 +15,7 @@ int main()
     std::shared_ptr<BrakeStatusStubImpl> brakeService;
     std::shared_ptr<GearStatusProxy<>> gearProxy;
 
-    int gearstatus = 9;
+    int gearstatus;
 
     runtime = CommonAPI::Runtime::get();
 
@@ -41,10 +40,10 @@ int main()
         std::cerr << "Remote call Gear failed!\n";
     }
     std::cout << "Got Gear: " << value << std::endl;
+    gearstatus = (int)value;
 
     gearProxy->getGearAttribute().getChangedEvent().subscribe([&](const uint8_t& gear) {
-        gearstatus = gear;
-        std::cout<<"gearstatus: "<<gearstatus<<std::endl;
+        gearstatus = (int)gear;
     });
     
     while (gamepad.read_data())
