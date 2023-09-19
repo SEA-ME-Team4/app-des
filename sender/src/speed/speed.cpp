@@ -1,4 +1,5 @@
 #include "SpeedStatusStubImpl.hpp"
+#include "canreceiver.h"
 
 #include <iostream>
 #include <thread>
@@ -6,7 +7,8 @@
 #include <unistd.h>
 
 int main() {
-    int speed = 0;
+    CanReceiver canreceiver = CanReceiver("vcan0"); 
+    int16_t speed = 0;
 
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<SpeedStatusStubImpl> speedService;
@@ -20,15 +22,17 @@ int main() {
     }
     std::cout << "Successfully Registered Speed Service!" << std::endl;
     
-    while (1)
+    while (canreceiver.canRead())
     {
+        speed = canreceiver.getSpeed();
         speedService->setSpeedAttribute(speed);
-        speed++;
-        usleep(50000);
-        std::cout<<speed<<std::endl;
-        if (speed==160) {
-            speed = 0;
-        }
+        
+        // speed++;
+        // usleep(50000);
+        // std::cout<<speed<<std::endl;
+        // if (speed==160) {
+        //     speed = 0;
+        // }
     }
     
 }
