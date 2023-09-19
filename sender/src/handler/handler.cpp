@@ -8,8 +8,7 @@
 
 using namespace v1::commonapi;
 
-int main()
-{
+int main() {
     Gamepad gamepad = Gamepad();
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<BrakeStatusStubImpl> brakeService;
@@ -50,7 +49,7 @@ int main()
     {
         std::cout<<"gamepad: "<<gamepad.brake_status()<<'\t';
         std::cout<<"gearstatus: "<<gearstatus<<std::endl;
-        brakeService->setBrakeAttribute(gamepad.brake_status());   
+        brakeService->setBrakeAttribute(gamepad.brake_status());
+        // If Condition Gear and Gamepad
     }
-    
 }

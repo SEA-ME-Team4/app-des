@@ -4,17 +4,17 @@
 VehicleClient::VehicleClient() {
     runtime = CommonAPI::Runtime::get();
 
-    // speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "InstrumentCluster_Speed_Client");
+    speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "InstrumentCluster_Speed_Client");
     // batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Client");
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Client");
+    // brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Client");
     // tempProxy = runtime->buildProxy<TempStatusProxy>("local", "TempStatus", "InstrumentCluster_Temp_Client");
-    gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Client");
+    // gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Client");
 
-    // speedClient();
+    speedClient();
     // batteryClient();
-    brakeClient();
+    // brakeClient();
     // tempClient();
-    gearClient();
+    // gearClient();
 }
 
 VehicleClient::~VehicleClient() {

@@ -33,6 +33,17 @@ include_directories(
 #     ../common_api/vsomeip/build
 # )
 
+add_executable(speed
+    src/speed/speed.cpp
+    src/speed/SpeedStatusStubImpl.cpp
+    src-gen/v1/commonapi/SpeedStatusSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/SpeedStatusSomeIPDeployment.cpp
+
+)
+target_link_libraries(speed
+    ${PYTHON_LIBRARIES}
+    CommonAPI CommonAPI-SomeIP vsomeip3)
+
 add_executable(battery
     src/piracer.cpp
     src/battery/battery.cpp

@@ -5,8 +5,7 @@
 #include <thread>
 #include <CommonAPI/CommonAPI.hpp>
 
-int main()
-{
+int main() {
     Piracer piracer = Piracer();
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<BatteryStatusStubImpl> batteryService;
