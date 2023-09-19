@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import GearClient 1.0
 import VehicleClient 1.0
 
 Rectangle {
@@ -50,17 +49,13 @@ Rectangle {
         y: 346
     }
 
-    GearClient{
-        id: gearclient
-        onGearChanged: {instrumentcluster.gear = gear}
-    }
-
     VehicleClient {
         id: vehicleclient
         onSpeedChanged: {instrumentcluster.speed = speed}
         onBatteryChanged: {instrumentcluster.battery = battery}
         onTempChanged: {instrumentcluster.temp = temp}
         onBrakeChanged: {instrumentcluster.brake = brake}
+        onGearChanged: {instrumentcluster.gear = gear}
     }
 
 //    Car2Qml{

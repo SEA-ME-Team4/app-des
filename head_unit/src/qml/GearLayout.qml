@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
-import GearService 1.0
+import VehicleStatus 1.0
 
 GridLayout {
     width: 138
@@ -16,6 +16,7 @@ GridLayout {
     property real default_opacity: 1
     property int  opacity_interval: 1000
     property ButtonGroup buttonGroup
+    property bool brakestatus: false
 
     Timer {
         id: opacityTimer
@@ -54,6 +55,7 @@ GridLayout {
         Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
+        checked: true
         ButtonGroup.group: buttonGroup
         Layout.topMargin: 20
         opacity: default_opacity
@@ -75,12 +77,11 @@ GridLayout {
 
         onClicked: {
                 menuLayout.isGearSSelected = false;
-
                 gear_R.opacity = min_opacity
                 gear_N.opacity = min_opacity
                 gear_D.opacity = min_opacity
                 gear_S.opacity = min_opacity
-                gearservice.sendGear(0)
+                vehiclestatus.sendGear(0)
         }
 
         Behavior on opacity {
@@ -121,7 +122,7 @@ GridLayout {
             gear_N.opacity = min_opacity
             gear_D.opacity = min_opacity
             gear_S.opacity = min_opacity
-            gearservice.sendGear(1)
+            vehiclestatus.sendGear(1)
         }
 
         Behavior on opacity {
@@ -159,7 +160,7 @@ GridLayout {
             gear_R.opacity = min_opacity
             gear_D.opacity = min_opacity
             gear_S.opacity = min_opacity
-            gearservice.sendGear(2)
+            vehiclestatus.sendGear(2)
         }
 
         Behavior on opacity {
@@ -199,7 +200,7 @@ GridLayout {
             gear_R.opacity = min_opacity
             gear_N.opacity = min_opacity
             gear_S.opacity = min_opacity
-            gearservice.sendGear(3)
+            vehiclestatus.sendGear(3)
         }
 
         Behavior on opacity {
@@ -240,7 +241,7 @@ GridLayout {
             gear_R.opacity = min_opacity
             gear_N.opacity = min_opacity
             gear_D.opacity = min_opacity
-            gearservice.sendGear(4)
+            vehiclestatus.sendGear(4)
         }
 
         Behavior on opacity {
@@ -248,8 +249,8 @@ GridLayout {
         }
     }
 
-    GearService {
-        id: gearservice
+    VehicleStatus {
+        id: vehiclestatus
+        onBrakeChanged: {brakestatus = brake}
     }
 }
-

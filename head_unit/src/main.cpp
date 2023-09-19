@@ -1,5 +1,5 @@
 #include "youtubesearch.h"
-#include "gearservice.h"
+#include "vehiclestatus.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<YouTubeSearch>("YouTubeSearch", 1, 0, "YouTubeSearch");
 
-    qmlRegisterType<GearService>("GearService", 1, 0, "GearService");
+    qmlRegisterType<VehicleStatus>("VehicleStatus", 1, 0, "VehicleStatus");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/qml/MainLayout.qml")));
