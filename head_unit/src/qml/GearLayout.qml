@@ -54,6 +54,7 @@ GridLayout {
         Layout.alignment: Qt.AlignHCenter
         visible: true
         checkable: true
+        checked: true
         ButtonGroup.group: buttonGroup
         Layout.topMargin: 20
         opacity: default_opacity
