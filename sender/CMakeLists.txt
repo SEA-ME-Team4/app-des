@@ -47,10 +47,12 @@ target_link_libraries(battery
 
 add_executable(handler
     src/gamepad.cpp
-    src/brake/brake.cpp
-    src/brake/BrakeStatusStubImpl.cpp
+    src/handler/handler.cpp
+    src/handler/BrakeStatusStubImpl.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/GearStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
 )
 target_link_libraries(handler
     ${PYTHON_LIBRARIES}
