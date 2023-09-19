@@ -36,10 +36,12 @@ add_executable(${CMAKE_PROJECT_NAME}
     src/main.cpp
     src/qml.qrc
     src/youtubesearch.cpp
-    src/gearservice.cpp
+    src/vehiclestatus.cpp
     src/GearStatusStubImpl.cpp
     src-gen/v1/commonapi/GearStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME}
