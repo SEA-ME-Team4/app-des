@@ -34,11 +34,11 @@ include_directories(
 # )
 
 add_executable(speed
+    src/canreceiver.cpp
     src/speed/speed.cpp
     src/speed/SpeedStatusStubImpl.cpp
     src-gen/v1/commonapi/SpeedStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/SpeedStatusSomeIPDeployment.cpp
-
 )
 target_link_libraries(speed
     ${PYTHON_LIBRARIES}
@@ -50,13 +50,13 @@ add_executable(battery
     src/battery/BatteryStatusStubImpl.cpp
     src-gen/v1/commonapi/BatteryStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/BatteryStatusSomeIPDeployment.cpp
-
 )
 target_link_libraries(battery
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)
 
 add_executable(handler
+    src/piracer.cpp
     src/gamepad.cpp
     src/handler/handler.cpp
     src/handler/BrakeStatusStubImpl.cpp

@@ -1,3 +1,4 @@
+#include "piracer.h"
 #include "gamepad.h"
 #include "BrakeStatusStubImpl.hpp"
 
@@ -9,12 +10,16 @@
 using namespace v1::commonapi;
 
 int main() {
+    int gearstatus;
+    float steering;
+    float throttle;
+
+    Piracer piracer = Piracer();
     Gamepad gamepad = Gamepad();
+
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<BrakeStatusStubImpl> brakeService;
     std::shared_ptr<GearStatusProxy<>> gearProxy;
-
-    int gearstatus;
 
     runtime = CommonAPI::Runtime::get();
 
@@ -50,6 +55,35 @@ int main() {
         std::cout<<"gamepad: "<<gamepad.brake_status()<<'\t';
         std::cout<<"gearstatus: "<<gearstatus<<std::endl;
         brakeService->setBrakeAttribute(gamepad.brake_status());
+
+        steering = gamepad.gamepad_inputLX;
+        throttle = gamepad.gamepad_inputRY;
+        
         // If Condition Gear and Gamepad
+        // gearstatus 01234 = PRNDS
+        if (gearstatus==0) {
+            steering = 0;
+            throttle = 0;
+        }
+        else if (gearstatus==1) {
+            throttle = -throttle;
+            if (throttle<0) {
+                throttle = 0;
+            }
+        }
+        else if (gearstatus==2) {
+            throttle = 0;
+        }
+        else if (gearstatus==3) {
+            if (throttle<0) {
+                throttle = 0;
+            }
+        }
+        else {
+            throttle = 1.5*throttle;
+        }
+
+        piracer.set_steering_percent(steering);
+        piracer.set_throttle_percent(throttle);
     }
 }
