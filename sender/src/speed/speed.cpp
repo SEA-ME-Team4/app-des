@@ -7,7 +7,8 @@
 #include <unistd.h>
 
 int main() {
-    CanReceiver canreceiver = CanReceiver("vcan0"); 
+    // Arduino Speed Sender ID: 0x0F6
+    CanReceiver canreceiver = CanReceiver("vcan0", 0x0F6); 
     int16_t speed = 0;
 
     std::shared_ptr<CommonAPI::Runtime> runtime;
