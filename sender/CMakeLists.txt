@@ -39,6 +39,8 @@ add_executable(speed
     src/speed/SpeedStatusStubImpl.cpp
     src-gen/v1/commonapi/SpeedStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/SpeedStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPDeployment.cpp
 )
 target_link_libraries(speed
     ${PYTHON_LIBRARIES}
@@ -50,22 +52,26 @@ add_executable(battery
     src/battery/BatteryStatusStubImpl.cpp
     src-gen/v1/commonapi/BatteryStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/BatteryStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPDeployment.cpp
 )
 target_link_libraries(battery
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)
 
-add_executable(handler
-    src/handler/gamepad.cpp
-    src/handler/handler.cpp
-    src/handler/BrakeStatusStubImpl.cpp
-    src/handler/ManeuverStubImpl.cpp
+add_executable(input
+    src/input/gamepad.cpp
+    src/input/input.cpp
+    src/input/BrakeStatusStubImpl.cpp
+    src/input/ManeuverStubImpl.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
     src-gen/v1/commonapi/ManeuverSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/ManeuverSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPDeployment.cpp
 )
-target_link_libraries(handler
+target_link_libraries(input
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)
 
@@ -79,6 +85,8 @@ add_executable(racer
     src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
     src-gen/v1/commonapi/ManeuverSomeIPProxy.cpp
     src-gen/v1/commonapi/ManeuverSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/ToHandlerSomeIPDeployment.cpp
 )
 target_link_libraries(racer
     ${PYTHON_LIBRARIES}

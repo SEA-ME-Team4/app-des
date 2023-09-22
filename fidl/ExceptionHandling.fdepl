@@ -1,0 +1,39 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "ExceptionHandling.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.ToHandler {
+    SomeIpServiceID = 1
+
+     broadcast StatusEvent {
+        SomeIpEventID = 32770
+        SomeIpEventGroups = { 32770 }
+
+        SomeIpReliable = true
+        }
+    }
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.ToHandler {
+        InstanceId = "ToHandler"
+
+        SomeIpInstanceID = 11
+    }
+}
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.ToApplication {
+    SomeIpServiceID = 2
+
+     broadcast ErrorEvent {
+        SomeIpEventID = 32771
+        SomeIpEventGroups = { 32771 }
+
+        SomeIpReliable = true
+        }
+    }
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.ToApplication {
+        InstanceId = "ToApplication"
+
+        SomeIpInstanceID = 22
+    }
+}
+

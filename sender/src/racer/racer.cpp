@@ -17,6 +17,7 @@ int main() {
         throttle = racerclient.getThrottle();
 
         piracer.setRacer(gear, brake, steering, throttle);
+        racerclient.statusUpdate();
     }
     piracer.emergencyStop();
 }

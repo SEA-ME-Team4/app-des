@@ -1,0 +1,21 @@
+package commonapi
+
+interface ToHandler {
+    version {major 1 minor 0}
+
+    broadcast StatusEvent {
+    	out {
+    	    String Status
+    	}
+    }
+}
+
+interface ToApplication {
+    version {major 1 minor 0}
+
+    broadcast ErrorEvent {
+    	out {
+    	    String Error
+    	}
+    }
+}

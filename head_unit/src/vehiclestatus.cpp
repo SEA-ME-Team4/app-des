@@ -13,10 +13,18 @@ VehicleStatus::VehicleStatus() {
     }
     std::cout << "Successfully Registered Service!" << std::endl;
     gear = 0;
-    sendGear(0);
 
     brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "HeadUnit_Brake_Client");
     brakeClient();
+
+    statusService = std::make_shared<ToHandlerStubDefault>();
+    while (!runtime->registerService("local", "ToHandler", statusService, "Input_Status_Service")) {
+        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    std::cout << "Successfully Registered Service!" << std::endl;
+
+    sendGear(0);
 }
 
 VehicleStatus::~VehicleStatus() {
@@ -24,8 +32,7 @@ VehicleStatus::~VehicleStatus() {
 
 void VehicleStatus::sendGear(quint8 gear) {
     gearService->setGearAttribute(gear);
-    // this->gear = gear;
-    // qDebug()<<gear;
+    statusService->fireStatusEventEvent(project_name);
 }
 
 void VehicleStatus::brakeClient() {

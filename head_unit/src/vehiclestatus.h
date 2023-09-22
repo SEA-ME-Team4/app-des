@@ -7,7 +7,10 @@
 #include <CommonAPI/CommonAPI.hpp>
 #include "GearStatusStubImpl.hpp"
 #include <v1/commonapi/BrakeStatusProxy.hpp>
+#include <v1/commonapi/ToHandlerStubDefault.hpp>
 #include <QObject>
+
+#define project_name "gear"
 
 using namespace v1_0::commonapi;
 
@@ -27,6 +30,7 @@ private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<GearStatusStubImpl> gearService;
     std::shared_ptr<BrakeStatusProxy<>> brakeProxy;
+    std::shared_ptr<ToHandlerStubDefault> statusService;
     int gear;
 
     void brakeClient();
