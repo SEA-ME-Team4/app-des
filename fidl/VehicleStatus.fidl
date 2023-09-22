@@ -1,5 +1,11 @@
 package commonapi
 
+interface GearStatus {
+    version {major 1 minor 0}
+  
+    attribute UInt8 Gear
+}
+
 interface SpeedStatus {
     version {major 1 minor 0}
   
@@ -22,12 +28,6 @@ interface TempStatus {
     version {major 1 minor 0}
   
     attribute Int16 Temp
-}
-
-interface GearStatus {
-    version {major 1 minor 0}
-  
-    attribute UInt8 Gear
 }
 
 interface Maneuver {
