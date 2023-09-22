@@ -102,7 +102,7 @@ define org.genivi.commonapi.someip.deployment for provider as Service {
 }
 
 define org.genivi.commonapi.someip.deployment for interface commonapi.Maneuver {
-    SomeIpServiceID = 4660
+    SomeIpServiceID = 4665
 
      attribute Steering {
         SomeIpGetterID = 8000

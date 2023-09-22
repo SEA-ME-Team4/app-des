@@ -7,8 +7,8 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-#include <v1/commonapi/ManeuverSomeIPStubAdapter.hpp>
-#include <v1/commonapi/Maneuver.hpp>
+#include <v1/commonapi/BatteryStatusSomeIPStubAdapter.hpp>
+#include <v1/commonapi/BatteryStatus.hpp>
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
 #define COMMONAPI_INTERNAL_COMPILATION
@@ -25,24 +25,24 @@
 namespace v1 {
 namespace commonapi {
 
-std::shared_ptr<CommonAPI::SomeIP::StubAdapter> createManeuverSomeIPStubAdapter(
+std::shared_ptr<CommonAPI::SomeIP::StubAdapter> createBatteryStatusSomeIPStubAdapter(
                    const CommonAPI::SomeIP::Address &_address,
                    const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection,
                    const std::shared_ptr<CommonAPI::StubBase> &_stub) {
-    return std::make_shared< ManeuverSomeIPStubAdapter<::v1::commonapi::ManeuverStub>>(_address, _connection, _stub);
+    return std::make_shared< BatteryStatusSomeIPStubAdapter<::v1::commonapi::BatteryStatusStub>>(_address, _connection, _stub);
 }
 
-void initializeManeuverSomeIPStubAdapter() {
+void initializeBatteryStatusSomeIPStubAdapter() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
-        "local:commonapi.Maneuver:v1_0:Maneuver",
-         0x1239, 0x567d, 1, 0);
+        "local:commonapi.BatteryStatus:v1_0:BatteryStatus",
+         0x1236, 0x567a, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerStubAdapterCreateMethod(
-        "commonapi.Maneuver:v1_0",
-        &createManeuverSomeIPStubAdapter);
+        "commonapi.BatteryStatus:v1_0",
+        &createBatteryStatusSomeIPStubAdapter);
 }
 
-INITIALIZER(registerManeuverSomeIPStubAdapter) {
-    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeManeuverSomeIPStubAdapter);
+INITIALIZER(registerBatteryStatusSomeIPStubAdapter) {
+    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeBatteryStatusSomeIPStubAdapter);
 }
 
 } // namespace commonapi

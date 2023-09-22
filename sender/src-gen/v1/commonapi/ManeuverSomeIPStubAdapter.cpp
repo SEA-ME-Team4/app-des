@@ -35,7 +35,7 @@ std::shared_ptr<CommonAPI::SomeIP::StubAdapter> createManeuverSomeIPStubAdapter(
 void initializeManeuverSomeIPStubAdapter() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
         "local:commonapi.Maneuver:v1_0:Maneuver",
-         0x1234, 0x567d, 1, 0);
+         0x1239, 0x567d, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerStubAdapterCreateMethod(
         "commonapi.Maneuver:v1_0",
         &createManeuverSomeIPStubAdapter);

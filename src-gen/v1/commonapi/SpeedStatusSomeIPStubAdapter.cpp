@@ -7,8 +7,8 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at
  * http://mozilla.org/MPL/2.0/.
  */
-#include <v1/commonapi/ManeuverSomeIPStubAdapter.hpp>
-#include <v1/commonapi/Maneuver.hpp>
+#include <v1/commonapi/SpeedStatusSomeIPStubAdapter.hpp>
+#include <v1/commonapi/SpeedStatus.hpp>
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
 #define COMMONAPI_INTERNAL_COMPILATION
@@ -25,24 +25,24 @@
 namespace v1 {
 namespace commonapi {
 
-std::shared_ptr<CommonAPI::SomeIP::StubAdapter> createManeuverSomeIPStubAdapter(
+std::shared_ptr<CommonAPI::SomeIP::StubAdapter> createSpeedStatusSomeIPStubAdapter(
                    const CommonAPI::SomeIP::Address &_address,
                    const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection,
                    const std::shared_ptr<CommonAPI::StubBase> &_stub) {
-    return std::make_shared< ManeuverSomeIPStubAdapter<::v1::commonapi::ManeuverStub>>(_address, _connection, _stub);
+    return std::make_shared< SpeedStatusSomeIPStubAdapter<::v1::commonapi::SpeedStatusStub>>(_address, _connection, _stub);
 }
 
-void initializeManeuverSomeIPStubAdapter() {
+void initializeSpeedStatusSomeIPStubAdapter() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
-        "local:commonapi.Maneuver:v1_0:Maneuver",
-         0x1239, 0x567d, 1, 0);
+        "local:commonapi.SpeedStatus:v1_0:SpeedStatus",
+         0x1235, 0x5679, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerStubAdapterCreateMethod(
-        "commonapi.Maneuver:v1_0",
-        &createManeuverSomeIPStubAdapter);
+        "commonapi.SpeedStatus:v1_0",
+        &createSpeedStatusSomeIPStubAdapter);
 }
 
-INITIALIZER(registerManeuverSomeIPStubAdapter) {
-    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeManeuverSomeIPStubAdapter);
+INITIALIZER(registerSpeedStatusSomeIPStubAdapter) {
+    CommonAPI::SomeIP::Factory::get()->registerInterface(initializeSpeedStatusSomeIPStubAdapter);
 }
 
 } // namespace commonapi
