@@ -27,13 +27,6 @@ int main() {
     {
         speed = canreceiver.getSpeed();
         speedService->setSpeedAttribute(speed);
-        
-        // speed++;
-        // usleep(50000);
-        // std::cout<<speed<<std::endl;
-        // if (speed==160) {
-        //     speed = 0;
-        // }
     }
     
 }

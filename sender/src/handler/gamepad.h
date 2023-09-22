@@ -6,11 +6,15 @@ class Gamepad
 public:
     Gamepad();
     ~Gamepad();
+
     bool read_data();
-    bool brake_status();
-    double gamepad_inputLX, gamepad_inputRY;
+    bool getBrake();
+    float getSteering();
+    float getThrottle();
 
 private:
     PyObject *pModule, *pClass, *pInstance;
     PyObject *pInput, *pInputL, *pInputR, *pInputLX, *pInputRY;
+    float gamepad_inputLX, gamepad_inputRY;
+    bool gamepad_brake;
 };

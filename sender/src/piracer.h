@@ -6,12 +6,14 @@ class Piracer
 public:
     Piracer();
     ~Piracer();
-    double get_battery_voltage();
-    void set_steering_percent(float steering);
-    void set_throttle_percent(float throttle);
+    double getVoltage();
+    void setRacer(int gear, bool brake, float steering, float throttle);
+    void emergencyStop();
 
 private:
     PyObject *pModule, *pClass, *pInstance;
     PyObject *pVoltage;
     double voltage;
+    void set_steering_percent(float steering);
+    void set_throttle_percent(float throttle);
 };

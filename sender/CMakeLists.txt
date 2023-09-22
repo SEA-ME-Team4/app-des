@@ -34,7 +34,7 @@ include_directories(
 # )
 
 add_executable(speed
-    src/canreceiver.cpp
+    src/speed/canreceiver.cpp
     src/speed/speed.cpp
     src/speed/SpeedStatusStubImpl.cpp
     src-gen/v1/commonapi/SpeedStatusSomeIPStubAdapter.cpp
@@ -56,15 +56,30 @@ target_link_libraries(battery
     CommonAPI CommonAPI-SomeIP vsomeip3)
 
 add_executable(handler
-    src/piracer.cpp
-    src/gamepad.cpp
+    src/handler/gamepad.cpp
     src/handler/handler.cpp
     src/handler/BrakeStatusStubImpl.cpp
+    src/handler/ManeuverStubImpl.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
-    src-gen/v1/commonapi/GearStatusSomeIPProxy.cpp
-    src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPDeployment.cpp
 )
 target_link_libraries(handler
+    ${PYTHON_LIBRARIES}
+    CommonAPI CommonAPI-SomeIP vsomeip3)
+
+add_executable(racer
+    src/piracer.cpp
+    src/racer/racer.cpp
+    src/racer/racerclient.cpp
+    src-gen/v1/commonapi/GearStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPProxy.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPDeployment.cpp
+)
+target_link_libraries(racer
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)

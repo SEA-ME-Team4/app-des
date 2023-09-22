@@ -25,20 +25,25 @@ bool Gamepad::read_data() {
 
     pInputL = PyObject_GetAttrString(pInput, "analog_stick_left");
     pInputLX = PyObject_GetAttrString(pInputL, "x");
-    gamepad_inputLX = PyFloat_AsDouble(pInputLX);
+    gamepad_inputLX = (float)PyFloat_AsDouble(pInputLX);
 
     pInputR = PyObject_GetAttrString(pInput, "analog_stick_right");
     pInputRY = PyObject_GetAttrString(pInputR, "y");
-    gamepad_inputRY = -PyFloat_AsDouble(pInputRY);
+    gamepad_inputRY = (float)PyFloat_AsDouble(pInputRY);
+
+    (gamepad_inputRY<0) ? gamepad_brake = true : gamepad_brake =  false;
     
     return true;
 }
 
-bool Gamepad::brake_status() {
-    if (gamepad_inputRY<0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+bool Gamepad::getBrake() {
+    return gamepad_brake;
+}
+
+float Gamepad::getSteering() {
+    return gamepad_inputLX;
+}
+
+float Gamepad::getThrottle() {
+    return gamepad_inputRY;
 }

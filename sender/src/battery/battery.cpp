@@ -21,7 +21,7 @@ int main() {
     
     while (1)
     {
-        batteryService->setBatteryAttribute(piracer.get_battery_voltage());
+        batteryService->setBatteryAttribute(piracer.getVoltage());
     }
     
 }

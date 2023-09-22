@@ -100,3 +100,31 @@ define org.genivi.commonapi.someip.deployment for provider as Service {
         SomeIpInstanceID = 22136
     }
 }
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.Maneuver {
+    SomeIpServiceID = 4660
+
+     attribute Steering {
+        SomeIpGetterID = 8000
+        SomeIpSetterID = 8001
+        SomeIpNotifierID = 33080
+        SomeIpNotifierEventGroups = { 33080 }
+
+        SomeIpAttributeReliable = true
+        }
+     attribute Throttle {
+        SomeIpGetterID = 9000
+        SomeIpSetterID = 9001
+        SomeIpNotifierID = 33090
+        SomeIpNotifierEventGroups = { 33090 }
+
+        SomeIpAttributeReliable = true
+        }
+    }
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.Maneuver {
+        InstanceId = "Maneuver"
+
+        SomeIpInstanceID = 22141
+    }
+}
