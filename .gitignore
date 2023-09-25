@@ -8,4 +8,6 @@ pri*
 *.gif
 
 common_api/
-output/
+
+output/**
+# !output/commonapi.ini
