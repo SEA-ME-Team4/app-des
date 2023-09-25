@@ -1,11 +1,51 @@
 package commonapi
 
-interface ToHandler {
+interface SpeedToHandler {
     version {major 1 minor 0}
 
-    broadcast StatusEvent {
+    broadcast SpeedStatusEvent {
     	out {
-    	    String Status
+    	    Boolean Status
+    	}
+    }
+}
+
+interface BatteryToHandler {
+    version {major 1 minor 0}
+
+    broadcast BatteryStatusEvent {
+    	out {
+    	    Boolean Status
+    	}
+    }
+}
+
+interface InputToHandler {
+    version {major 1 minor 0}
+
+    broadcast InputStatusEvent {
+    	out {
+    	    Boolean Status
+    	}
+    }
+}
+
+interface RacerToHandler {
+    version {major 1 minor 0}
+
+    broadcast RacerStatusEvent {
+    	out {
+    	    Boolean Status
+    	}
+    }
+}
+
+interface GearToHandler {
+    version {major 1 minor 0}
+
+    broadcast GearStatusEvent {
+    	out {
+    	    Boolean Status
     	}
     }
 }

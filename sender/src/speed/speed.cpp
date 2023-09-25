@@ -1,13 +1,11 @@
 #include "canreceiver.h"
 #include "SpeedStatusStubImpl.hpp"
-#include <v1/commonapi/ToHandlerStubDefault.hpp>
+#include <v1/commonapi/SpeedToHandlerStubDefault.hpp>
 
 #include <iostream>
 #include <thread>
 #include <CommonAPI/CommonAPI.hpp>
 #include <unistd.h>
-
-#define project_name "speed"
 
 using namespace v1::commonapi;
 
@@ -18,7 +16,7 @@ int main() {
 
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<SpeedStatusStubImpl> speedService;
-    std::shared_ptr<ToHandlerStubDefault> statusService;
+    std::shared_ptr<SpeedToHandlerStubDefault> statusService;
 
     runtime = CommonAPI::Runtime::get();
 
@@ -29,7 +27,7 @@ int main() {
     }
     std::cout << "Successfully Registered Speed Service!" << std::endl;
     
-    statusService = std::make_shared<ToHandlerStubDefault>();
+    statusService = std::make_shared<SpeedToHandlerStubDefault>();
     while (!runtime->registerService("local", "ToHandler", statusService, "Speed_Status_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -41,7 +39,7 @@ int main() {
         speed = canreceiver.getSpeed();
         speedService->setSpeedAttribute(speed);
 
-        statusService->fireStatusEventEvent(project_name);
+        statusService->fireSpeedStatusEventEvent(true);
     }
     
 }

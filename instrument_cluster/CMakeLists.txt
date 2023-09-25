@@ -46,6 +46,8 @@ add_executable(${CMAKE_PROJECT_NAME}
     src-gen/v1/commonapi/TempStatusSomeIPDeployment.cpp
     src-gen/v1/commonapi/GearStatusSomeIPProxy.cpp
     src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ToApplicationSomeIPProxy.cpp
+    src-gen/v1/commonapi/ToApplicationSomeIPDeployment.cpp
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME}

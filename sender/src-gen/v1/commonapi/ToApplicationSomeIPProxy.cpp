@@ -33,7 +33,7 @@ std::shared_ptr<CommonAPI::SomeIP::Proxy> createToApplicationSomeIPProxy(
 void initializeToApplicationSomeIPProxy() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
         "local:commonapi.ToApplication:v1_0:ToApplication",
-        0x2, 0x16, 1, 0);
+        0xa, 0x3f2, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerProxyCreateMethod(
         "commonapi.ToApplication:v1_0",
         &createToApplicationSomeIPProxy);
@@ -47,7 +47,7 @@ ToApplicationSomeIPProxy::ToApplicationSomeIPProxy(
     const CommonAPI::SomeIP::Address &_address,
     const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection)
         : CommonAPI::SomeIP::Proxy(_address, _connection),
-          errorEvent_(*this, 0x8003, CommonAPI::SomeIP::event_id_t(0x8003), CommonAPI::SomeIP::event_type_e::ET_EVENT , CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, std::make_tuple(static_cast< CommonAPI::SomeIP::StringDeployment* >(nullptr)))
+          errorEvent_(*this, 0x800c, CommonAPI::SomeIP::event_id_t(0x800c), CommonAPI::SomeIP::event_type_e::ET_EVENT , CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, std::make_tuple(static_cast< CommonAPI::SomeIP::StringDeployment* >(nullptr)))
 {
 }
 

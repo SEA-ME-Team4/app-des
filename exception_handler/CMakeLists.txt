@@ -36,8 +36,16 @@ include_directories(
 add_executable(handler
     src/main.cpp
     src/handler.cpp
-    src-gen/v1/commonapi/ToHandlerSomeIPProxy.cpp
-    src-gen/v1/commonapi/ToHandlerSomeIPDeployment.cpp
+    src-gen/v1/commonapi/SpeedToHandlerSomeIPProxy.cpp
+    src-gen/v1/commonapi/SpeedToHandlerSomeIPDeployment.cpp
+    src-gen/v1/commonapi/BatteryToHandlerSomeIPProxy.cpp
+    src-gen/v1/commonapi/BatteryToHandlerSomeIPDeployment.cpp
+    src-gen/v1/commonapi/InputToHandlerSomeIPProxy.cpp
+    src-gen/v1/commonapi/InputToHandlerSomeIPDeployment.cpp
+    src-gen/v1/commonapi/RacerToHandlerSomeIPProxy.cpp
+    src-gen/v1/commonapi/RacerToHandlerSomeIPDeployment.cpp
+    src-gen/v1/commonapi/GearToHandlerSomeIPProxy.cpp
+    src-gen/v1/commonapi/GearToHandlerSomeIPDeployment.cpp
     src/ToApplicationStubImpl.cpp
     src-gen/v1/commonapi/ToApplicationSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/ToApplicationSomeIPDeployment.cpp

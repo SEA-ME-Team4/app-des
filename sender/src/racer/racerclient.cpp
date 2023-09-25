@@ -6,7 +6,7 @@ RacerClient::RacerClient() {
     gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Racer_Gear_Client");
     brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "Racer_Brake_Client");
     maneuverProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Racer_Maneuver_Client");
-    statusService = std::make_shared<ToHandlerStubDefault>();
+    statusService = std::make_shared<RacerToHandlerStubDefault>();
 
     gearClient();
     brakeClient();
@@ -90,7 +90,7 @@ void RacerClient::maneuverClient() {
 }
 
 void RacerClient::statusServer() {
-    while (!runtime->registerService("local", "ToHandler", statusService, "Racer_Status_Service")) {
+    while (!runtime->registerService("local", "RacerToHandler", statusService, "Racer_Status_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
@@ -121,5 +121,5 @@ bool RacerClient::validCheck() {
 }
 
 void RacerClient::statusUpdate() {
-    statusService->fireStatusEventEvent(project_name);
+    statusService->fireRacerStatusEventEvent(true);
 }

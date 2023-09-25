@@ -1,7 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
-import VehicleStatus 1.0
 
 GridLayout {
     width: 138
@@ -16,7 +15,6 @@ GridLayout {
     property real default_opacity: 1
     property int  opacity_interval: 1000
     property ButtonGroup buttonGroup
-    property bool brakestatus: false
 
     Timer {
         id: opacityTimer
@@ -247,10 +245,5 @@ GridLayout {
         Behavior on opacity {
             NumberAnimation { duration: opacity_interval }
         }
-    }
-
-    VehicleStatus {
-        id: vehiclestatus
-        onBrakeChanged: {brakestatus = brake}
     }
 }

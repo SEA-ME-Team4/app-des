@@ -1,8 +1,6 @@
 #include "vehiclestatus.h"
 #include <unistd.h>
 
-// #include <QDebug>
-
 VehicleStatus::VehicleStatus() {
     runtime = CommonAPI::Runtime::get();
 
@@ -17,14 +15,17 @@ VehicleStatus::VehicleStatus() {
     brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "HeadUnit_Brake_Client");
     brakeClient();
 
-    statusService = std::make_shared<ToHandlerStubDefault>();
-    while (!runtime->registerService("local", "ToHandler", statusService, "Input_Status_Service")) {
+    statusService = std::make_shared<GearToHandlerStubDefault>();
+    while (!runtime->registerService("local", "GearToHandler", statusService, "Gear_Status_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     std::cout << "Successfully Registered Service!" << std::endl;
 
     sendGear(0);
+
+    errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "HeadUnit_Error_Client");
+    errorClient();
 }
 
 VehicleStatus::~VehicleStatus() {
@@ -32,7 +33,7 @@ VehicleStatus::~VehicleStatus() {
 
 void VehicleStatus::sendGear(quint8 gear) {
     gearService->setGearAttribute(gear);
-    statusService->fireStatusEventEvent(project_name);
+    statusService->fireGearStatusEventEvent(true);
 }
 
 void VehicleStatus::brakeClient() {
@@ -51,7 +52,26 @@ void VehicleStatus::brakeClient() {
     std::cout << "Got Brake: " << (int)value << std::endl;
 
     brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
-        // qDebug()<<brake;
         emit brakeChanged(brake);
+    });
+}
+
+void VehicleStatus::errorClient() {
+    std::cout << "Checking Error Handling availability!" << std::endl;
+    while (!errorProxy->isAvailable())
+        usleep(10);
+    std::cout << "Available..." << std::endl;
+    errorProxy->getErrorEventEvent().subscribe([&](const std::string& name) {
+        if (name=="speed_error") {emit speedStatus(false);}
+        else if (name=="battery_error") {emit batteryStatus(false);}
+        else if (name=="input_error") {emit inputStatus(false);}
+        else if (name=="racer_error") {emit racerStatus(false);}
+        else if (name=="gear_error") {emit gearStatus(false);}
+
+        else if (name=="speed_okay") {emit speedStatus(true);}
+        else if (name=="battery_okay") {emit batteryStatus(true);}
+        else if (name=="input_okay") {emit inputStatus(true);}
+        else if (name=="racer_okay") {emit racerStatus(true);}
+        else if (name=="gear_okay") {emit gearStatus(true);}
     });
 }

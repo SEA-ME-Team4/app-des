@@ -69,8 +69,8 @@ public:
         // Provided events/fields
         {
             std::set<CommonAPI::SomeIP::eventgroup_id_t> itsEventGroups;
-            itsEventGroups.insert(CommonAPI::SomeIP::eventgroup_id_t(0x8003));
-            CommonAPI::SomeIP::StubAdapter::registerEvent(CommonAPI::SomeIP::event_id_t(0x8003), itsEventGroups, CommonAPI::SomeIP::event_type_e::ET_EVENT, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE);
+            itsEventGroups.insert(CommonAPI::SomeIP::eventgroup_id_t(0x800c));
+            CommonAPI::SomeIP::StubAdapter::registerEvent(CommonAPI::SomeIP::event_id_t(0x800c), itsEventGroups, CommonAPI::SomeIP::event_type_e::ET_EVENT, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE);
         }
     }
 
@@ -87,7 +87,7 @@ void ToApplicationSomeIPStubAdapterInternal<_Stub, _Stubs...>::fireErrorEventEve
     >>
         ::sendEvent(
             *this,
-            CommonAPI::SomeIP::event_id_t(0x8003),
+            CommonAPI::SomeIP::event_id_t(0x800c),
             false,
              deployed_Error 
     );

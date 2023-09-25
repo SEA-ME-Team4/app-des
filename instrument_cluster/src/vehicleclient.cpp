@@ -4,17 +4,23 @@
 VehicleClient::VehicleClient() {
     runtime = CommonAPI::Runtime::get();
 
-    speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "InstrumentCluster_Speed_Client");
-    // batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Client");
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Client");
-    // tempProxy = runtime->buildProxy<TempStatusProxy>("local", "TempStatus", "InstrumentCluster_Temp_Client");
-    gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Client");
+    // // speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "InstrumentCluster_Speed_Client");
+    // // speedClient();
 
-    speedClient();
-    // batteryClient();
-    brakeClient();
-    // tempClient();
-    gearClient();
+    // // batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Client");
+    // // batteryClient();
+
+    // brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Client");
+    // brakeClient();
+
+    // // tempProxy = runtime->buildProxy<TempStatusProxy>("local", "TempStatus", "InstrumentCluster_Temp_Client");
+    // // tempClient();
+
+    // gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Client");
+    // gearClient();
+
+    // errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "InstrumentCluster_Error_Client");
+    // errorClient();
 }
 
 VehicleClient::~VehicleClient() {
@@ -122,5 +128,25 @@ void VehicleClient::gearClient() {
     gearProxy->getGearAttribute().getChangedEvent().subscribe([&](const uint8_t& gear) {
         // qDebug()<<gear;
         emit gearChanged(gear);
+    });
+}
+
+void VehicleClient::errorClient() {
+    std::cout << "Checking Error Handling availability!" << std::endl;
+    while (!errorProxy->isAvailable())
+        usleep(10);
+    std::cout << "Available..." << std::endl;
+    errorProxy->getErrorEventEvent().subscribe([&](const std::string& name) {
+        if (name=="speed_error") {emit speedStatus(false);}
+        else if (name=="battery_error") {emit batteryStatus(false);}
+        else if (name=="input_error") {emit inputStatus(false);}
+        else if (name=="racer_error") {emit racerStatus(false);}
+        else if (name=="gear_error") {emit gearStatus(false);}
+
+        else if (name=="speed_okay") {emit speedStatus(true);}
+        else if (name=="battery_okay") {emit batteryStatus(true);}
+        else if (name=="input_okay") {emit inputStatus(true);}
+        else if (name=="racer_okay") {emit racerStatus(true);}
+        else if (name=="gear_okay") {emit gearStatus(true);}
     });
 }

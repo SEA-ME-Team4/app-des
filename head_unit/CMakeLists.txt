@@ -40,10 +40,12 @@ add_executable(${CMAKE_PROJECT_NAME}
     src/GearStatusStubImpl.cpp
     src-gen/v1/commonapi/GearStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
-    src-gen/v1/commonapi/ToHandlerSomeIPStubAdapter.cpp
-    src-gen/v1/commonapi/ToHandlerSomeIPDeployment.cpp
+    src-gen/v1/commonapi/GearToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/GearToHandlerSomeIPDeployment.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPProxy.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ToApplicationSomeIPProxy.cpp
+    src-gen/v1/commonapi/ToApplicationSomeIPDeployment.cpp
 )
 
 target_compile_definitions(${CMAKE_PROJECT_NAME}

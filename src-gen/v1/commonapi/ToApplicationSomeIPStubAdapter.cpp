@@ -35,7 +35,7 @@ std::shared_ptr<CommonAPI::SomeIP::StubAdapter> createToApplicationSomeIPStubAda
 void initializeToApplicationSomeIPStubAdapter() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
         "local:commonapi.ToApplication:v1_0:ToApplication",
-         0x2, 0x16, 1, 0);
+         0xa, 0x3f2, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerStubAdapterCreateMethod(
         "commonapi.ToApplication:v1_0",
         &createToApplicationSomeIPStubAdapter);
