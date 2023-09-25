@@ -21,7 +21,7 @@ include_directories(
     src-gen/vehicle/core/skel
     src-gen/vehicle/someip/common
     src-gen/vehicle/someip/proxy
-    src-gen/vehicle/someip/stub    
+    src-gen/vehicle/someip/stub
     src-gen/handler/core/common
     src-gen/handler/core/proxy
     src-gen/handler/core/stub
