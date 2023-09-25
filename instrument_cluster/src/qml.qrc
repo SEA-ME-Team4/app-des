@@ -32,5 +32,10 @@
         <file>images/white-line-right.png</file>
         <file>images/red-border-right.png</file>
         <file>images/red-border-left.png</file>
+        <file>images/inputstatus.png</file>
+        <file>images/inputcheck.png</file>
+        <file>images/gearstatus.png</file>
+        <file>images/gearcheck.png</file>
+        <file>images/rearlight.png</file>
     </qresource>
 </RCC>

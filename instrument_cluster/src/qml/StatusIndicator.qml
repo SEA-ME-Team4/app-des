@@ -2,11 +2,11 @@ import QtQuick 2.0
 
 Rectangle {
     id: statusindicator
-    property double dbusopacity: (parent.dbus_timeout)? 1 : 0
-    property double speedopacity: (!parent.speed_timeout || parent.dbus_timeout)? 1 : 0.3
-    property double brakeopacity: (!parent.brake_timeout || parent.dbus_timeout)? 1 : 0.3
-    property double batteryopacity: (!parent.battery_timeout || parent.dbus_timeout)? 1 : 0.3
-    property double tempopacity: (!parent.temp_timeout || parent.dbus_timeout)? 1 : 0.3
+    property double raceropacity: (!parent.racer_status)? 1 : 0
+    property double speedopacity: (parent.speed_status || parent.racer_status)? 1 : 0.3
+    property double inputopacity: (parent.input_status || parent.racer_status)? 1 : 0.3
+    property double batteryopacity: (parent.battery_status || parent.racer_status)? 1 : 0.3
+    property double gearopacity: (parent.gear_status || parent.racer_status)? 1 : 0.3
     color: "black"
 
     Image {
@@ -24,30 +24,30 @@ Rectangle {
     }
 
     Image {
-        id: speedstatusimage_dbuscheck
+        id: speedstatusimage_racercheck
         x: 0
         y: 12
         source: "/images/speedometercheck.png"
         fillMode: Image.PreserveAspectFit
-        opacity: statusindicator.dbusopacity
+        opacity: statusindicator.raceropacity
     }
 
     Image {
-        id: brakestatusimage
+        id: inputstatusimage
         x: 75
         y: 12
-        source: "/images/brakestatus.png"
+        source: "/images/inputstatus.png"
         fillMode: Image.PreserveAspectFit
-        opacity: statusindicator.brakeopacity
+        opacity: statusindicator.inputopacity
     }
 
     Image {
-        id: brakestatusimage_dbuscheck
+        id: inputstatusimage_racercheck
         x: 75
         y: 12
-        source: "/images/brakecheck.png"
+        source: "/images/inputcheck.png"
         fillMode: Image.PreserveAspectFit
-        opacity: statusindicator.dbusopacity
+        opacity: statusindicator.raceropacity
     }
 
     Image {
@@ -60,29 +60,29 @@ Rectangle {
     }
 
     Image {
-        id: batterystatusimage_dbuscheck
+        id: batterystatusimage_racercheck
         x: 146
         y: 12
         source: "/images/batterycheck.png"
         fillMode: Image.PreserveAspectFit
-        opacity: statusindicator.dbusopacity
+        opacity: statusindicator.raceropacity
     }
 
     Image {
         id: tempstatusimage
         x: 224
         y: 12
-        source: "/images/tempstatus.png"
+        source: "/images/gearstatus.png"
         fillMode: Image.PreserveAspectFit
-        opacity: statusindicator.tempopacity
+        opacity: statusindicator.gearopacity
     }
 
     Image {
-        id: tempstatusimage_dbuscheck
+        id: tempstatusimage_racercheck
         x: 224
         y: 12
-        source: "/images/temperaturecheck.png"
+        source: "/images/gearcheck.png"
         fillMode: Image.PreserveAspectFit
-        opacity: statusindicator.dbusopacity
+        opacity: statusindicator.raceropacity
     }
 }

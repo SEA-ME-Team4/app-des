@@ -15,12 +15,13 @@ Rectangle {
     property bool brake: false
     property int gear: 0
 
-//    property bool speed_timeout: carinfo.speedstatus
-//    property bool battery_timeout: carinfo.batterystatus
-//    property bool temp_timeout: carinfo.tempstatus
-//    property bool brake_timeout: carinfo.brakestatus
+    property bool racer_status: true
+    property bool speed_status: true
+    property bool battery_status: true
+    property bool input_status: true
+    property bool gear_status: true
 
-//    property bool dbus_timeout: carinfo.dbusstatus
+    property bool handler_status: false
 
     LeftCluster {
         x: 146
@@ -51,27 +52,17 @@ Rectangle {
 
     VehicleClient {
         id: vehicleclient
+
         onSpeedChanged: {instrumentcluster.speed = speed}
         onBatteryChanged: {instrumentcluster.battery = battery}
         onTempChanged: {instrumentcluster.temp = temp}
         onBrakeChanged: {instrumentcluster.brake = brake}
         onGearChanged: {instrumentcluster.gear = gear}
+
+        onSpeedStatus: {instrumentcluster.speed_status = status}
+        onBatteryStatus: {instrumentcluster.battery_status = status}
+        onInputStatus: {instrumentcluster.input_status = status}
+        onRacerStatus: {instrumentcluster.racer_status = status}
+        onGearStatus: {instrumentcluster.gear_status = status}
     }
-
-//    Car2Qml{
-//        id: carinfo
-
-//        onSpeedChanged: {instrumentcluster.speed = carinfo.speed}
-//        onBatteryChanged: {instrumentcluster.battery = carinfo.battery}
-//        onTempChanged: {instrumentcluster.temp = carinfo.temp}
-//        onBrakeChanged: {instrumentcluster.brake = carinfo.brake}
-
-//        onSpeedstatusChanged: {instrumentcluster.speed_timeout = status}
-//        onBatterystatusChanged: {instrumentcluster.battery_timeout = status}
-//        onTempstatusChanged: {instrumentcluster.temp_timeout = status}
-//        onBrakestatusChanged: {instrumentcluster.brake_timeout = status}
-
-//        onDbusstatusChanged: {instrumentcluster.dbus_timeout = status}
-
-//    }
 }

@@ -34,11 +34,13 @@ include_directories(
 # )
 
 add_executable(speed
-    src/canreceiver.cpp
+    src/speed/canreceiver.cpp
     src/speed/speed.cpp
     src/speed/SpeedStatusStubImpl.cpp
     src-gen/v1/commonapi/SpeedStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/SpeedStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/SpeedToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/SpeedToHandlerSomeIPDeployment.cpp
 )
 target_link_libraries(speed
     ${PYTHON_LIBRARIES}
@@ -50,21 +52,42 @@ add_executable(battery
     src/battery/BatteryStatusStubImpl.cpp
     src-gen/v1/commonapi/BatteryStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/BatteryStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/BatteryToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/BatteryToHandlerSomeIPDeployment.cpp
 )
 target_link_libraries(battery
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)
 
-add_executable(handler
-    src/piracer.cpp
-    src/gamepad.cpp
-    src/handler/handler.cpp
-    src/handler/BrakeStatusStubImpl.cpp
+add_executable(input
+    src/input/gamepad.cpp
+    src/input/input.cpp
+    src/input/BrakeStatusStubImpl.cpp
+    src/input/ManeuverStubImpl.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPStubAdapter.cpp
     src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPDeployment.cpp
+    src-gen/v1/commonapi/InputToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/InputToHandlerSomeIPDeployment.cpp
+)
+target_link_libraries(input
+    ${PYTHON_LIBRARIES}
+    CommonAPI CommonAPI-SomeIP vsomeip3)
+
+add_executable(racer
+    src/piracer.cpp
+    src/racer/racer.cpp
+    src/racer/racerclient.cpp
     src-gen/v1/commonapi/GearStatusSomeIPProxy.cpp
     src-gen/v1/commonapi/GearStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPProxy.cpp
+    src-gen/v1/commonapi/BrakeStatusSomeIPDeployment.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPProxy.cpp
+    src-gen/v1/commonapi/ManeuverSomeIPDeployment.cpp
+    src-gen/v1/commonapi/RacerToHandlerSomeIPStubAdapter.cpp
+    src-gen/v1/commonapi/RacerToHandlerSomeIPDeployment.cpp
 )
-target_link_libraries(handler
+target_link_libraries(racer
     ${PYTHON_LIBRARIES}
     CommonAPI CommonAPI-SomeIP vsomeip3)

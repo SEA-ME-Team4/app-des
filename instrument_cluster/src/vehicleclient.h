@@ -7,6 +7,7 @@
 #include <v1/commonapi/BrakeStatusProxy.hpp>
 #include <v1/commonapi/TempStatusProxy.hpp>
 #include <v1/commonapi/GearStatusProxy.hpp>
+#include <v1/commonapi/ToApplicationProxy.hpp>
 #include <QObject>
 
 using namespace v1_0::commonapi;
@@ -25,6 +26,12 @@ signals:
     void tempChanged(qint16 temp);
     void gearChanged(quint8 gear);
 
+    void speedStatus(bool status);
+    void batteryStatus(bool status);
+    void inputStatus(bool status);
+    void racerStatus(bool status);
+    void gearStatus(bool status);
+
 private:
     std::shared_ptr < CommonAPI::Runtime > runtime;
     std::shared_ptr<SpeedStatusProxy<>> speedProxy;
@@ -32,10 +39,12 @@ private:
     std::shared_ptr<BrakeStatusProxy<>> brakeProxy;
     std::shared_ptr<TempStatusProxy<>> tempProxy;
     std::shared_ptr<GearStatusProxy<>> gearProxy;
+    std::shared_ptr<ToApplicationProxy<>> errorProxy;
 
     void speedClient();
     void batteryClient();
     void brakeClient();
     void tempClient();
     void gearClient();
+    void errorClient();
 };

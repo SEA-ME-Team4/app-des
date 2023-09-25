@@ -1,6 +1,26 @@
 import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
 import "VehicleStatus.fidl"
 
+define org.genivi.commonapi.someip.deployment for interface commonapi.GearStatus {
+    SomeIpServiceID = 4660
+
+     attribute Gear {
+        SomeIpGetterID = 3000
+        SomeIpSetterID = 3001
+        SomeIpNotifierID = 33010
+        SomeIpNotifierEventGroups = { 33010 }
+
+        SomeIpAttributeReliable = true
+        }
+    }
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.GearStatus {
+        InstanceId = "GearStatus"
+
+        SomeIpInstanceID = 22136
+    }
+}
+
 define org.genivi.commonapi.someip.deployment for interface commonapi.SpeedStatus {
     SomeIpServiceID = 4661
 
@@ -81,22 +101,30 @@ define org.genivi.commonapi.someip.deployment for provider as Service {
     }
 }
 
-define org.genivi.commonapi.someip.deployment for interface commonapi.GearStatus {
-    SomeIpServiceID = 4660
+define org.genivi.commonapi.someip.deployment for interface commonapi.Maneuver {
+    SomeIpServiceID = 4665
 
-     attribute Gear {
-        SomeIpGetterID = 3000
-        SomeIpSetterID = 3001
-        SomeIpNotifierID = 33010
-        SomeIpNotifierEventGroups = { 33010 }
+     attribute Steering {
+        SomeIpGetterID = 8000
+        SomeIpSetterID = 8001
+        SomeIpNotifierID = 33080
+        SomeIpNotifierEventGroups = { 33080 }
+
+        SomeIpAttributeReliable = true
+        }
+     attribute Throttle {
+        SomeIpGetterID = 9000
+        SomeIpSetterID = 9001
+        SomeIpNotifierID = 33090
+        SomeIpNotifierEventGroups = { 33090 }
 
         SomeIpAttributeReliable = true
         }
     }
 define org.genivi.commonapi.someip.deployment for provider as Service {
-    instance commonapi.GearStatus {
-        InstanceId = "GearStatus"
+    instance commonapi.Maneuver {
+        InstanceId = "Maneuver"
 
-        SomeIpInstanceID = 22136
+        SomeIpInstanceID = 22141
     }
 }
