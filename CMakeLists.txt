@@ -1,11 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(main LANGUAGES CXX)
+project(TEAM4_DES03 LANGUAGES CXX)
 set(MY_PROJECT_NAME library)
-# For QT code generator
-# set(CMAKE_AUTOUIC ON)
-# set(CMAKE_AUTOMOC ON)
-# set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

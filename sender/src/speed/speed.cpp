@@ -28,7 +28,7 @@ int main() {
     std::cout << "Successfully Registered Speed Service!" << std::endl;
     
     statusService = std::make_shared<SpeedToHandlerStubDefault>();
-    while (!runtime->registerService("local", "ToHandler", statusService, "Speed_Status_Service")) {
+    while (!runtime->registerService("local", "SpeedToHandler", statusService, "Speed_Status_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
