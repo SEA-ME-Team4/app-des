@@ -13,7 +13,6 @@ set(OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output)
 find_package(CommonAPI REQUIRED CONFIG NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_SYSTEM_PATH)
 find_package(CommonAPI-SomeIP REQUIRED)
 find_package(vsomeip3 REQUIRED)
-find_package(PythonLibs REQUIRED)
 
 include_directories(
     src-gen/vehicle/core/common
@@ -29,8 +28,7 @@ include_directories(
     src-gen/handler/core/skel
     src-gen/handler/someip/common
     src-gen/handler/someip/proxy
-    src-gen/handler/someip/stub    
-    ${PYTHON_INCLUDE_DIRS}
+    src-gen/handler/someip/stub  
     ${COMMONAPI_INCLUDE_DIRS}
     ${COMMONAPI_SOMEIP_INCLUDE_DIRS}
     ${VSOMEIP_INCLUDE_DIRS}
@@ -78,7 +76,7 @@ add_library(handlersomeipstub SHARED ${HANDLER_SOMEIP_STUB_LIB_SRCS})
 target_link_libraries(handlersomeipstub CommonAPI-SomeIP vsomeip3)
 set_target_properties(handlersomeipstub PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY}/${MY_PROJECT_NAME})
 
-add_subdirectory(sender)
-add_subdirectory(exception_handler)
 add_subdirectory(head_unit)
 add_subdirectory(instrument_cluster)
+add_subdirectory(sender)
+add_subdirectory(exception_handler)

@@ -10,4 +10,4 @@ pri*
 common_api/
 
 output/**
-!output/commonapi.ini
+# !output/commonapi.ini

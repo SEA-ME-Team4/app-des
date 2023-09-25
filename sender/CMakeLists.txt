@@ -5,7 +5,11 @@ project(sender LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(src)
+find_package(PythonLibs REQUIRED)
+
+include_directories(
+    src  
+    ${PYTHON_INCLUDE_DIRS})
 
 add_executable(speed
     src/speed/canreceiver.cpp
