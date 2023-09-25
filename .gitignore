@@ -8,3 +8,4 @@ pri*
 *.gif
 
 common_api/
+output/
