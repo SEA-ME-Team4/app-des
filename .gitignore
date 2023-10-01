@@ -1,5 +1,7 @@
 .vscode/
 *.pro.user
+*.txt.user
+*Cache.txt
 /**/*Debug
 /**/*Release
 /**/build
