@@ -8,11 +8,19 @@ GridLayout {
     height: 553
 
     property bool isGearSSelected: false
+    property bool isAmbient: false
 
     Item {
         id: menuImages
         Layout.fillWidth: true
         Layout.fillHeight: true
+
+        AnimatedImage {
+            id: ambient_light
+            anchors.centerIn: parent
+            visible: isAmbient
+            source: "https://i.imgur.com/O8EtwPp.gif"
+        }
 
         Image {
             id: field
@@ -20,6 +28,13 @@ GridLayout {
             anchors.centerIn: parent
             width: isGearSSelected ? menuImages.width * 0.2 : menuImages.width * 0.6
             height: width / sourceSize.width * sourceSize.height
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    isAmbient = !isAmbient
+                }
+            }
         }
 
         Image {
