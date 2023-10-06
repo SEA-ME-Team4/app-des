@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(TEAM4_DES03 LANGUAGES CXX)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
 set(MY_PROJECT_NAME library)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -8,11 +13,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
 
-set(OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/output)
+set(OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/output)
 
 find_package(CommonAPI REQUIRED CONFIG NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_SYSTEM_PATH)
 find_package(CommonAPI-SomeIP REQUIRED)
 find_package(vsomeip3 REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Gui Network Multimedia WebEngine REQUIRED)
 
 include_directories(
     src-gen/vehicle/core/common
@@ -80,3 +86,6 @@ add_subdirectory(head_unit)
 add_subdirectory(instrument_cluster)
 add_subdirectory(sender)
 add_subdirectory(exception_handler)
+
+file(COPY ${CMAKE_SOURCE_DIR}/commonapi.ini
+     DESTINATION ${OUTPUT_DIRECTORY})
