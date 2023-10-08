@@ -4,13 +4,12 @@ RacerClient::RacerClient() {
     runtime = CommonAPI::Runtime::get();
 
     gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Racer_Gear_Client");
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "Racer_Brake_Client");
-    maneuverProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Racer_Maneuver_Client");
-    statusService = std::make_shared<RacerToHandlerStubDefault>();
-
     gearClient();
+    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "Racer_Brake_Client");
     brakeClient();
+    maneuverProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Racer_Maneuver_Client");
     maneuverClient();
+    statusService = std::make_shared<RacerToHandlerStubDefault>();
     statusServer();
 }
 
