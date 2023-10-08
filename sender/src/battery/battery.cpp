@@ -24,7 +24,7 @@ int main() {
     std::cout << "Successfully Registered Battery Service!" << std::endl;
 
     statusService = std::make_shared<BatteryToHandlerStubDefault>();
-    while (!runtime->registerService("local", "ToHandler", statusService, "Battery_Status_Service")) {
+    while (!runtime->registerService("local", "BatteryToHandler", statusService, "Battery_Status_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
