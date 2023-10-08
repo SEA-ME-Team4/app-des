@@ -47,7 +47,7 @@ private:
     void inputHandlerProxyInit();
     void racerHandlerProxyInit();
     void gearHandlerProxyInit();
-    void ServiceInitialize();
+    void handlerServiceInit();
 
     void valueChanged(std::string name);
     void okayCheck(std::string name);
