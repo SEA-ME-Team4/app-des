@@ -2,21 +2,21 @@
 #include <unistd.h>
 
 VehicleStatus::VehicleStatus() {
-    runtime = CommonAPI::Runtime::get();
+    // runtime = CommonAPI::Runtime::get();
 
-    gearService = std::make_shared<GearStatusStubImpl>();
-    gearServiceInit();
-    gear = 0;
+    // gearService = std::make_shared<GearStatusStubImpl>();
+    // gearServiceInit();
+    // gear = 0;
 
-    statusService = std::make_shared<GearToHandlerStubDefault>();
-    statusServiceInit();
-    sendGear(0);
+    // statusService = std::make_shared<GearToHandlerStubDefault>();
+    // statusServiceInit();
+    // sendGear(0);
 
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "HeadUnit_Brake_Proxy");
-    brakeProxyInit();
+    // brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "HeadUnit_Brake_Proxy");
+    // brakeProxyInit();
 
-    errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "HeadUnit_Error_Proxy");
-    errorProxyInit();
+    // errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "HeadUnit_Error_Proxy");
+    // errorProxyInit();
 }
 
 VehicleStatus::~VehicleStatus() {
