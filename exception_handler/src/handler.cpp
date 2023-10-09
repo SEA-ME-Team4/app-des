@@ -15,19 +15,20 @@ Handler::Handler() {
 
     runtime = CommonAPI::Runtime::get();
 
-    speedHandlerProxy = runtime->buildProxy<SpeedToHandlerProxy>("local", "SpeedToHandler", "Handler_Speed_Client");
-    speedHandlerProxyInit();
-    batteryHandlerProxy = runtime->buildProxy<BatteryToHandlerProxy>("local", "BatteryToHandler", "Handler_Battery_Client");
-    batteryHandlerProxyInit();
-    inputHandlerProxy = runtime->buildProxy<InputToHandlerProxy>("local", "InputToHandler", "Handler_Input_Client");
-    inputHandlerProxyInit();
-    racerHandlerProxy = runtime->buildProxy<RacerToHandlerProxy>("local", "RacerToHandler", "Handler_Racer_Client");
-    racerHandlerProxyInit();
-    gearHandlerProxy = runtime->buildProxy<GearToHandlerProxy>("local", "GearToHandler", "Handler_Gear_Client");
-    gearHandlerProxyInit();
-
     handlerService = std::make_shared<ToApplicationStubImpl>();
     handlerServiceInit();
+    
+    speedHandlerProxy = runtime->buildProxy<SpeedToHandlerProxy>("local", "SpeedToHandler", "Handler_Speed_Proxy");
+    speedHandlerProxyInit();
+    batteryHandlerProxy = runtime->buildProxy<BatteryToHandlerProxy>("local", "BatteryToHandler", "Handler_Battery_Proxy");
+    batteryHandlerProxyInit();
+    inputHandlerProxy = runtime->buildProxy<InputToHandlerProxy>("local", "InputToHandler", "Handler_Input_Proxy");
+    inputHandlerProxyInit();
+    racerHandlerProxy = runtime->buildProxy<RacerToHandlerProxy>("local", "RacerToHandler", "Handler_Racer_Proxy");
+    racerHandlerProxyInit();
+    gearHandlerProxy = runtime->buildProxy<GearToHandlerProxy>("local", "GearToHandler", "Handler_Gear_Proxy");
+    gearHandlerProxyInit();
+
 }
 
 Handler::~Handler() {

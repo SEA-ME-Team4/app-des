@@ -39,8 +39,10 @@ private:
     std::shared_ptr<ToApplicationProxy<>> errorProxy;
     int gear;
 
-    void brakeClient();
-    void errorClient();
+    void gearServiceInit();
+    void brakeProxyInit();
+    void statusServiceInit();
+    void errorProxyInit();
 };
 
 #endif
