@@ -87,5 +87,8 @@ add_subdirectory(instrument_cluster)
 add_subdirectory(sender)
 add_subdirectory(exception_handler)
 
-file(COPY ${CMAKE_SOURCE_DIR}/commonapi.ini
+file(COPY ${CMAKE_SOURCE_DIR}/commonapi.ini 
+     DESTINATION ${OUTPUT_DIRECTORY})
+
+file(COPY ${CMAKE_SOURCE_DIR}/vsomeip.json 
      DESTINATION ${OUTPUT_DIRECTORY})
