@@ -4,7 +4,7 @@
     {
         "level" : "verbose",
         "console" : "false",
-        "file" : { "enable" : "true", "path" : "./vsomeip.log" },
+        "file" : { "enable" : "true", "path" : "./commonapi.log" },
         "dlt" : "true"
     }
 }

@@ -4,29 +4,26 @@
 VehicleClient::VehicleClient() {
     runtime = CommonAPI::Runtime::get();
 
-    // // speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "InstrumentCluster_Speed_Client");
-    // // speedClient();
+    speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "InstrumentCluster_Speed_Proxy");
+    speedProxyInit();
 
-    // // batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Client");
-    // // batteryClient();
+    batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Proxy");
+    batteryProxyInit();
 
-    // brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Client");
-    // brakeClient();
+    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Proxy");
+    brakeProxyInit();
 
-    // // tempProxy = runtime->buildProxy<TempStatusProxy>("local", "TempStatus", "InstrumentCluster_Temp_Client");
-    // // tempClient();
+    gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Proxy");
+    gearProxyInit();
 
-    // gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Client");
-    // gearClient();
-
-    // errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "InstrumentCluster_Error_Client");
-    // errorClient();
+    errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "InstrumentCluster_Error_Proxy");
+    errorProxyInit();
 }
 
 VehicleClient::~VehicleClient() {
 }
 
-void VehicleClient::speedClient() {
+void VehicleClient::speedProxyInit() {
     std::cout << "Checking Speed availability!" << std::endl;
     while (!speedProxy->isAvailable())
         usleep(10);
@@ -47,7 +44,7 @@ void VehicleClient::speedClient() {
     });
 }
 
-void VehicleClient::batteryClient() {
+void VehicleClient::batteryProxyInit() {
     std::cout << "Checking Battery availability!" << std::endl;
     while (!batteryProxy->isAvailable())
         usleep(10);
@@ -68,7 +65,7 @@ void VehicleClient::batteryClient() {
     });
 }
 
-void VehicleClient::brakeClient() {
+void VehicleClient::brakeProxyInit() {
     std::cout << "Checking Brake availability!" << std::endl;
     while (!brakeProxy->isAvailable())
         usleep(10);
@@ -89,28 +86,7 @@ void VehicleClient::brakeClient() {
     });
 }
 
-void VehicleClient::tempClient() {
-    std::cout << "Checking Temp availability!" << std::endl;
-    while (!tempProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    
-    CommonAPI::CallStatus callStatus;
-    int16_t value = 0;
-    CommonAPI::CallInfo info(7000);
-    tempProxy->getTempAttribute().getValue(callStatus, value, &info);
-    if (callStatus != CommonAPI::CallStatus::SUCCESS) {
-        std::cerr << "Remote call Temp failed!\n";
-    }
-    std::cout << "Got Temp: " << (int)value << std::endl;
-
-    tempProxy->getTempAttribute().getChangedEvent().subscribe([&](const int16_t& temp) {
-        // qDebug()<<temp;
-        emit tempChanged(temp);
-    });
-}
-
-void VehicleClient::gearClient() {
+void VehicleClient::gearProxyInit() {
     std::cout << "Checking Gear availability!" << std::endl;
     while (!gearProxy->isAvailable())
         usleep(10);
@@ -131,7 +107,7 @@ void VehicleClient::gearClient() {
     });
 }
 
-void VehicleClient::errorClient() {
+void VehicleClient::errorProxyInit() {
     std::cout << "Checking Error Handling availability!" << std::endl;
     while (!errorProxy->isAvailable())
         usleep(10);

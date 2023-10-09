@@ -5,27 +5,18 @@ VehicleStatus::VehicleStatus() {
     runtime = CommonAPI::Runtime::get();
 
     gearService = std::make_shared<GearStatusStubImpl>();
-    while (!runtime->registerService("local", "GearStatus", gearService, "HeadUnit_Gear_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered Service!" << std::endl;
+    gearServiceInit();
     gear = 0;
 
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "HeadUnit_Brake_Client");
-    brakeClient();
-
     statusService = std::make_shared<GearToHandlerStubDefault>();
-    while (!runtime->registerService("local", "GearToHandler", statusService, "Gear_Status_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered Service!" << std::endl;
-
+    statusServiceInit();
     sendGear(0);
 
-    errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "HeadUnit_Error_Client");
-    errorClient();
+    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "HeadUnit_Brake_Proxy");
+    brakeProxyInit();
+
+    errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "HeadUnit_Error_Proxy");
+    errorProxyInit();
 }
 
 VehicleStatus::~VehicleStatus() {
@@ -36,27 +27,33 @@ void VehicleStatus::sendGear(quint8 gear) {
     statusService->fireGearStatusEventEvent(true);
 }
 
-void VehicleStatus::brakeClient() {
+void VehicleStatus::gearServiceInit() {
+    while (!runtime->registerService("local", "GearStatus", gearService, "HeadUnit_Gear_Service")) {
+        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    std::cout << "Successfully Registered Service!" << std::endl;
+}
+
+void VehicleStatus::brakeProxyInit() {
     std::cout << "Checking Brake availability!" << std::endl;
     while (!brakeProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
-    
-    CommonAPI::CallStatus callStatus;
-    bool value = 0;
-    CommonAPI::CallInfo info(6000);
-    brakeProxy->getBrakeAttribute().getValue(callStatus, value, &info);
-    if (callStatus != CommonAPI::CallStatus::SUCCESS) {
-        std::cerr << "Remote call Brake failed!\n";
-    }
-    std::cout << "Got Brake: " << (int)value << std::endl;
-
     brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
         emit brakeChanged(brake);
     });
 }
 
-void VehicleStatus::errorClient() {
+void VehicleStatus::statusServiceInit() {
+    while (!runtime->registerService("local", "GearToHandler", statusService, "Gear_Status_Service")) {
+        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    std::cout << "Successfully Registered Service!" << std::endl;
+}
+
+void VehicleStatus::errorProxyInit() {
     std::cout << "Checking Error Handling availability!" << std::endl;
     while (!errorProxy->isAvailable())
         usleep(10);
