@@ -11,7 +11,6 @@ Rectangle {
 
     property int speed: 0
     property int battery: 0
-    property int temp: 0
     property bool brake: false
     property int gear: 0
 
@@ -55,7 +54,6 @@ Rectangle {
 
         onSpeedChanged: {instrumentcluster.speed = speed}
         onBatteryChanged: {instrumentcluster.battery = battery}
-        onTempChanged: {instrumentcluster.temp = temp}
         onBrakeChanged: {instrumentcluster.brake = brake}
         onGearChanged: {instrumentcluster.gear = gear}
 

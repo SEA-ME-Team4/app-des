@@ -7,14 +7,16 @@ public:
     Gamepad();
     ~Gamepad();
 
-    bool isOkay();
+    bool getStatus();
+    void setInitStatus(bool status);
+
     bool read_data();
     bool getBrake();
     float getSteering();
     float getThrottle();
 
 private:
-    bool initial_status;
+    bool status;
     PyObject *pModule, *pClass, *pInstance;
     PyObject *pInput, *pInputL, *pInputR, *pInputLX, *pInputRY;
     float gamepad_inputLX, gamepad_inputRY;

@@ -13,23 +13,22 @@ Handler::Handler() {
     racerStatusTime = std::chrono::steady_clock::now();
     gearStatusTime = std::chrono::steady_clock::now();
 
-    // std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-
     runtime = CommonAPI::Runtime::get();
 
-    // speedHandlerProxy = runtime->buildProxy<SpeedToHandlerProxy>("local", "SpeedToHandler", "Handler_Speed_Client");
-    // speedHandlerProxyInit();
-    // batteryHandlerProxy = runtime->buildProxy<BatteryToHandlerProxy>("local", "BatteryToHandler", "Handler_Battery_Client");
-    // batteryHandlerProxyInit();
-    inputHandlerProxy = runtime->buildProxy<InputToHandlerProxy>("local", "InputToHandler", "Handler_Input_Client");
+    handlerService = std::make_shared<ToApplicationStubImpl>();
+    handlerServiceInit();
+    
+    speedHandlerProxy = runtime->buildProxy<SpeedToHandlerProxy>("local", "SpeedToHandler", "Handler_Speed_Proxy");
+    speedHandlerProxyInit();
+    batteryHandlerProxy = runtime->buildProxy<BatteryToHandlerProxy>("local", "BatteryToHandler", "Handler_Battery_Proxy");
+    batteryHandlerProxyInit();
+    inputHandlerProxy = runtime->buildProxy<InputToHandlerProxy>("local", "InputToHandler", "Handler_Input_Proxy");
     inputHandlerProxyInit();
-    // racerHandlerProxy = runtime->buildProxy<RacerToHandlerProxy>("local", "RacerToHandler", "Handler_Racer_Client");
-    // racerHandlerProxyInit();
-    gearHandlerProxy = runtime->buildProxy<GearToHandlerProxy>("local", "GearToHandler", "Handler_Gear_Client");
+    racerHandlerProxy = runtime->buildProxy<RacerToHandlerProxy>("local", "RacerToHandler", "Handler_Racer_Proxy");
+    racerHandlerProxyInit();
+    gearHandlerProxy = runtime->buildProxy<GearToHandlerProxy>("local", "GearToHandler", "Handler_Gear_Proxy");
     gearHandlerProxyInit();
 
-    handlerService = std::make_shared<ToApplicationStubImpl>();
-    ServiceInitialize();
 }
 
 Handler::~Handler() {
@@ -54,7 +53,6 @@ void Handler::batteryHandlerProxyInit() {
         valueChanged("battery");
     });
 }
-
 
 void Handler::inputHandlerProxyInit() {
     std::cout << "Checking Input Handling availability!" << std::endl;
@@ -86,20 +84,20 @@ void Handler::gearHandlerProxyInit() {
     });
 }
 
+void Handler::handlerServiceInit() {
+    while (!runtime->registerService("local", "ToApplication", handlerService, "Handler_Service")) {
+        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    std::cout << "Successfully Registered Service!" << std::endl;
+}
+
 void Handler::valueChanged(std::string name) {
     if (name=="speed") {speedStatusTime = std::chrono::steady_clock::now();}
     else if (name=="battery") {batteryStatusTime = std::chrono::steady_clock::now();}
     else if (name=="input") {inputStatusTime = std::chrono::steady_clock::now();}
     else if (name=="racer") {racerStatusTime = std::chrono::steady_clock::now();}
     else if (name=="gear") {gearStatusTime = std::chrono::steady_clock::now();}
-}
-
-void Handler::ServiceInitialize() {
-    while (!runtime->registerService("local", "ToApplication", handlerService, "Handler_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered Service!" << std::endl;
 }
 
 void Handler::okayCheck(std::string name) {
@@ -142,10 +140,10 @@ void Handler::errorEvent(std::string name) {
 
 void Handler::handlerProcess() {
     checkTime = std::chrono::steady_clock::now();
-    // intervalCalculate(speedStatusTime)>SPEED_INTERVAL_MAX ? errorCheck("speed") : okayCheck("speed");
-    // intervalCalculate(batteryStatusTime)>BATTERY_INTERVAL_MAX ? errorCheck("battery") : okayCheck("speed");
+    intervalCalculate(speedStatusTime)>SPEED_INTERVAL_MAX ? errorCheck("speed") : okayCheck("speed");
+    intervalCalculate(batteryStatusTime)>BATTERY_INTERVAL_MAX ? errorCheck("battery") : okayCheck("speed");
     intervalCalculate(inputStatusTime)>INPUT_INTERVAL_MAX ? errorCheck("input") : okayCheck("input");
-    // intervalCalculate(racerStatusTime)>RACER_INTERVAL_MAX ? errorCheck("racer") : okayCheck("racer");
+    intervalCalculate(racerStatusTime)>RACER_INTERVAL_MAX ? errorCheck("racer") : okayCheck("racer");
     intervalCalculate(gearStatusTime)>GEAR_INTERVAL_MAX ? errorCheck("gear") : okayCheck("gear");
 }
 

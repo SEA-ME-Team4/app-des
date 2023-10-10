@@ -30,10 +30,10 @@ private:
     std::shared_ptr<ManeuverProxy<>> maneuverProxy;
     std::shared_ptr<RacerToHandlerStubDefault> statusService;
 
-    void gearClient();
-    void brakeClient();
-    void maneuverClient();
-    void statusServer();
+    void gearProxyInit();
+    void brakeProxyInit();
+    void maneuverProxyInit();
+    void statusServiceInit();
 
     int gear;
     bool brake;

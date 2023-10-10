@@ -1,42 +1,36 @@
-#include "piracer.h"
-#include "BatteryStatusStubImpl.hpp"
-#include <v1/commonapi/BatteryToHandlerStubDefault.hpp>
+#include "battery.h"
 
-#include <iostream>
-#include <thread>
-#include <CommonAPI/CommonAPI.hpp>
-
-using namespace v1::commonapi;
-
-int main() {
-    Piracer piracer = Piracer();
-    std::shared_ptr<CommonAPI::Runtime> runtime;
-    std::shared_ptr<BatteryStatusStubImpl> batteryService;
-    std::shared_ptr<BatteryToHandlerStubDefault> statusService;
+Battery::Battery() {
 
     runtime = CommonAPI::Runtime::get();
 
     batteryService = std::make_shared<BatteryStatusStubImpl>();
+    batteryServiceInit();
+
+    statusService = std::make_shared<BatteryToHandlerStubDefault>();
+    statusServiceInit();
+}
+
+Battery::~Battery() {
+}
+
+void Battery::batteryServiceInit() {
     while (!runtime->registerService("local", "BatteryStatus", batteryService, "Battery_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     std::cout << "Successfully Registered Battery Service!" << std::endl;
+}
 
-    statusService = std::make_shared<BatteryToHandlerStubDefault>();
-    while (!runtime->registerService("local", "ToHandler", statusService, "Battery_Status_Service")) {
+void Battery::statusServiceInit() {
+    while (!runtime->registerService("local", "BatteryToHandler", statusService, "Battery_Status_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
-    std::cout << "Successfully Registered Service!" << std::endl;
-    
-    while (1)
-    {
-        batteryService->setBatteryAttribute(piracer.getVoltage());
+    std::cout << "Successfully Registered Service!" << std::endl;    
+}
 
-        statusService->fireBatteryStatusEventEvent(true);
-
-        usleep(10000);
-    }
-    
+void Battery::setBattery(uint8_t voltage) {
+    batteryService->setBatteryAttribute(voltage);
+    statusService->fireBatteryStatusEventEvent(true);
 }

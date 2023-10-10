@@ -12,24 +12,27 @@ include_directories(
     ${PYTHON_INCLUDE_DIRS})
 
 add_executable(speed
-    src/speed/canreceiver.cpp
+    src/speed/main.cpp
     src/speed/speed.cpp
+    src/speed/canreceiver.cpp
     src/speed/SpeedStatusStubImpl.cpp)
 target_link_libraries(speed
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(speed PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY}/${PROJECT_NAME})
+set_target_properties(speed PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(battery
     src/piracer.cpp
+    src/battery/main.cpp
     src/battery/battery.cpp
     src/battery/BatteryStatusStubImpl.cpp)
 target_link_libraries(battery
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(battery PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY}/${PROJECT_NAME})
+set_target_properties(battery PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(input
+    src/input/main.cpp
     src/input/gamepad.cpp
     src/input/input.cpp
     src/input/BrakeStatusStubImpl.cpp
@@ -37,13 +40,13 @@ add_executable(input
 target_link_libraries(input
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(input PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY}/${PROJECT_NAME})
+set_target_properties(input PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(racer
     src/piracer.cpp
-    src/racer/racer.cpp
+    src/racer/main.cpp
     src/racer/racerclient.cpp)
 target_link_libraries(racer
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(racer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY}/${PROJECT_NAME})
+set_target_properties(racer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})

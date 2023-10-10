@@ -2,7 +2,7 @@
 #include <iostream>
 
 Piracer::Piracer() {
-    Py_Initialize();
+    Py_InitializeEx(0);
     pModule = PyImport_ImportModule("piracer.vehicles");
     pClass = PyObject_GetAttrString(pModule, "PiRacerStandard");
     pInstance = PyObject_CallObject(pClass, NULL);

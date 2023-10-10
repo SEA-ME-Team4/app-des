@@ -1,0 +1,10 @@
+{
+    "unicast" : "127.0.0.1",
+    "logging" :
+    {
+        "level" : "verbose",
+        "console" : "false",
+        "file" : { "enable" : "true", "path" : "./commonapi.log" },
+        "dlt" : "true"
+    }
+}
