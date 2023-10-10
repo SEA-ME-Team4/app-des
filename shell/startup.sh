@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo [Initialize]
 echo
 
@@ -6,8 +7,8 @@ check_and_run()
 {   
     echo [$1]
     echo Checking $1...
-    local init_count=$(ps -ef | grep -w ./execute/$1 | wc -l)
-    if [ ${init_count} -eq 1 ]
+    local init_count=$(ps -ef|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+    if [ ${init_count} -eq 0 ]
     then
         echo $1 is Not Running
         nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
@@ -15,8 +16,8 @@ check_and_run()
         echo Running $1 Automatically
         sleep 1
 
-        local final_count=$(ps -ef | grep -w ./execute/$1 | wc -l)
-        if [ ${final_count} -eq 1 ]
+        local final_count=$(ps -ef|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+        if [ ${final_count} -eq 0 ]
         then
             echo Failed
             Failed+=($1)
