@@ -24,13 +24,18 @@ killer()
 NotRunning=()
 Killed=()
 
-killer instrument_cluster
-killer head_unit
-killer input
-killer speed
-killer battery
-killer racer
-killer exception_handler
+if [ -z $1 ]
+then
+    killer instrument_cluster
+    killer head_unit
+    killer input
+    killer speed
+    killer battery
+    killer racer
+    killer exception_handler
+else
+    killer $1
+fi
 
 echo [Summary]
 echo ${#NotRunning[@]} NotRunning : ${NotRunning[@]}
