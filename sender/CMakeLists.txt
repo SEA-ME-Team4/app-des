@@ -19,7 +19,7 @@ add_executable(speed
 target_link_libraries(speed
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(speed PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
+set_target_properties(speed PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(battery
     src/piracer.cpp
@@ -29,7 +29,7 @@ add_executable(battery
 target_link_libraries(battery
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(battery PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
+set_target_properties(battery PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(input
     src/input/main.cpp
@@ -40,7 +40,7 @@ add_executable(input
 target_link_libraries(input
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(input PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
+set_target_properties(input PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(racer
     src/piracer.cpp
@@ -49,4 +49,4 @@ add_executable(racer
 target_link_libraries(racer
     ${PYTHON_LIBRARIES}
     CommonAPI vehicleskel handlerskel)
-set_target_properties(racer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
+set_target_properties(racer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
