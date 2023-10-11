@@ -12,16 +12,24 @@ killer()
     else
         var=$(ps|grep -w ./execute/$1|grep -v 'grep'|grep -v $0)
         pid=$(echo ${var} | cut -d " " -f1)
-	echo ${pid}
         kill -n 9 ${pid}
-        echo Killed
-        Killed+=($1)
+
+        sleep 0.5
+        local check=$(ps|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+        if [ ${check} -eq 0 ]
+        then
+            echo Killed
+            Killed+=($1)
+        else
+            echo Failed
+            Failed+=($1)
     fi
     echo
 }
 
 NotRunning=()
 Killed=()
+Failed=()
 
 if [ -z $1 ]
 then
@@ -39,5 +47,6 @@ fi
 echo [Summary]
 echo ${#NotRunning[@]} NotRunning : ${NotRunning[@]}
 echo ${#Killed[@]} Killed : ${Killed[@]}
+echo ${#Failed[@]} Failed : ${Failed[@]}
 echo
 echo [Finalize]
