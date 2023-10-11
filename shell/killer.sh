@@ -23,6 +23,7 @@ killer()
         else
             echo Failed
             Failed+=($1)
+        fi
     fi
     echo
 }
