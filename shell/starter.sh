@@ -14,7 +14,15 @@ check_and_run()
             echo $1 is Not in execute folder
         else
             echo $1 is Not Running
-            nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
+            if [ $1 = "instrument_cluster" ]
+            then
+                nohup ./execute/$1 -platform eglfs </dev/null >/dev/null 2>&1 &
+            elif [ $1 = "head_unit" ]
+            then
+                nohup ./execute/$1 -platform eglfs --no-sandbox </dev/null >/dev/null 2>&1 &
+            else
+                nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
+            fi
             disown
             echo Running $1 Automatically
             sleep 1
