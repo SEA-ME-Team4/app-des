@@ -1,5 +1,3 @@
-#!/bin/sh
-
 echo [Initialize]
 echo
 
@@ -7,7 +5,7 @@ check_and_run()
 {   
     echo [$1]
     echo Checking $1...
-    local init_count=$(ps -ef|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+    local init_count=$(ps |grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
     if [ ${init_count} -eq 0 ]
     then
         local is_file=$(ls ./execute|grep -w $1|grep -v 'grep'|wc -l)
@@ -22,7 +20,7 @@ check_and_run()
             sleep 1
         fi
 
-        local final_count=$(ps -ef|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+        local final_count=$(ps |grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
         if [ ${final_count} -eq 0 ]
         then
             echo Failed
