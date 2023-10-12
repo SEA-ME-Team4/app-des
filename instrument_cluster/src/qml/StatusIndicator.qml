@@ -3,10 +3,10 @@ import QtQuick 2.0
 Rectangle {
     id: statusindicator
     property double raceropacity: (!parent.racer_status)? 1 : 0
-    property double speedopacity: (parent.speed_status || parent.racer_status)? 1 : 0.3
-    property double inputopacity: (parent.input_status || parent.racer_status)? 1 : 0.3
-    property double batteryopacity: (parent.battery_status || parent.racer_status)? 1 : 0.3
-    property double gearopacity: (parent.gear_status || parent.racer_status)? 1 : 0.3
+    property double speedopacity: (parent.speed_status && parent.racer_status)? 1 : 0.3
+    property double inputopacity: (parent.input_status && parent.racer_status)? 1 : 0.3
+    property double batteryopacity: (parent.battery_status && parent.racer_status)? 1 : 0.3
+    property double gearopacity: (parent.gear_status && parent.racer_status)? 1 : 0.3
     color: "black"
 
     Image {
