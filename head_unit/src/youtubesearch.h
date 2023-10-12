@@ -10,6 +10,7 @@
 #include <QJsonArray>
 #include <QDebug>
 #include <QNetworkReply>
+#include <QSslConfiguration>
 
 class YouTubeSearch : public QObject {
     Q_OBJECT
