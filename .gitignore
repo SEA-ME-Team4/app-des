@@ -1,15 +1,2 @@
 .vscode/
-*.pro.user
-*.txt.user
-*Cache.txt
-/**/*Debug
-/**/*Release
-/**/build
-/**/.DS_Store
-pri*
-*.gif
-
-common_api/
-
-output/**
-# !output/commonapi.ini
+build/
