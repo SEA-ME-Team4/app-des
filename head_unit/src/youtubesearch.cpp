@@ -6,6 +6,10 @@ YouTubeSearch::YouTubeSearch() {
 }
 
 void YouTubeSearch::searchVideos(const QString& query) {
+    QSslConfiguration conf = request.sslConfiguration();
+    conf.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(conf);
+
     manager->get(QNetworkRequest(QUrl("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&maxResults=5&key=AIzaSyC2CGURgrCoILPCAUa2OGE_fuK3AyYYBa4")));
 }
 
