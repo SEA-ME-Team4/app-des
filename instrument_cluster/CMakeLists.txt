@@ -1,13 +1,9 @@
-cmake_minimum_required(VERSION 3.5)
-
 project(instrument_cluster LANGUAGES CXX)
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/qml.qrc
-    src/vehicleclient.cpp
-)
-
+    src/vehicleclient.cpp)
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(${PROJECT_NAME}
