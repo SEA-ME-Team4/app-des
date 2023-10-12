@@ -10,6 +10,13 @@ void YouTubeSearch::searchVideos(const QString& query) {
 
     QSslConfiguration conf = request.sslConfiguration();
     conf.setPeerVerifyMode(QSslSocket::VerifyNone);
+    QFile certFile("/etc/ssl/certs/youtube.pem");
+    
+    if(certFile.open(QIODevice::ReadOnly)) {
+        QSslCertificate cert(&certFile, QSsl::Pem);
+        conf.setCaCertificates(QList<QSslCertificate>() << cert);
+    }
+    
     request.setSslConfiguration(conf);
 
     manager->get(request);
