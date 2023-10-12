@@ -10,14 +10,19 @@ int main() {
     Piracer piracer = Piracer();
     RacerClient racerclient = RacerClient();
     
-    while (racerclient.validCheck()) {
-        gear = racerclient.getGear();
-        brake = racerclient.getBrake();
-        steering = racerclient.getSteering();
-        throttle = racerclient.getThrottle();
+    while (1) {
+        if (racerclient.validCheck()) {
+            gear = racerclient.getGear();
+            brake = racerclient.getBrake();
+            steering = racerclient.getSteering();
+            throttle = racerclient.getThrottle();
 
-        piracer.setRacer(gear, brake, steering, throttle);
-        racerclient.statusUpdate();
+            piracer.setRacer(gear, brake, steering, throttle);
+            racerclient.statusUpdate();
+        }
+        else {
+            piracer.emergencyStop();
+            sleep(1);
+        }
     }
-    piracer.emergencyStop();
 }
