@@ -21,8 +21,8 @@ check_and_run()
             then
                 nohup ./execute/$1 -platform eglfs --no-sandbox </dev/null >/dev/null 2>&1 &
             elif [ $1 = "instrument_cluster" ]
-                nohup ./execute/$1 -platform linuxfb </dev/null >/dev/null 2>&1 &
             then
+                nohup ./execute/$1 -platform linuxfb </dev/null >/dev/null 2>&1 &
             else
                 nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
             fi
