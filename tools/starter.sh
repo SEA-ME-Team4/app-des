@@ -1,4 +1,7 @@
 echo [Initialize]
+echo Setting time from time.google.com
+rdate -s time.google.com
+echo $(date)
 echo
 
 check_and_run()
