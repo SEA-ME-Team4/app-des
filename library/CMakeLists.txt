@@ -1,4 +1,4 @@
-project(library LANGUAGES CXX)
+project(libsomeip LANGUAGES CXX)
 
 find_package(CommonAPI-SomeIP REQUIRED)
 find_package(vsomeip3 REQUIRED)
@@ -14,11 +14,6 @@ include_directories(
     ${VSOMEIP_INCLUDE_DIRS})
 
 # VEHICLE LIBRARY
-file(GLOB_RECURSE VEHICLE_SKEL_LIB_SRCS src-gen/vehicle/core/skel/*)
-add_library(vehicleskel SHARED ${VEHICLE_SKEL_LIB_SRCS})
-target_link_libraries(vehicleskel)
-set_target_properties(vehicleskel PROPERTIES LINKER_LANGUAGE CXX LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_DIRECTORY})
-
 file(GLOB_RECURSE VEHICLE_SOMEIP_COMMON_LIB_SRCS src-gen/vehicle/someip/common/*.cpp)
 add_library(vehiclesomeipcommon SHARED ${VEHICLE_SOMEIP_COMMON_LIB_SRCS})
 target_link_libraries(vehiclesomeipcommon CommonAPI-SomeIP vsomeip3)
@@ -35,11 +30,6 @@ target_link_libraries(vehiclesomeipstub CommonAPI-SomeIP vsomeip3)
 set_target_properties(vehiclesomeipstub PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_DIRECTORY})
 
 # HANDLER LIBRARY
-FILE(GLOB_RECURSE HANDLER_SKEL_LIB_SRCS src-gen/handler/core/skel/*)
-add_library(handlerskel SHARED ${HANDLER_SKEL_LIB_SRCS})
-target_link_libraries(handlerskel)
-set_target_properties(handlerskel PROPERTIES LINKER_LANGUAGE CXX LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_DIRECTORY})
-
 file(GLOB_RECURSE HANDLER_SOMEIP_COMMON_LIB_SRCS src-gen/handler/someip/common/*.cpp)
 add_library(handlersomeipcommon SHARED ${HANDLER_SOMEIP_COMMON_LIB_SRCS})
 target_link_libraries(handlersomeipcommon CommonAPI-SomeIP vsomeip3)
