@@ -16,8 +16,8 @@ check_and_run()
             echo $1 is Not Running
             if [ $1 = "head_unit" ]
             then
-                echo Setting time from time.google.com
-                rdate -s time.google.com
+                echo Setting time time.bora.net
+                rdate -s time.bora.net
                 echo $(date)
                 nohup ./execute/$1 -platform eglfs --no-sandbox </dev/null >/dev/null 2>&1 &
             elif [ $1 = "instrument_cluster" ]
