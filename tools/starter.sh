@@ -14,12 +14,12 @@ check_and_run()
             echo $1 is Not in execute folder
         else
             echo $1 is Not Running
-            if [ $1 = "instrument_cluster" ]
-            then
-                nohup ./execute/$1 -platform linuxfb </dev/null >/dev/null 2>&1 &
-            elif [ $1 = "head_unit" ]
+            if [ $1 = "head_unit" ]
             then
                 nohup ./execute/$1 -platform eglfs --no-sandbox </dev/null >/dev/null 2>&1 &
+            elif [ $1 = "instrument_cluster" ]
+                nohup ./execute/$1 -platform linuxfb </dev/null >/dev/null 2>&1 &
+            then
             else
                 nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
             fi
@@ -51,13 +51,14 @@ Failed=()
 
 if [ -z $1 ]
 then
-    check_and_run instrument_cluster
-    check_and_run head_unit
     check_and_run input
     check_and_run speed
     check_and_run battery
     check_and_run racer
     check_and_run exception_handler
+    sleep 2
+    check_and_run head_unit
+    check_and_run instrument_cluster
 else
     check_and_run $1
 fi
