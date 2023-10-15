@@ -38,8 +38,17 @@ include_directories(
      ${COMMONAPI_INCLUDE_DIRS}
 )
 
-add_subdirectory(library)
+file(GLOB_RECURSE VEHICLE_SKEL_LIB_SRCS src-gen/vehicle/core/skel/*)
+add_library(vehicleskel SHARED ${VEHICLE_SKEL_LIB_SRCS})
+target_link_libraries(vehicleskel)
+# set_target_properties(vehicleskel PROPERTIES LINKER_LANGUAGE CXX LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_DIRECTORY})
 
+fILE(GLOB_RECURSE HANDLER_SKEL_LIB_SRCS src-gen/handler/core/skel/*)
+add_library(handlerskel SHARED ${HANDLER_SKEL_LIB_SRCS})
+target_link_libraries(handlerskel)
+# set_target_properties(handlerskel PROPERTIES LINKER_LANGUAGE CXX LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_DIRECTORY})
+
+add_subdirectory(library)
 add_subdirectory(head_unit)
 add_subdirectory(instrument_cluster)
 add_subdirectory(sender)
