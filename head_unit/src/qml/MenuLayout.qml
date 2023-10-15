@@ -1,5 +1,5 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import QtWebEngine 1.8
 
@@ -8,19 +8,12 @@ GridLayout {
     height: 553
 
     property bool isGearSSelected: false
-    property bool isAmbient: false
+    property bool isAmbient: false  
 
     Item {
         id: menuImages
         Layout.fillWidth: true
         Layout.fillHeight: true
-
-        AnimatedImage {
-            id: ambient_light
-            anchors.centerIn: parent
-            visible: isAmbient
-            source: "https://i.imgur.com/O8EtwPp.gif"
-        }
 
         Image {
             id: field
