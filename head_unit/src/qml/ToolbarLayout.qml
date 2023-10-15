@@ -4,11 +4,12 @@ import QtQuick.Layouts 1.3
 import QtWebEngine 1.8
 
 GridLayout {
-    columns: 4
+    columns: 5
     width: 886
     height: 50
 
     Button {
+        id: home
         text: "Home"
         implicitWidth: 50
         implicitHeight: 50
@@ -24,10 +25,12 @@ GridLayout {
         onClicked: {
             contentsLayout.visible = false
             menuLayout.visible = true
+            ambientsLayout.visible = false
         }
     }
 
     Button {
+        id: youtube
         text: "Youtube"
         implicitWidth: 50
         implicitHeight: 50
@@ -43,11 +46,33 @@ GridLayout {
         onClicked: {
             contentsLayout.visible = true
             menuLayout.visible = false
+            ambientsLayout.visible = false
+        }
+    }
+
+    Button {
+        id: ambients
+        text: "ambients"
+        implicitWidth: 50
+        implicitHeight: 50
+        background: Rectangle {
+            color: "transparent"
+        }
+        contentItem: Image {
+            source: "/images/colors_picker.png"
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+        }
+
+        onClicked: {
+            contentsLayout.visible = false
+            menuLayout.visible = false
+            ambientsLayout.visible = true
         }
     }
 
     Rectangle {
-        id: rectangle
+        id: empty
         width: 600
         height: 50
         color: "#000000"
@@ -58,10 +83,11 @@ GridLayout {
         width: 150
         height: 50
         color: "#ffffff"
-        verticalAlignment: Text.AlignVCenter
+        anchors.right: parent.right
         font.bold: true
         font.pointSize: 20
         horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
 
         Component.onCompleted: {
             updateClock();
