@@ -6,6 +6,7 @@ import QtQuick.Layouts 1.3
 import VehicleStatus 1.0
 import "."
 
+
 ApplicationWindow {
     id: mainlayout
     visible: true
@@ -22,6 +23,24 @@ ApplicationWindow {
     property bool input_timeout: true
     property bool racer_timeout: true
     property bool gear_timeout: true
+
+    property color ambientColor: "black"
+
+    Rectangle {
+        id: bottom_border
+        width: parent.width
+        height: 5
+        anchors.bottom: parent.bottom
+        color: ambientColor
+    }
+
+    Rectangle {
+        id: right_border
+        width: 5
+        height: parent.height
+        anchors.right: parent.right
+        color: ambientColor
+    }
 
     YouTubeSearch {
         id: youTubeSearch
@@ -60,6 +79,15 @@ ApplicationWindow {
         anchors.top: toolbarLayout.bottom
         anchors.bottom: parent.bottom
         youTubeSearch: youTubeSearch
+        visible: false
+    }
+
+    AmbientsLayout {
+        id: ambientsLayout
+        anchors.left: gearLayout.right
+        anchors.right: parent.right
+        anchors.top: toolbarLayout.bottom
+        anchors.bottom: parent.bottom
         visible: false
     }
 
