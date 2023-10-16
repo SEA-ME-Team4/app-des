@@ -21,7 +21,7 @@ Handler::Handler() {
     speedHandlerProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "Handler_Speed_Proxy");
     batteryHandlerProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "Handler_Battery_Proxy");
     inputHandlerProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Handler_Input_Proxy");
-    racerHandlerProxy = runtime->buildProxy<RacerToHandlerProxy>("local", "RacerToHandler", "Handler_Racer_Proxy");
+    racerHandlerProxy = runtime->buildProxy<RacerProxy>("local", "Racer", "Handler_Racer_Proxy");
     gearHandlerProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Handler_Gear_Proxy");
 }
 
