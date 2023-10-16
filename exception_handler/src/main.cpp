@@ -4,7 +4,7 @@
 
 int main() {
     Handler handler = Handler();
-
+    sleep(1);
     while (!usleep(HANDLE_INTERVAL)) {
         handler.handlerProcess();
     }
