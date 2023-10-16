@@ -72,7 +72,7 @@ void VehicleClient::errorProxyInit() {
     while (!errorProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
-    errorProxy->getErrorEventEvent().subscribe([&](const std::string& name) {
+    errorProxy->getErrorEvent().subscribe([&](const std::string& name) {
         if (name=="speed_error") {emit speedStatus(false);}
         else if (name=="battery_error") {emit batteryStatus(false);}
         else if (name=="input_error") {emit inputStatus(false);}
