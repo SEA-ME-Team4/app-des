@@ -5,9 +5,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
+    QtWebEngine::initialize();
 
     QGuiApplication app(argc, argv);
-    QtWebEngine::initialize();
 
     qmlRegisterType<YouTubeSearch>("YouTubeSearch", 1, 0, "YouTubeSearch");
 
