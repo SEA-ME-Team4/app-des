@@ -13,7 +13,6 @@ int main() {
             input.setBrake(gamepad.getBrake());
             input.setSteering(gamepad.getSteering());
             input.setThrottle(gamepad.getThrottle());
-            input.setStatusEvent(true);
 
             std::cout << "getBrake: " << gamepad.getBrake() << '\n';
             std::cout << "getSteering: " << gamepad.getSteering() << '\n';

@@ -40,7 +40,8 @@ set_target_properties(input PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECT
 add_executable(racer
     src/piracer.cpp
     src/racer/main.cpp
-    src/racer/racerclient.cpp)
+    src/racer/racerclient.cpp
+    src/racer/RacerToHandlerStubImpl.cpp)
 target_link_libraries(racer
     ${PYTHON_LIBRARIES}
     CommonAPI)

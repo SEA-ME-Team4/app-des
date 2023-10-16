@@ -1,5 +1,4 @@
 #include "SpeedStatusStubImpl.hpp"
-#include <v1/commonapi/SpeedToHandlerStubDefault.hpp>
 
 #include <iostream>
 #include <thread>
@@ -17,8 +16,6 @@ public:
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<SpeedStatusStubImpl> speedService;
-    std::shared_ptr<SpeedToHandlerStubDefault> statusService;
 
     void speedServiceInit();
-    void statusServiceInit();
 };
