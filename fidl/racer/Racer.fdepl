@@ -1,0 +1,20 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "Racer.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.RacerToHandler {
+    SomeIpServiceID = 4
+
+     broadcast RacerStatusEvent {
+        SomeIpEventID = 32774
+        SomeIpEventGroups = { 32774 }
+
+        SomeIpReliable = true
+        }
+    }
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.RacerToHandler {
+        InstanceId = "RacerToHandler"
+
+        SomeIpInstanceID = 44
+    }
+}
