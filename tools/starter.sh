@@ -16,6 +16,9 @@ check_and_run()
             echo $1 is Not Running
             if [ $1 = "head_unit" ]
             then
+                echo Setting time time.bora.net
+                rdate -s time.bora.net
+                echo $(date)
                 nohup ./execute/$1 -platform eglfs --no-sandbox </dev/null >/dev/null 2>&1 &
             elif [ $1 = "instrument_cluster" ]
             then
@@ -25,7 +28,7 @@ check_and_run()
                 echo Initializing CAN...
                 ip link set can0 up type can bitrate 1000000   dbitrate 8000000 restart-ms 1000 berr-reporting on fd on
                 ifconfig can0 txqueuelen 65536
-                echo
+                echoz
             else
                 nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
             fi
