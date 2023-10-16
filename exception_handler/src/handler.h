@@ -1,8 +1,8 @@
-#include <v1/commonapi/SpeedToHandlerProxy.hpp>
-#include <v1/commonapi/BatteryToHandlerProxy.hpp>
-#include <v1/commonapi/InputToHandlerProxy.hpp>
+#include <v1/commonapi/SpeedStatusProxy.hpp>
+#include <v1/commonapi/BatteryStatusProxy.hpp>
+#include <v1/commonapi/ManeuverProxy.hpp>
 #include <v1/commonapi/RacerToHandlerProxy.hpp>
-#include <v1/commonapi/GearToHandlerProxy.hpp>
+#include <v1/commonapi/GearStatusProxy.hpp>
 #include "ToApplicationStubImpl.hpp"
 #include <iostream>
 #include <thread>
@@ -35,18 +35,13 @@ private:
     bool gearStatus;
 
     std::shared_ptr<CommonAPI::Runtime> runtime;
-    std::shared_ptr<SpeedToHandlerProxy<>> speedHandlerProxy;
-    std::shared_ptr<BatteryToHandlerProxy<>> batteryHandlerProxy;
-    std::shared_ptr<InputToHandlerProxy<>> inputHandlerProxy;
+    std::shared_ptr<SpeedStatusProxy<>> speedHandlerProxy;
+    std::shared_ptr<BatteryStatusProxy<>> batteryHandlerProxy;
+    std::shared_ptr<ManeuverProxy<>> inputHandlerProxy;
     std::shared_ptr<RacerToHandlerProxy<>> racerHandlerProxy;
-    std::shared_ptr<GearToHandlerProxy<>> gearHandlerProxy;
+    std::shared_ptr<GearStatusProxy<>> gearHandlerProxy;
     std::shared_ptr<ToApplicationStubImpl> handlerService;
 
-    void speedHandlerProxyInit();
-    void batteryHandlerProxyInit();
-    void inputHandlerProxyInit();
-    void racerHandlerProxyInit();
-    void gearHandlerProxyInit();
     void handlerServiceInit();
 
     void valueChanged(std::string name);

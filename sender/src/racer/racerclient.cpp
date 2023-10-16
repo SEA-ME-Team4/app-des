@@ -12,7 +12,7 @@ RacerClient::RacerClient() {
     maneuverProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Racer_Maneuver_Proxy");
     maneuverProxyInit();
 
-    statusService = std::make_shared<RacerToHandlerStubDefault>();
+    statusService = std::make_shared<RacerToHandlerStubImpl>();
     statusServiceInit();
 }
 

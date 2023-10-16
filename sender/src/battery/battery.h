@@ -1,5 +1,4 @@
 #include "BatteryStatusStubImpl.hpp"
-#include <v1/commonapi/BatteryToHandlerStubDefault.hpp>
 
 #include <iostream>
 #include <thread>
@@ -16,10 +15,8 @@ public:
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<BatteryStatusStubImpl> batteryService;
-    std::shared_ptr<BatteryToHandlerStubDefault> statusService;
 
     void batteryServiceInit();
-    void statusServiceInit();
 };
 
     

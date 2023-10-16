@@ -2,8 +2,8 @@
 #include "input.h"
 
 int main() {
-    Gamepad gamepad = Gamepad();
     Input input = Input();
+    Gamepad gamepad = Gamepad();
 
     // Check Initial Status
     if (gamepad.getStatus()) {
@@ -13,7 +13,6 @@ int main() {
             input.setBrake(gamepad.getBrake());
             input.setSteering(gamepad.getSteering());
             input.setThrottle(gamepad.getThrottle());
-            input.setStatusEvent(true);
 
             std::cout << "getBrake: " << gamepad.getBrake() << '\n';
             std::cout << "getSteering: " << gamepad.getSteering() << '\n';

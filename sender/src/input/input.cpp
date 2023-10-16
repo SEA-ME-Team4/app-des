@@ -8,9 +8,6 @@ Input::Input() {
 
     maneuverService = std::make_shared<ManeuverStubImpl>();
     maneuverServiceInit();
-
-    statusService = std::make_shared<InputToHandlerStubDefault>();
-    statusServiceInit();
 }
 
 Input::~Input() {
@@ -32,14 +29,6 @@ void Input::maneuverServiceInit() {
     std::cout << "Successfully Registered Maneuver Service!" << std::endl;
 }
 
-void Input::statusServiceInit() {
-    while (!runtime->registerService("local", "InputToHandler", statusService, "Input_Status_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered Service!" << std::endl;
-}
-
 void Input::setBrake(bool brake) {
     brakeService->setBrakeAttribute(brake);
 }
@@ -50,8 +39,4 @@ void Input::setSteering(float steering) {
 
 void Input::setThrottle(float throttle) {
     maneuverService->setThrottleAttribute(throttle);
-}
-
-void Input::setStatusEvent(bool status) {
-    statusService->fireInputStatusEventEvent(status);
 }

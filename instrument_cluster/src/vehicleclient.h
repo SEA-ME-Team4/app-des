@@ -5,7 +5,6 @@
 #include <v1/commonapi/SpeedStatusProxy.hpp>
 #include <v1/commonapi/BatteryStatusProxy.hpp>
 #include <v1/commonapi/BrakeStatusProxy.hpp>
-#include <v1/commonapi/TempStatusProxy.hpp>
 #include <v1/commonapi/GearStatusProxy.hpp>
 #include <v1/commonapi/ToApplicationProxy.hpp>
 #include <QObject>

@@ -6,5 +6,5 @@ add_executable(${PROJECT_NAME}
     src/ToApplicationStubImpl.cpp)
 target_link_libraries(${PROJECT_NAME}
     ${PYTHON_LIBRARIES}
-    CommonAPI handlerskel)
+    CommonAPI)
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})

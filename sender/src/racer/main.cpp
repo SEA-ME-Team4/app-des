@@ -7,8 +7,8 @@ int main() {
     float steering;
     float throttle;
 
-    Piracer piracer = Piracer();
     RacerClient racerclient = RacerClient();
+    Piracer piracer = Piracer();
     
     while (1) {
         if (racerclient.validCheck()) {

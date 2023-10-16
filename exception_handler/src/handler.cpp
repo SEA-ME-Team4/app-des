@@ -18,70 +18,14 @@ Handler::Handler() {
     handlerService = std::make_shared<ToApplicationStubImpl>();
     handlerServiceInit();
     
-    speedHandlerProxy = runtime->buildProxy<SpeedToHandlerProxy>("local", "SpeedToHandler", "Handler_Speed_Proxy");
-    speedHandlerProxyInit();
-    batteryHandlerProxy = runtime->buildProxy<BatteryToHandlerProxy>("local", "BatteryToHandler", "Handler_Battery_Proxy");
-    batteryHandlerProxyInit();
-    inputHandlerProxy = runtime->buildProxy<InputToHandlerProxy>("local", "InputToHandler", "Handler_Input_Proxy");
-    inputHandlerProxyInit();
+    speedHandlerProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "Handler_Speed_Proxy");
+    batteryHandlerProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "Handler_Battery_Proxy");
+    inputHandlerProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Handler_Input_Proxy");
     racerHandlerProxy = runtime->buildProxy<RacerToHandlerProxy>("local", "RacerToHandler", "Handler_Racer_Proxy");
-    racerHandlerProxyInit();
-    gearHandlerProxy = runtime->buildProxy<GearToHandlerProxy>("local", "GearToHandler", "Handler_Gear_Proxy");
-    gearHandlerProxyInit();
-
+    gearHandlerProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Handler_Gear_Proxy");
 }
 
 Handler::~Handler() {
-}
-
-void Handler::speedHandlerProxyInit() {
-    std::cout << "Checking Speed Handling availability!" << std::endl;
-    while (!speedHandlerProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    speedHandlerProxy->getSpeedStatusEventEvent().subscribe([&](const bool& status) {
-        valueChanged("speed");
-    });
-}
-
-void Handler::batteryHandlerProxyInit() {
-    std::cout << "Checking Battery Handling availability!" << std::endl;
-    while (!batteryHandlerProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    batteryHandlerProxy->getBatteryStatusEventEvent().subscribe([&](const bool& status) {
-        valueChanged("battery");
-    });
-}
-
-void Handler::inputHandlerProxyInit() {
-    std::cout << "Checking Input Handling availability!" << std::endl;
-    while (!inputHandlerProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    inputHandlerProxy->getInputStatusEventEvent().subscribe([&](const bool& status) {
-        valueChanged("input");
-    });
-}
-
-void Handler::racerHandlerProxyInit() {
-    std::cout << "Checking Temp Handling availability!" << std::endl;
-    while (!racerHandlerProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    racerHandlerProxy->getRacerStatusEventEvent().subscribe([&](const bool& status) {
-        valueChanged("racer");
-    });
-}
-
-void Handler::gearHandlerProxyInit() {
-    std::cout << "Checking Handling availability!" << std::endl;
-    while (!gearHandlerProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    gearHandlerProxy->getGearStatusEventEvent().subscribe([&](const bool& status) {
-        valueChanged("gear");
-    });
 }
 
 void Handler::handlerServiceInit() {

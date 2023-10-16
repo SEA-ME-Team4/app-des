@@ -8,7 +8,6 @@
 #include "GearStatusStubImpl.hpp"
 #include <v1/commonapi/BrakeStatusProxy.hpp>
 #include <v1/commonapi/ToApplicationProxy.hpp>
-#include <v1/commonapi/GearToHandlerStubDefault.hpp>
 #include <QObject>
 
 using namespace v1_0::commonapi;
@@ -34,14 +33,12 @@ signals:
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<GearStatusStubImpl> gearService;
-    std::shared_ptr<GearToHandlerStubDefault> statusService;
     std::shared_ptr<BrakeStatusProxy<>> brakeProxy;
     std::shared_ptr<ToApplicationProxy<>> errorProxy;
     int gear;
 
     void gearServiceInit();
     void brakeProxyInit();
-    void statusServiceInit();
     void errorProxyInit();
 };
 
