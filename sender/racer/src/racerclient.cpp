@@ -12,7 +12,7 @@ RacerClient::RacerClient() {
     maneuverProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Racer_Maneuver_Proxy");
     maneuverProxyInit();
 
-    statusService = std::make_shared<RacerToHandlerStubImpl>();
+    statusService = std::make_shared<RacerStubImpl>();
     statusServiceInit();
 }
 
@@ -53,7 +53,7 @@ void RacerClient::maneuverProxyInit() {
 }
 
 void RacerClient::statusServiceInit() {
-    while (!runtime->registerService("local", "RacerToHandler", statusService, "Racer_Status_Service")) {
+    while (!runtime->registerService("local", "Racer", statusService, "Racer_Status_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }

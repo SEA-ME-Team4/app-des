@@ -1,7 +1,7 @@
 #include <v1/commonapi/BrakeStatusProxy.hpp>
 #include <v1/commonapi/ManeuverProxy.hpp>
 #include <v1/commonapi/GearStatusProxy.hpp>
-#include "RacerToHandlerStubImpl.hpp"
+#include "RacerStubImpl.hpp"
 
 #include <iostream>
 #include <thread>
@@ -29,7 +29,7 @@ private:
     std::shared_ptr<GearStatusProxy<>> gearProxy;
     std::shared_ptr<BrakeStatusProxy<>> brakeProxy;
     std::shared_ptr<ManeuverProxy<>> maneuverProxy;
-    std::shared_ptr<RacerToHandlerStubImpl> statusService;
+    std::shared_ptr<RacerStubImpl> statusService;
 
     void gearProxyInit();
     void brakeProxyInit();

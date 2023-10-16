@@ -1,9 +1,9 @@
 package commonapi
 
-interface RacerToHandler {
+interface Racer {
     version {major 1 minor 0}
 
-    broadcast RacerStatusEvent {
+    broadcast RacerStatus {
     	out {
     	    Boolean Status
     	}
