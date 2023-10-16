@@ -65,6 +65,7 @@ if (BUILD_EXE)
         PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE)
 endif()
 
+
 # Build Library
 if (BUILD_LIB)
     # Find CommonAPI-SomeIP/vsomeip3
@@ -111,6 +112,8 @@ if (BUILD_LIB)
     endforeach()
 endif()
 
+
+# Build Config
 if (BUILD_CONF)
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config/
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)

@@ -16,6 +16,7 @@ endif()
 set(stub_list "ExceptionHandler")
 set(proxy_list "Battery" "Speed" "Gear" "Maneuver" "Racer")
 
+
 # Build Execution
 if (BUILD_EXE)
     # Include Directories
@@ -52,6 +53,7 @@ if (BUILD_EXE)
         DESTINATION ${INSTALL_DIRECTORY}/${PROJECT_NAME}/execute
         PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE)
 endif()
+
 
 # Build Library
 if (BUILD_LIB)
@@ -99,6 +101,8 @@ if (BUILD_LIB)
     endforeach()
 endif()
 
+
+# Build Config
 if (BUILD_CONF)
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/config/
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
