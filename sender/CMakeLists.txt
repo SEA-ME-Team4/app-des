@@ -1,7 +1,8 @@
 project(sender)
 
 include_directories(
-    src)
+    common_src
+)
 
 add_subdirectory(battery)
 add_subdirectory(input)

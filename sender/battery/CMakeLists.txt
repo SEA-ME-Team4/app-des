@@ -7,7 +7,7 @@ include_directories(
     ${PYTHON_INCLUDE_DIRS})
 
 add_executable(battery
-    ../piracer.cpp
+    src/piracer.cpp
     src/main.cpp
     src/battery.cpp
     src/BatteryStatusStubImpl.cpp)

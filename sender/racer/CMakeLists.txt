@@ -7,7 +7,7 @@ include_directories(
     ${PYTHON_INCLUDE_DIRS})
 
 add_executable(racer
-    ../piracer.cpp
+    src/piracer.cpp
     src/main.cpp
     src/racerclient.cpp
     src/RacerToHandlerStubImpl.cpp)
