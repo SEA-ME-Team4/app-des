@@ -20,6 +20,12 @@ check_and_run()
             elif [ $1 = "instrument_cluster" ]
             then
                 nohup ./execute/$1 -platform linuxfb </dev/null >/dev/null 2>&1 &
+            elif [ $1 = "speed" ]
+            then
+                echo Initializing CAN...
+                ip link set can0 up type can bitrate 1000000   dbitrate 8000000 restart-ms 1000 berr-reporting on fd on
+                ifconfig can0 txqueuelen 65536
+                echo
             else
                 nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
             fi
