@@ -13,7 +13,7 @@ add_executable(speed
     src/speed/SpeedStatusStubImpl.cpp)
 target_link_libraries(speed
     ${PYTHON_LIBRARIES}
-    CommonAPI vehicleskel handlerskel)
+    CommonAPI)
 set_target_properties(speed PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(battery
@@ -23,7 +23,7 @@ add_executable(battery
     src/battery/BatteryStatusStubImpl.cpp)
 target_link_libraries(battery
     ${PYTHON_LIBRARIES}
-    CommonAPI vehicleskel handlerskel)
+    CommonAPI)
 set_target_properties(battery PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(input
@@ -34,7 +34,7 @@ add_executable(input
     src/input/ManeuverStubImpl.cpp)
 target_link_libraries(input
     ${PYTHON_LIBRARIES}
-    CommonAPI vehicleskel handlerskel)
+    CommonAPI)
 set_target_properties(input PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
 
 add_executable(racer
@@ -43,5 +43,5 @@ add_executable(racer
     src/racer/racerclient.cpp)
 target_link_libraries(racer
     ${PYTHON_LIBRARIES}
-    CommonAPI vehicleskel handlerskel)
+    CommonAPI)
 set_target_properties(racer PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${EXECUTE_DIRECTORY})
