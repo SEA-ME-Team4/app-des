@@ -2,8 +2,8 @@
 #include "input.h"
 
 int main() {
-    Gamepad gamepad = Gamepad();
     Input input = Input();
+    Gamepad gamepad = Gamepad();
 
     // Check Initial Status
     if (gamepad.getStatus()) {
