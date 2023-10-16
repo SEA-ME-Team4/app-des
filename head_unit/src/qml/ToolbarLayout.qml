@@ -66,7 +66,7 @@ GridLayout {
 
         onClicked: {
             contentsLayout.visible = false
-            menuLayout.visible = false
+            menuLayout.visible = true
             ambientsLayout.visible = true
         }
     }
