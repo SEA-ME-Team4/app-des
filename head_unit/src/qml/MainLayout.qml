@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtWebEngine 1.8
 import YouTubeSearch 1.0
 import QtQuick.Layouts 1.3
-import VehicleStatus 1.0
+//import VehicleStatus 1.0
 import "."
 
 
@@ -23,24 +23,6 @@ ApplicationWindow {
     property bool input_timeout: true
     property bool racer_timeout: true
     property bool gear_timeout: true
-
-    property color ambientColor: "black"
-
-    Rectangle {
-        id: bottom_border
-        width: parent.width
-        height: 5
-        anchors.bottom: parent.bottom
-        color: ambientColor
-    }
-
-    Rectangle {
-        id: right_border
-        width: 5
-        height: parent.height
-        anchors.right: parent.right
-        color: ambientColor
-    }
 
     YouTubeSearch {
         id: youTubeSearch
@@ -91,14 +73,14 @@ ApplicationWindow {
         visible: false
     }
 
-    VehicleStatus {
-        id: vehiclestatus
-        onBrakeChanged: {mainlayout.brakestatus = brake}
-        onSpeedStatus: {mainlayout.speed_timeout = status}
-        onBatteryStatus: {mainlayout.battery_timeout = status}
-        onInputStatus: {mainlayout.input_timeout = status}
-        onRacerStatus: {mainlayout.racer_timeout = status}
-        onGearStatus: {mainlayout.gear_timeout = status}
-    }
+    //VehicleStatus {
+     //   id: vehiclestatus
+       // onBrakeChanged: {mainlayout.brakestatus = brake}
+      //  onSpeedStatus: {mainlayout.speed_timeout = status}
+       // onBatteryStatus: {mainlayout.battery_timeout = status}
+       // onInputStatus: {mainlayout.input_timeout = status}
+       // onRacerStatus: {mainlayout.racer_timeout = status}
+       // onGearStatus: {mainlayout.gear_timeout = status}
+    //}
 
 }
