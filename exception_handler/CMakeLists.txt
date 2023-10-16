@@ -45,8 +45,7 @@ if (BUILD_EXE)
         src/handler.cpp
         src/ToApplicationStubImpl.cpp)
     target_link_libraries(${PROJECT_NAME}
-        ${PYTHON_LIBRARIES}
-            CommonAPI)
+        CommonAPI)
 
     # Install Execution
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
