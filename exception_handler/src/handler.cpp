@@ -67,7 +67,7 @@ void Handler::okayEvent(std::string name) {
     else if (name=="racer_okay") {racerStatus=true;}
     else if (name=="gear_okay") {gearStatus=true;}
 
-    handlerService->fireErrorEventEvent(name);
+    handlerService->fireErrorEvent(name);
     std::cout<<"Stablized: "<<name<<std::endl;
 }
 
@@ -78,7 +78,7 @@ void Handler::errorEvent(std::string name) {
     else if (name=="racer_error") {racerStatus=false;}
     else if (name=="gear_error") {gearStatus=false;}
 
-    handlerService->fireErrorEventEvent(name);
+    handlerService->fireErrorEvent(name);
     std::cout<<"Service '"<<name<<"' Error Detected!"<<std::endl;
 }
 
