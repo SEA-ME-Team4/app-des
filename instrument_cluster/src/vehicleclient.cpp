@@ -1,5 +1,4 @@
 #include "vehicleclient.h"
-#include <QDebug>
 
 VehicleClient::VehicleClient() {
     runtime = CommonAPI::Runtime::get();
@@ -29,7 +28,6 @@ void VehicleClient::speedProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     speedProxy->getSpeedAttribute().getChangedEvent().subscribe([&](const int16_t& speed) {
-        // qDebug()<<speed;
         emit speedChanged(speed);
     });
 }
@@ -40,7 +38,6 @@ void VehicleClient::batteryProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     batteryProxy->getBatteryAttribute().getChangedEvent().subscribe([&](const uint8_t& battery) {
-        // qDebug()<<battery;
         emit batteryChanged(battery);
     });
 }
@@ -51,7 +48,6 @@ void VehicleClient::brakeProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
-        // qDebug()<<brake;
         emit brakeChanged(brake);
     });
 }
@@ -62,7 +58,6 @@ void VehicleClient::gearProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     gearProxy->getGearAttribute().getChangedEvent().subscribe([&](const uint8_t& gear) {
-        // qDebug()<<gear;
         emit gearChanged(gear);
     });
 }
