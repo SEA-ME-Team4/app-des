@@ -37,7 +37,7 @@ void Piracer::setRacer(int gear, bool brake, float steering, float throttle) {
     }
     else if (gear==1) {
         throttle = -throttle;
-        if (throttle<0) {
+        if (throttle>0) {
             throttle = 0;
         }
     }
