@@ -1,7 +1,7 @@
 echo [Initialize]
 echo
 
-export VSOMEIP_CONFIGURATION_FILE=./vsomeip.json
+# export VSOMEIP_CONFIGURATION_FILE=./vsomeip.json
 
 check_and_run()
 {   
