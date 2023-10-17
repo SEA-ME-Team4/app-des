@@ -2,10 +2,10 @@
 #include "racerclient.h"
 
 int main() {
-    int gear;
-    bool brake;
-    float steering;
-    float throttle;
+    int gear=0;
+    bool brake=true;
+    float steering=0;
+    float throttle=0;
 
     RacerClient racerclient = RacerClient();
     Piracer piracer = Piracer();
