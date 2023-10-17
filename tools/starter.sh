@@ -5,34 +5,16 @@ check_and_run()
 {   
     echo [$1]
     echo Checking $1...
-    local init_count=$(ps|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+    local init_count=$(ps|grep ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
     if [ ${init_count} -eq 0 ]
     then
-        local is_file=$(ls ./execute|grep -w $1|grep -v 'grep'|wc -l)
+        local is_file=$(ls|grep -w $1|grep -v 'grep'|wc -l)
         if [ ${is_file} -eq 0 ]
         then
             echo $1 is Not in execute folder
         else
             echo $1 is Not Running
-            if [ $1 = "head_unit" ]
-            then
-                echo Setting time time.bora.net
-                rdate -s time.bora.net
-                echo $(date)
-                nohup ./execute/$1 -platform eglfs --no-sandbox </dev/null >/dev/null 2>&1 &
-            elif [ $1 = "instrument_cluster" ]
-            then
-                nohup ./execute/$1 -platform linuxfb </dev/null >/dev/null 2>&1 &
-            elif [ $1 = "speed" ]
-            then
-                echo Initializing CAN...
-                ip link set can0 up type can bitrate 1000000   dbitrate 8000000 restart-ms 1000 berr-reporting on fd on
-                ifconfig can0 txqueuelen 65536
-                echoz
-            else
-                nohup ./execute/$1 </dev/null >/dev/null 2>&1 &
-            fi
-            disown
+            nohup ./$1/$1.sh </dev/null >/dev/null 2>&1 &
             echo Running $1 Automatically
             sleep 1
         fi
