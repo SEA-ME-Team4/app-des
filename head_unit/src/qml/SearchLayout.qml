@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
+import QtQuick.VirtualKeyboard 2.0
 
 GridLayout {
     columns: 3
@@ -10,19 +11,27 @@ GridLayout {
     property var youTubeSearch
     property var webEngineView
 
-    TextField {
-        id: textField
-        width: 500
-        height: 50
-        placeholderText: "Search YouTube"
-        placeholderTextColor: "#000000"
-        Layout.fillWidth: true
+    InputPanel {
+             id: inputPanel
+             z: 99
+             width: parent.width
+             anchors.bottom: parent.bottom
+             visible: Qt.inputMethod.visible
+     }
 
-        background: Rectangle {
-            color: "white"
-            radius: 10
-            border.color: "gray"
-        }
+     TextField {
+         id: textField
+         width: 500
+         height: 50
+         placeholderText: "Search YouTube"
+         placeholderTextColor: "#000000"
+         Layout.fillWidth: true
+         focus: true
+         onActiveFocusChanged: {
+             if (activeFocus) {
+                 inputPanel.open(textField)
+             }
+         }
     }
 
     Button {
