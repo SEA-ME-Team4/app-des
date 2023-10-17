@@ -1,6 +1,11 @@
 #include "racerclient.h"
 
 RacerClient::RacerClient() {
+    gear=0;
+    brake=true;
+    steering=0;
+    throttle=0;
+
     runtime = CommonAPI::Runtime::get();
 
     gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Racer_Gear_Proxy");
