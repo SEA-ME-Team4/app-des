@@ -84,5 +84,5 @@ bool RacerClient::validCheck() {
 }
 
 void RacerClient::statusUpdate() {
-    statusService->fireRacerStatusEventEvent(true);
+    statusService->fireRacerStatusEvent(true);
 }
