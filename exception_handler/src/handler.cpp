@@ -21,7 +21,7 @@ Handler::Handler() {
     speedHandlerProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "Handler_Speed_Proxy");
     batteryHandlerProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "Handler_Battery_Proxy");
     inputHandlerProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Handler_Input_Proxy");
-    racerHandlerProxy = runtime->buildProxy<RacerToHandlerProxy>("local", "RacerToHandler", "Handler_Racer_Proxy");
+    racerHandlerProxy = runtime->buildProxy<RacerProxy>("local", "Racer", "Handler_Racer_Proxy");
     gearHandlerProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Handler_Gear_Proxy");
 }
 
@@ -67,7 +67,7 @@ void Handler::okayEvent(std::string name) {
     else if (name=="racer_okay") {racerStatus=true;}
     else if (name=="gear_okay") {gearStatus=true;}
 
-    handlerService->fireErrorEventEvent(name);
+    handlerService->fireErrorEvent(name);
     std::cout<<"Stablized: "<<name<<std::endl;
 }
 
@@ -78,7 +78,7 @@ void Handler::errorEvent(std::string name) {
     else if (name=="racer_error") {racerStatus=false;}
     else if (name=="gear_error") {gearStatus=false;}
 
-    handlerService->fireErrorEventEvent(name);
+    handlerService->fireErrorEvent(name);
     std::cout<<"Service '"<<name<<"' Error Detected!"<<std::endl;
 }
 
