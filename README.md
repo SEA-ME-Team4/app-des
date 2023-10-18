@@ -4,7 +4,7 @@ The head unit Qt application compatible with Yocto Project
 
 ## Features
 
-### In C**ommunication (**CommonAPI)
+### In Communication (CommonAPI)
 
 - Use CommonAPI with vsomeip binding
 - Library(.so) and Execution(.exe) can be Built seperatly
