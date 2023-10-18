@@ -1,7 +1,10 @@
 echo [Initialize]
 echo
 
-# export VSOMEIP_CONFIGURATION_FILE=./vsomeip.json
+INIT_DIR=${pwd}
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+cd ${SCRIPT_DIR}
+sh config.sh
 
 check_and_run()
 {   
@@ -60,5 +63,7 @@ echo [Summary]
 echo ${#Pass[@]} Pass : ${Pass[@]}
 echo ${#Succeed[@]} Running : ${Succeed[@]}
 echo ${#Failed[@]} Failed : ${Failed[@]}
+
+cd ${INIT_DIR}
 echo
 echo [Finalize]
