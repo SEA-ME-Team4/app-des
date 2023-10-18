@@ -15,7 +15,7 @@ Window {
             Rotation {
                 origin.x: 200
                 origin.y: 200
-                angle: 90
+                angle: 270
 //                angle: 0
             }
         ]
