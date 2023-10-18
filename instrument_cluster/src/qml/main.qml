@@ -11,14 +11,15 @@ Window {
     color: "black"
 
     InstrumentCluster {
-        anchors.centerIn: parent
+        anchors.horizontalCenter:parent.horizontalCenter
+        anchors.verticalCenter:parent.verticalCenter
         transform: [
             Rotation {
-                origin.x: 200
+                origin.x: 640
                 origin.y: 200
                 angle: 270
 //                angle: 0
-            }
-        ]
+                }
+            ]
     }
 }
