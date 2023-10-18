@@ -3,19 +3,19 @@ echo
 
 killer()
 {
-    local count=$(ps|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+    local count=$(ps|grep -w ./$1/execute/$1|grep -v 'grep'|grep -v $0|wc -l)
     echo [$1]
     if [ ${count} -eq 0 ]
     then
         echo Not Running
         NotRunning+=($1)
     else
-        var=$(ps|grep -w ./execute/$1|grep -v 'grep'|grep -v $0)
+        var=$(ps|grep -w ./$1/execute/$1|grep -v 'grep'|grep -v $0)
         pid=$(echo ${var} | cut -d " " -f1)
         kill -n 9 ${pid}
 
         sleep 0.5
-        local check=$(ps|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+        local check=$(ps|grep -w ./$1s/execute/$1|grep -v 'grep'|grep -v $0|wc -l)
         if [ ${check} -eq 0 ]
         then
             echo Killed
