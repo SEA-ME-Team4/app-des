@@ -2,6 +2,9 @@
 
 The head unit Qt application compatible with Yocto Project
 
+## Architecture
+![app-hu drawio](https://github.com/SEA-ME-Team4/app-hu/assets/120576021/11a14785-afc8-496c-a43a-125730625d5b)
+
 ## Features
 
 ### In Communication (CommonAPI)
@@ -25,9 +28,6 @@ The head unit Qt application compatible with Yocto Project
 
 - Maneuver with Joystick
 - Control with Gear and Joystick status
-
-## Architecture
-![app-hu drawio](https://github.com/SEA-ME-Team4/app-hu/assets/120576021/11a14785-afc8-496c-a43a-125730625d5b)
 
 ## Reference
 1. CommonAPI C++ Core Runtime
