@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 
 project(library LANGUAGES CXX)
 
-set(INSTALL_DIRECTORY /usr/bin/${PROJECT_NAME})
-set(VSOMEIP_JSON_DIRECTORY /etc/vsomeip)
-
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
@@ -15,9 +12,7 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub__proxylist "Battery" "Brake" "Gear" "Speed" "Maneuver" "Racer" "ExceptionHandler")
-set(proxy_list "Battery" "Brake" "Gear" "Speed" "Maneuver" "Racer" "ExceptionHandler")
-
+set(proxy_stub_list "Battery" "Brake" "Gear" "Speed" "Maneuver" "Racer" "ExceptionHandler")
 
 # Build Library
 if (BUILD_LIB)
@@ -32,29 +27,31 @@ if (BUILD_LIB)
         ${VSOMEIP_INCLUDE_DIRS})
 
     # Library Build Fuction (stub and proxy)
-    function(library_generator type name)
+    function(proxy_stub_include interface)
         include_directories(
-            src-gen/core/common/${name}
-            src-gen/core/${type}/${name}
-            src-gen/someip/common/${name}
-            src-gen/someip/${type}/${name})
+            src-gen/core/common/${interface}
+            src-gen/core/proxy/${interface}
+            src-gen/core/stub/${interface}
+            src-gen/someip/common/${interface}
+            src-gen/someip/proxy/${interface}
+            src-gen/someip/stub/${interface})
+    endfunction()
+
+    function(library_generator type name)
         file(GLOB_RECURSE SOMEIP_TYPE_LIB_SRCS src-gen/someip/${type}/${name}/*.cpp)        
         set(SOMEIP_TYPE_LIB_NAME ${name}someip${type})
         string(TOLOWER ${SOMEIP_TYPE_LIB_NAME} SOMEIP_TYPE_LIB_NAME)
         add_library(${SOMEIP_TYPE_LIB_NAME} SHARED ${SOMEIP_TYPE_LIB_SRCS})
         target_link_libraries(${SOMEIP_TYPE_LIB_NAME} CommonAPI-SomeIP vsomeip3)
         install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${SOMEIP_TYPE_LIB_NAME}.so
-        DESTINATION ${INSTALL_DIRECTORY}/${PROJECT_NAME}
-        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
+            DESTINATION ${INSTALL_DIRECTORY}/${PROJECT_NAME}
+            PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
     endfunction()
 
-    # Build stub Library
-    foreach(stub ${stub_list})
-        library_generator("stub" ${stub})
-    endforeach()
-
-    # Build proxy Library
-    foreach(proxy ${proxy_list})
-        library_generator("proxy" ${proxy})
+    # Build proxy and stub Library (.so)
+    foreach(interface ${proxy_stub_list})
+        proxy_stub_include(${interface})
+        library_generator("stub" ${interface})
+        library_generator("proxy" ${interface})
     endforeach()
 endif()
