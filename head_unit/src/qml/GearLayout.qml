@@ -6,7 +6,7 @@ GridLayout {
     width: 138
     height: 600
     columns: 1
-    rows: 5
+    rows: 6
 
     property int text_size: 30
     property int button_size: 70
@@ -31,7 +31,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: opacity >= access_opacity
+        //enabled: opacity >= access_opacity
 
         contentItem: Text {
             text: qsTr("P")
@@ -45,10 +45,10 @@ GridLayout {
 
         onClicked: {
             menuLayout.isGearSSelected = false;
-            gear_R.opacity = min_opacity
-            gear_N.opacity = min_opacity
-            gear_D.opacity = min_opacity
-            gear_S.opacity = min_opacity
+//            gear_R.opacity = min_opacity
+//            gear_N.opacity = min_opacity
+//            gear_D.opacity = min_opacity
+//            gear_S.opacity = min_opacity
             vehiclestatus.sendGear(0)
         }
 
@@ -57,28 +57,28 @@ GridLayout {
         }
     }
 
-    Timer {
-        id: opacityTimer
-        interval: 3000
-        running: false
-        repeat: false
-        onTriggered: {
-            gear_P.opacity = gear_P.checked ? default_opacity : min_opacity;
-            gear_R.opacity = gear_R.checked ? default_opacity : min_opacity;
-            gear_N.opacity = gear_N.checked ? default_opacity : min_opacity;
-            gear_D.opacity = gear_D.checked ? default_opacity : min_opacity;
-            gear_S.opacity = gear_S.checked ? default_opacity : min_opacity;
-        }
-    }
+//    Timer {
+//        id: opacityTimer
+//        interval: 3000
+//        running: false
+//        repeat: false
+//        onTriggered: {
+//            gear_P.opacity = gear_P.checked ? default_opacity : min_opacity;
+//            gear_R.opacity = gear_R.checked ? default_opacity : min_opacity;
+//            gear_N.opacity = gear_N.checked ? default_opacity : min_opacity;
+//            gear_D.opacity = gear_D.checked ? default_opacity : min_opacity;
+//            gear_S.opacity = gear_S.checked ? default_opacity : min_opacity;
+//        }
+//    }
 
-    function resetOpacity() {
-        gear_P.opacity = default_opacity;
-        gear_R.opacity = default_opacity;
-        gear_N.opacity = default_opacity;
-        gear_D.opacity = default_opacity;
-        gear_S.opacity = default_opacity;
-        opacityTimer.start();
-    }
+//    function resetOpacity() {
+//        gear_P.opacity = default_opacity;
+//        gear_R.opacity = default_opacity;
+//        gear_N.opacity = default_opacity;
+//        gear_D.opacity = default_opacity;
+//        gear_S.opacity = default_opacity;
+//        opacityTimer.start();
+//    }
 
 
     Button {
@@ -94,7 +94,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: opacity >= access_opacity
+        //enabled: opacity >= access_opacity
 
         contentItem: Text {
             text: qsTr("R")
@@ -110,10 +110,10 @@ GridLayout {
             contentsLayout.visible = false;
             menuLayout.visible = true;
             menuLayout.isGearSSelected = false;
-            gear_P.opacity = min_opacity
-            gear_N.opacity = min_opacity
-            gear_D.opacity = min_opacity
-            gear_S.opacity = min_opacity
+//            gear_P.opacity = min_opacity
+//            gear_N.opacity = min_opacity
+//            gear_D.opacity = min_opacity
+//            gear_S.opacity = min_opacity
             vehiclestatus.sendGear(1)
         }
 
@@ -135,7 +135,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: opacity >= access_opacity
+        //enabled: opacity >= access_opacity
 
         contentItem: Text {
             text: qsTr("N")
@@ -148,10 +148,10 @@ GridLayout {
         }
         onClicked: {
             menuLayout.isGearSSelected = false;
-            gear_P.opacity = min_opacity
-            gear_R.opacity = min_opacity
-            gear_D.opacity = min_opacity
-            gear_S.opacity = min_opacity
+//            gear_P.opacity = min_opacity
+//            gear_R.opacity = min_opacity
+//            gear_D.opacity = min_opacity
+//            gear_S.opacity = min_opacity
             vehiclestatus.sendGear(2)
         }
 
@@ -173,7 +173,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: opacity >= access_opacity
+        //enabled: opacity >= access_opacity
 
         contentItem: Text {
             text: qsTr("D")
@@ -188,10 +188,10 @@ GridLayout {
             contentsLayout.visible = false;
             menuLayout.visible = true;
             menuLayout.isGearSSelected = false;
-            gear_P.opacity = min_opacity
-            gear_R.opacity = min_opacity
-            gear_N.opacity = min_opacity
-            gear_S.opacity = min_opacity
+//            gear_P.opacity = min_opacity
+//            gear_R.opacity = min_opacity
+//            gear_N.opacity = min_opacity
+//            gear_S.opacity = min_opacity
             vehiclestatus.sendGear(3)
         }
 
@@ -213,7 +213,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: opacity >= access_opacity
+        //enabled: opacity >= access_opacity
 
         contentItem: Text {
             text: qsTr("S")
@@ -229,10 +229,10 @@ GridLayout {
             contentsLayout.visible = false;
             menuLayout.visible = true;
             menuLayout.isGearSSelected = true;
-            gear_P.opacity = min_opacity
-            gear_R.opacity = min_opacity
-            gear_N.opacity = min_opacity
-            gear_D.opacity = min_opacity
+//            gear_P.opacity = min_opacity
+//            gear_R.opacity = min_opacity
+//            gear_N.opacity = min_opacity
+//            gear_D.opacity = min_opacity
             vehiclestatus.sendGear(4)
         }
 
@@ -241,15 +241,23 @@ GridLayout {
         }
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            resetOpacity();
-        }
-    }
+//    Button {
+//        implicitWidth: button_size
+//        implicitHeight: button_size
+//        Layout.alignment: Qt.AlignHCenter
+//        visible: true
 
+//        background: Rectangle {
+//            color: "transparent"
+//        }
+//        contentItem: Image {
+//            source: "/images/Change_gear.png"
+//            anchors.fill: parent
+//            fillMode: Image.PreserveAspectFit
+//        }
 
-
-
-
+//        onClicked: {
+//            resetOpacity();
+//        }
+//    }
 }

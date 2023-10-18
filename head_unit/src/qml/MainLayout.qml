@@ -7,7 +7,7 @@ import VehicleStatus 1.0
 import "."
 
 
-ApplicationWindow {
+Rectangle {
     id: mainlayout
     visible: true
     width: 1024

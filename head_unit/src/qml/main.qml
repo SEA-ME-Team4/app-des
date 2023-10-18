@@ -1,13 +1,14 @@
 import QtQuick 2.12
-import QtQuick.Window 2.0
-Window {
+import QtQuick.Controls 2.12
+
+ApplicationWindow  {
     id: main
     visible: true
     width: 1024
-    height: 1000
+    height: 600
     color: "#000000"
 
     MainLayout {
-         scale: 0.5
+        scale: 0.5
     }
 }
