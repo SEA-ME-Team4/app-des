@@ -85,7 +85,7 @@ void Handler::errorEvent(std::string name) {
 void Handler::handlerProcess() {
     checkTime = std::chrono::steady_clock::now();
     intervalCalculate(speedStatusTime)>SPEED_INTERVAL_MAX ? errorCheck("speed") : okayCheck("speed");
-    intervalCalculate(batteryStatusTime)>BATTERY_INTERVAL_MAX ? errorCheck("battery") : okayCheck("speed");
+    intervalCalculate(batteryStatusTime)>BATTERY_INTERVAL_MAX ? errorCheck("battery") : okayCheck("battery");
     intervalCalculate(inputStatusTime)>INPUT_INTERVAL_MAX ? errorCheck("input") : okayCheck("input");
     intervalCalculate(racerStatusTime)>RACER_INTERVAL_MAX ? errorCheck("racer") : okayCheck("racer");
     intervalCalculate(gearStatusTime)>GEAR_INTERVAL_MAX ? errorCheck("gear") : okayCheck("gear");
