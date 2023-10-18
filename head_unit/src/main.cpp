@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<VehicleStatus>("VehicleStatus", 1, 0, "VehicleStatus");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/qml/MainLayout.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 
