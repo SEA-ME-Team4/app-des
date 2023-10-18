@@ -11,6 +11,7 @@ Window {
     color: "black"
 
     InstrumentCluster {
+        anchors.centerIn: parent
         transform: [
             Rotation {
                 origin.x: 200
