@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 import QtWebEngine 1.8
 import YouTubeSearch 1.0
 import QtQuick.Layouts 1.3
-//import VehicleStatus 1.0
+import VehicleStatus 1.0
 import "."
 
 
@@ -73,14 +73,14 @@ Rectangle {
         visible: false
     }
 
-    //VehicleStatus {
-     //   id: vehiclestatus
-       // onBrakeChanged: {mainlayout.brakestatus = brake}
-      //  onSpeedStatus: {mainlayout.speed_timeout = status}
-       // onBatteryStatus: {mainlayout.battery_timeout = status}
-       // onInputStatus: {mainlayout.input_timeout = status}
-       // onRacerStatus: {mainlayout.racer_timeout = status}
-       // onGearStatus: {mainlayout.gear_timeout = status}
-    //}
+    VehicleStatus {
+        id: vehiclestatus
+        onBrakeChanged: {mainlayout.brakestatus = brake}
+        onSpeedStatus: {mainlayout.speed_timeout = status}
+        onBatteryStatus: {mainlayout.battery_timeout = status}
+        onInputStatus: {mainlayout.input_timeout = status}
+        onRacerStatus: {mainlayout.racer_timeout = status}
+        onGearStatus: {mainlayout.gear_timeout = status}
+    }
 
 }
