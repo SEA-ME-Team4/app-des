@@ -2,3 +2,4 @@
 build/
 cgen/
 head_unit/src/main.cpp
+*.txt.user
