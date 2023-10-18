@@ -5,7 +5,7 @@ check()
 {   
     echo [$1]
     echo Checking $1...
-    local init_count=$(ps|grep -w ./execute/$1|grep -v 'grep'|grep -v $0|wc -l)
+    local init_count=$(ps|grep -w ./$1/execute/$1|grep -v 'grep'|grep -v $0|wc -l)
     if [ ${init_count} -eq 0 ]
     then
         echo $1 is Not Running
