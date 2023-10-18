@@ -16,36 +16,6 @@ GridLayout {
     property int  opacity_interval: 1000
     property ButtonGroup buttonGroup
 
-    Timer {
-        id: opacityTimer
-        interval: 3000
-        running: false
-        repeat: false
-        onTriggered: {
-            gear_P.opacity = gear_P.checked ? default_opacity : min_opacity;
-            gear_R.opacity = gear_R.checked ? default_opacity : min_opacity;
-            gear_N.opacity = gear_N.checked ? default_opacity : min_opacity;
-            gear_D.opacity = gear_D.checked ? default_opacity : min_opacity;
-            gear_S.opacity = gear_S.checked ? default_opacity : min_opacity;
-        }
-    }
-
-    function resetOpacity() {
-        gear_P.opacity = default_opacity;
-        gear_R.opacity = default_opacity;
-        gear_N.opacity = default_opacity;
-        gear_D.opacity = default_opacity;
-        gear_S.opacity = default_opacity;
-        opacityTimer.start();
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            resetOpacity();
-        }
-    }
-
     Button {
         id: gear_P
         implicitWidth: button_size
@@ -74,18 +44,42 @@ GridLayout {
         }
 
         onClicked: {
-                menuLayout.isGearSSelected = false;
-                gear_R.opacity = min_opacity
-                gear_N.opacity = min_opacity
-                gear_D.opacity = min_opacity
-                gear_S.opacity = min_opacity
-                vehiclestatus.sendGear(0)
+            menuLayout.isGearSSelected = false;
+            gear_R.opacity = min_opacity
+            gear_N.opacity = min_opacity
+            gear_D.opacity = min_opacity
+            gear_S.opacity = min_opacity
+            vehiclestatus.sendGear(0)
         }
 
         Behavior on opacity {
             NumberAnimation { duration: opacity_interval }
         }
     }
+
+    Timer {
+        id: opacityTimer
+        interval: 3000
+        running: false
+        repeat: false
+        onTriggered: {
+            gear_P.opacity = gear_P.checked ? default_opacity : min_opacity;
+            gear_R.opacity = gear_R.checked ? default_opacity : min_opacity;
+            gear_N.opacity = gear_N.checked ? default_opacity : min_opacity;
+            gear_D.opacity = gear_D.checked ? default_opacity : min_opacity;
+            gear_S.opacity = gear_S.checked ? default_opacity : min_opacity;
+        }
+    }
+
+    function resetOpacity() {
+        gear_P.opacity = default_opacity;
+        gear_R.opacity = default_opacity;
+        gear_N.opacity = default_opacity;
+        gear_D.opacity = default_opacity;
+        gear_S.opacity = default_opacity;
+        opacityTimer.start();
+    }
+
 
     Button {
         id: gear_R
@@ -246,4 +240,16 @@ GridLayout {
             NumberAnimation { duration: opacity_interval }
         }
     }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            resetOpacity();
+        }
+    }
+
+
+
+
+
 }
