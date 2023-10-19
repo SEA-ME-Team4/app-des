@@ -16,5 +16,11 @@
         <file>images/search_glass.png</file>
         <file>images/X.png</file>
         <file>images/colors_picker.png</file>
+        <file>images/arrow-0.png</file>
+        <file>images/red-border-left.png</file>
+        <file>images/red-border-right.png</file>
+        <file>images/rearlight.png</file>
+        <file>images/white-line-left.png</file>
+        <file>images/white-line-right.png</file>
     </qresource>
 </RCC>

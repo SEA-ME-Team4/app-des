@@ -70,7 +70,7 @@ GridLayout {
                     void main() {
                         vec2 coord = qt_TexCoord0 - vec2(0.5);
                         float ring = smoothstep(0.0, 0.01, -abs(length(coord) - 0.5 + ringWidth) + ringWidth);
-                        FragColor = vec4(hsv2rgb(vec3(-atan(coord.y, coord.x) / 6.2831 + 0.5, s, v)), 1.0);
+                        FragColor = vec4(hsv2rgb(vec3(atan(coord.y, coord.x) / 6.2831 + 0.5, s, v)), 1.0);
                         FragColor *= ring;
                     }"
             }
@@ -101,7 +101,7 @@ GridLayout {
             MouseArea {
                 id: mousearea
                 anchors.fill: parent
-                property real angle: Math.atan2(width/2 - mouseX, mouseY - height/2) / 3.14 / 2  + 0.5
+                property real angle: Math.atan2(width/2 - mouseX, mouseY - height/2) / 3.14 / 2 + 0.5
             }
         }
     }
