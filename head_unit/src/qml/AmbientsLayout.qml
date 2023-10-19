@@ -25,25 +25,31 @@ GridLayout {
 
             ShaderEffect {
                 id: shadereffect
-                width: parent.width; height: parent.height
+                width: parent.width
+                height: parent.height
                 readonly property real ringWidth: control.ringWidth / width / 2
                 readonly property real s: control.hsvSaturation
                 readonly property real v: control.hsvValue
 
-                vertexShader: "
-                    #version 300 es
+                onLogChanged: {
+                    console.log(log);
+                }
 
-                    layout(location = 0) in vec4 a_position;
-                    layout(location = 1) in vec2 a_texCoord;
+                vertexShader: "
+                    #version 310 es
+
+                    in vec4 qt_Vertex;
+                    in vec2 qt_MultiTexCoord0;
                     out vec2 qt_TexCoord0;
+                    uniform mat4 qt_Matrix;
 
                     void main() {
-                        gl_Position = a_position;
-                        qt_TexCoord0 = a_texCoord;
+                        gl_Position = qt_Matrix * qt_Vertex;
+                        qt_TexCoord0 = qt_MultiTexCoord0;
                     }"
 
                 fragmentShader: "
-                    #version 300 es
+                    #version 310 es
 
                     precision mediump float;
 
@@ -68,6 +74,7 @@ GridLayout {
                         FragColor *= ring;
                     }"
             }
+
 
             Rectangle {
                 id: indicator
