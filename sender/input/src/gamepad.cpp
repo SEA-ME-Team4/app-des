@@ -32,7 +32,7 @@ bool Gamepad::read_data() {
 
     pInputL = PyObject_GetAttrString(pInput, "analog_stick_left");
     pInputLX = PyObject_GetAttrString(pInputL, "x");
-    gamepad_inputLX = (float)PyFloat_AsDouble(pInputLX);
+    gamepad_inputLX = -(float)PyFloat_AsDouble(pInputLX);
 
     pInputR = PyObject_GetAttrString(pInput, "analog_stick_right");
     pInputRY = PyObject_GetAttrString(pInputR, "y");
