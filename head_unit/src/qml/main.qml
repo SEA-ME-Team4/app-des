@@ -14,8 +14,8 @@ Window  {
         scale: 0.5
 
         //Match target LCD
-        anchors.horizontalCenter: parent.left
-        anchors.verticalCenter: parent.top
+        x: -256
+        y: -150
     }
 
 }
