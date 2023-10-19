@@ -9,13 +9,16 @@ Window  {
     height: 600
     color: "#000000"
 
+    property double ratio: 0.5
+    property int loc_x: -(width * ratio / 2)
+    property int loc_y: -(height * ratio / 2)
+
     MainLayout {
         visible: true
-        scale: 0.5
+        scale: ratio
 
         //Match target LCD
-        anchors.horizontalCenter: parent.left
-        anchors.verticalCenter: parent.top
+        x: loc_x
+        y: loc_y
     }
-
 }
