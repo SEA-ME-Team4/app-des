@@ -30,6 +30,18 @@ GridLayout {
                 readonly property real s: control.hsvSaturation
                 readonly property real v: control.hsvValue
 
+                vertexShader: "
+                    #version 300 es
+
+                    layout(location = 0) in vec4 a_position;
+                    layout(location = 1) in vec2 a_texCoord;
+                    out vec2 qt_TexCoord0;
+
+                    void main() {
+                        gl_Position = a_position;
+                        qt_TexCoord0 = a_texCoord;
+                    }"
+
                 fragmentShader: "
                     #version 300 es
 
