@@ -16,6 +16,9 @@ Rectangle {
 
     property var searchResults: []
 
+    property bool brake: false
+    property int speed: 0
+
     YouTubeSearch {
         id: youTubeSearch
     }
@@ -67,6 +70,8 @@ Rectangle {
 
     VehicleStatus {
         id: vehiclestatus
+        onBrakeChanged: {mainlayout.brake = brake}
+        onSpeedChanged: {mainlayout.speed = speed}
     }
 
 }

@@ -17,7 +17,7 @@ endif()
 
 # Set Depend Library
 set(stub_list "Gear")
-set(proxy_list)
+set(proxy_list "Brake" "Speed")
 
 
 # Build Execution
