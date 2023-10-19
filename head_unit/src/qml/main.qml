@@ -12,8 +12,10 @@ Window  {
     MainLayout {
         visible: true
         scale: 0.5
-        x: -(parent.width * scale / 2)
-        y: -(parent.height * scale / 2)
+
+        //Match target LCD
+        anchors.horizontalCenter: parent.left
+        anchors.verticalCenter: parent.top
     }
 
 }

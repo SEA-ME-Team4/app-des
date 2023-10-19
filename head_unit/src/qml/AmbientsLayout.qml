@@ -31,7 +31,9 @@ GridLayout {
                 readonly property real v: control.hsvValue
 
                 fragmentShader: "
-                    #version 130
+                    #version 300 es
+
+                    precision mediump float;
 
                     in vec2 qt_TexCoord0;
                     out vec4 FragColor;
@@ -50,7 +52,7 @@ GridLayout {
                     void main() {
                         vec2 coord = qt_TexCoord0 - vec2(0.5);
                         float ring = smoothstep(0.0, 0.01, -abs(length(coord) - 0.5 + ringWidth) + ringWidth);
-                        FragColor = vec4(hsv2rgb(vec3(-atan(coord.y, coord.x) / 6.2831 + 0.5, s, v)), 1);
+                        FragColor = vec4(hsv2rgb(vec3(-atan(coord.y, coord.x) / 6.2831 + 0.5, s, v)), 1.0);
                         FragColor *= ring;
                     }"
             }
