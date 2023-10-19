@@ -15,18 +15,18 @@ GridLayout {
         id: youTubeSearchInternal
     }
 
-    YoutubeLayout {
-        id: youtubeLayout
-        width: parent.width
-        height: parent.height * 0.75
-        youTubeSearch: youTubeSearchInternal
-    }
-
     SearchLayout {
         id: searchLayout
         width: parent.width
         height: parent.height * 0.25
         youTubeSearch: youTubeSearchInternal
         webEngineView: youtubeLayout.webEngineView
+    }
+
+    YoutubeLayout {
+        id: youtubeLayout
+        width: parent.width
+        height: parent.height * 0.75
+        youTubeSearch: youTubeSearchInternal
     }
 }
