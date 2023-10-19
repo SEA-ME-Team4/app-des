@@ -16,14 +16,6 @@ Rectangle {
 
     property var searchResults: []
 
-    property bool brakestatus: false
-
-    property bool speed_timeout: true
-    property bool battery_timeout: true
-    property bool input_timeout: true
-    property bool racer_timeout: true
-    property bool gear_timeout: true
-
     YouTubeSearch {
         id: youTubeSearch
     }
@@ -75,12 +67,6 @@ Rectangle {
 
     VehicleStatus {
         id: vehiclestatus
-        onBrakeChanged: {mainlayout.brakestatus = brake}
-        onSpeedStatus: {mainlayout.speed_timeout = status}
-        onBatteryStatus: {mainlayout.battery_timeout = status}
-        onInputStatus: {mainlayout.input_timeout = status}
-        onRacerStatus: {mainlayout.racer_timeout = status}
-        onGearStatus: {mainlayout.gear_timeout = status}
     }
 
 }

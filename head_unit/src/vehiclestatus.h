@@ -6,8 +6,6 @@
 
 #include <CommonAPI/CommonAPI.hpp>
 #include "GearStatusStubImpl.hpp"
-#include <v1/commonapi/BrakeStatusProxy.hpp>
-#include <v1/commonapi/ToApplicationProxy.hpp>
 #include <QObject>
 
 using namespace v1_0::commonapi;
@@ -21,25 +19,12 @@ public:
 
     Q_INVOKABLE void sendGear(quint8 gear);
 
-signals:
-    void brakeChanged(bool brake);
-
-    void speedStatus(bool status);
-    void batteryStatus(bool status);
-    void inputStatus(bool status);
-    void racerStatus(bool status);
-    void gearStatus(bool status);
-
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<GearStatusStubImpl> gearService;
-    std::shared_ptr<BrakeStatusProxy<>> brakeProxy;
-    std::shared_ptr<ToApplicationProxy<>> errorProxy;
     int gear;
 
     void gearServiceInit();
-    void brakeProxyInit();
-    void errorProxyInit();
 };
 
 #endif
