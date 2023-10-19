@@ -31,13 +31,14 @@ void Piracer::set_throttle_percent(float throttle) {
 }
 
 void Piracer::setRacer(int gear, bool brake, float steering, float throttle) {
+    throttle = 0.5*throttle
     if (gear==0) {
         steering = 0;
         throttle = 0;
     }
     else if (gear==1) {
         throttle = -throttle;
-        if (throttle<0) {
+        if (throttle>0) {
             throttle = 0;
         }
     }
@@ -50,6 +51,9 @@ void Piracer::setRacer(int gear, bool brake, float steering, float throttle) {
         }
     }
     else if (gear==4) {
+        if (throttle<0) {
+            throttle = 0;
+        }
         throttle = 1.5*throttle;
     }
 
