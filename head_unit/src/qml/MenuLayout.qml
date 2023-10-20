@@ -65,7 +65,7 @@ GridLayout {
             anchors.centerIn: field
             width: menuImages.width * 0.03
             height: width / sourceSize.width * sourceSize.height
-            opacity: (currentGear === "D" || currentGear === "S") ? default_opacity : min_opacity
+            opacity: ((currentGear === "D" || currentGear === "S") && !mainlayout.brake) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
