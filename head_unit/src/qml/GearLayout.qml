@@ -31,7 +31,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.speed <= 0
+        enabled: mainlayout.speed <= 0 && mainlayout.brake
 
         contentItem: Text {
             text: qsTr("P")
@@ -71,7 +71,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: (mainlayout.speed <= 0) && ((menuLayout.currentGear === "P" && mainlayout.brake) || (menuLayout.currentGear !== "P"))
+        enabled: mainlayout.speed <= 0 && mainlayout.brake
 
         contentItem: Text {
             text: qsTr("R")
@@ -113,7 +113,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: (mainlayout.speed <= 0) && ((menuLayout.currentGear === "P" && mainlayout.brake) || (menuLayout.currentGear !== "P"))
+        enabled: mainlayout.speed <= 0 && mainlayout.brake
 
         contentItem: Text {
             text: qsTr("N")
@@ -152,7 +152,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: (mainlayout.speed <= 0) && ((menuLayout.currentGear === "P" && mainlayout.brake) || (menuLayout.currentGear !== "P"))
+        enabled: mainlayout.speed <= 0 && mainlayout.brake
 
         contentItem: Text {
             text: qsTr("D")
@@ -193,7 +193,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: (mainlayout.speed <= 0) && ((menuLayout.currentGear === "P" && mainlayout.brake) || (menuLayout.currentGear !== "P"))
+        enabled: mainlayout.speed <= 0 && mainlayout.brake
 
         contentItem: Text {
             text: qsTr("S")
