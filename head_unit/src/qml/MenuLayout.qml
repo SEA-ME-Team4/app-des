@@ -36,7 +36,7 @@ GridLayout {
             anchors.centerIn: parent
             width: menuImages.width * 0.8
             height: width / sourceSize.width * sourceSize.height
-            opacity: (currentGear === "P") || (mainlayout.brake && currentGear !== "N") ? default_opacity : min_opacity
+            opacity: (currentGear === "P" || mainlayout.brake) ? default_opacity : min_opacity
 
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
@@ -82,7 +82,7 @@ GridLayout {
             y: 190
             width: menuImages.width * 0.1
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.brake && currentGear !== "N") ? default_opacity : min_opacity
+            opacity: mainlayout.brake ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -98,7 +98,7 @@ GridLayout {
             y: 190
             width: menuImages.width * 0.1
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.brake && currentGear !== "N") ? default_opacity : min_opacity
+            opacity: mainlayout.brake ? default_opacity : min_opacity
 
 
             Behavior on opacity {
