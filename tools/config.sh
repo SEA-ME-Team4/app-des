@@ -11,9 +11,5 @@ echo Setting commonapi.ini
 export COMMONAPI_CONFIG=${SCRIPT_DIR}/commonapi.ini
 echo vsomeip.json path is ${SCRIPT_DIR}/commonapi.ini
 
-echo Setting QT_QPA_EGLFS_HIDECURSOR
-export QT_QPA_EGLFS_HIDECURSOR=1
-echo Setting HIDECURSOR enabled
-
 echo
 echo [Finish Configuration]
