@@ -15,6 +15,7 @@ GridLayout {
     property real default_opacity: 1
     property int  opacity_interval: 100
     property ButtonGroup buttonGroup
+    property bool gearChange: (menuLayout.currentGear !== "P") || (menuLayout.currentGear === "P" && mainlayout.brake)
 
     Button {
         id: gear_P
@@ -31,7 +32,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.speed <= 0 && mainlayout.brake
+        enabled: mainlayout.brake
 
         contentItem: Text {
             text: qsTr("P")
@@ -71,7 +72,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.speed <= 0 && mainlayout.brake
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("R")
@@ -113,7 +114,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.speed <= 0 && mainlayout.brake
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("N")
@@ -152,7 +153,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.speed <= 0 && mainlayout.brake
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("D")
@@ -193,7 +194,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.speed <= 0 && mainlayout.brake
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("S")
