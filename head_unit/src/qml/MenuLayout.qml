@@ -21,15 +21,6 @@ GridLayout {
         Layout.fillHeight: true
 
         Image {
-            id: field
-            visible: true
-            source: "/images/field.png"
-            anchors.centerIn: parent
-            width: menuImages.width * 0.8
-            height: width / sourceSize.width * sourceSize.height
-        }
-
-        Image {
             id: car_highlights
             source: "/images/car-highlights.png"
             visible: true
@@ -200,6 +191,15 @@ GridLayout {
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
             }
+        }
+
+        Image {
+            id: field
+            visible: true
+            source: "/images/field.png"
+            anchors.centerIn: parent
+            width: menuImages.width * 0.8
+            height: width / sourceSize.width * sourceSize.height
         }
 
         ColorOverlay {
