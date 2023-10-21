@@ -1,10 +1,82 @@
 {
-    "unicast" : "127.0.0.1",
+    "unicast" : "192.168.1.100",
     "logging" :
     {
         "level" : "verbose",
         "console" : "false",
         "file" : { "enable" : "true", "path" : "./commonapi.log" },
         "dlt" : "true"
+    },
+    
+    "applications" : 
+    [
+        {
+            "name" : "Battery_Service",
+            "id" : "0x1001"
+        },
+        {
+            "name" : "Input_Brake_Service",
+            "id" : "0x1002"
+        },
+        {
+            "name" : "Handler_Service",
+            "id" : "0x1004"
+        },
+        {
+            "name" : "HeadUnit_Gear_Service",
+            "id" : "0x1005"
+        },
+        {
+            "name" : "Input_Maneuver_Service",
+            "id" : "0x1006"
+        },
+        {
+        "name" : "Speed_Service",
+            "id" : "0x1008"
+        }
+    ],
+
+    "routing" : "HeadUnit_Gear_Service",
+
+    "services" :
+    [
+        {
+            "service" : "4662",
+            "instance" : "22138",
+            "reliable" : "30562"
+        },
+        {
+            "service" : "4663",
+            "instance" : "22139",
+            "reliable" : "30563"
+        },        
+        {
+            "service" : "10",
+            "instance" : "1010",
+            "reliable" : "30510"
+        },
+        {
+            "service" : "4660",
+            "instance" : "22136",
+            "reliable" : "30560"
+        },
+        {
+            "service" : "4665",
+            "instance" : "22141",
+            "reliable" : "30565"
+        },
+        {
+            "service" : "4661",
+            "instance" : "22137",
+            "reliable" : "30561"
+        }
+    ],
+
+    "service-discovery" :
+    {
+        "enable" : "true",
+        "multicast" : "224.244.224.245",
+        "port" : "30490",
+        "protocol" : "udp"
     }
 }
