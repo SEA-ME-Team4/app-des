@@ -152,7 +152,7 @@ GridLayout {
             y: 220
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            //opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
+            opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
