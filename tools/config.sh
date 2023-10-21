@@ -1,4 +1,4 @@
-echo [Initialize]
+echo [Start Configuration]
 echo
 INIT_DIR=${pwd}
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
@@ -11,5 +11,9 @@ echo Setting commonapi.ini
 export COMMONAPI_CONFIG=${SCRIPT_DIR}/commonapi.ini
 echo vsomeip.json path is ${SCRIPT_DIR}/commonapi.ini
 
+echo Setting QT_QPA_EGLFS_HIDECURSOR
+export QT_QPA_EGLFS_HIDECURSOR=1
+echo Setting HIDECURSOR enabled
+
 echo
-echo [Finalize]
+echo [Finish Configuration]
