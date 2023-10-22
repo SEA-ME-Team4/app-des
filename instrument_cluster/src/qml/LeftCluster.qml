@@ -151,7 +151,7 @@ Rectangle{
         x: 190
         y: 276
         color: "gray"
-        text: "cm/s"
+        text: "mm/s"
         font.pixelSize: 13
         font.family: "Sarabun"
         font.bold: false

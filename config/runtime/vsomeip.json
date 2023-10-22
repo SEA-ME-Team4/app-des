@@ -7,34 +7,6 @@
         "file" : { "enable" : "true", "path" : "./commonapi.log" },
         "dlt" : "true"
     },
-    
-    "applications" : 
-    [
-        {
-            "name" : "Battery_Service",
-            "id" : "0x1001"
-        },
-        {
-            "name" : "Input_Brake_Service",
-            "id" : "0x1002"
-        },
-        {
-            "name" : "Handler_Service",
-            "id" : "0x1004"
-        },
-        {
-            "name" : "HeadUnit_Gear_Service",
-            "id" : "0x1005"
-        },
-        {
-            "name" : "Input_Maneuver_Service",
-            "id" : "0x1006"
-        },
-        {
-        "name" : "Speed_Service",
-            "id" : "0x1008"
-        }
-    ],
 
     "routing" : "HeadUnit_Gear_Service",
 
