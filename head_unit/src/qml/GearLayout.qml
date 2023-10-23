@@ -32,7 +32,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.brake
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("P")
