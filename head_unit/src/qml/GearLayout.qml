@@ -15,7 +15,7 @@ GridLayout {
     property int  opacity_interval: 100
     property ButtonGroup buttonGroup
 
-    property bool gearChange: (!mainlayout.is_P) || (mainlayout.is_P === 0 && mainlayout.brake)
+    property bool gearChange: ((!mainlayout.is_P) || (mainlayout.is_P && mainlayout.brake)) ? true : false
 
     Button {
         id: gear_P
@@ -23,8 +23,6 @@ GridLayout {
         implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
-        checkable: true
-        checked: true
         ButtonGroup.group: buttonGroup
         Layout.topMargin: 20
         opacity: (mainlayout.is_P) ? default_opacity : min_opacity
@@ -32,7 +30,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: gearChange
+        enabled: mainlayout.brake
 
         contentItem: Text {
             text: qsTr("P")
@@ -59,7 +57,6 @@ GridLayout {
         implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
-        checkable: true
         ButtonGroup.group: buttonGroup
         opacity: (mainlayout.is_R) ? default_opacity : min_opacity
         background: Rectangle {
@@ -93,7 +90,6 @@ GridLayout {
         implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
-        checkable: true
         ButtonGroup.group: buttonGroup
         opacity: (mainlayout.is_N) ? default_opacity : min_opacity
         background: Rectangle {
@@ -126,7 +122,6 @@ GridLayout {
         implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
-        checkable: true
         ButtonGroup.group: buttonGroup
         opacity: (mainlayout.is_D) ? default_opacity : min_opacity
         background: Rectangle {
@@ -159,7 +154,6 @@ GridLayout {
         implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         visible: true
-        checkable: true
         ButtonGroup.group: buttonGroup
         opacity: (mainlayout.is_S) ? default_opacity : min_opacity
         background: Rectangle {

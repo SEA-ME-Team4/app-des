@@ -41,6 +41,11 @@
             "service" : "4661",
             "instance" : "22137",
             "reliable" : "30561"
+        },
+        {
+            "service" : "4",
+            "instance" : "44",
+            "reliable" : "30544"
         }
     ],
 
