@@ -13,9 +13,8 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list "Racer")
-set(proxy_list "Brake" "Maneuver" "Gear")
-
+set(stub_list "Gear")
+set(proxy_list "Brake" "Maneuver" "GearSelector")
 
 # Build Execution
 if (BUILD_EXE)
@@ -49,7 +48,7 @@ if (BUILD_EXE)
         src/piracer.cpp
         src/main.cpp
         src/racerclient.cpp
-        src/RacerStubImpl.cpp)
+        src/GearStatusStubImpl.cpp)
     target_link_libraries(${PROJECT_NAME}
         ${PYTHON_LIBRARIES}
         CommonAPI)

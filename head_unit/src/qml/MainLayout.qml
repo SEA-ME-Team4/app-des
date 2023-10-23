@@ -18,6 +18,7 @@ Rectangle {
 
     property bool brake: false
     property int speed: 0
+    property int gear: 0
 
     YouTubeSearch {
         id: youTubeSearch
@@ -72,6 +73,6 @@ Rectangle {
         id: vehiclestatus
         onBrakeChanged: {mainlayout.brake = brake}
         onSpeedChanged: {mainlayout.speed = speed}
+        onGearChanged: {mainlayout.gear = gear}
     }
-
 }

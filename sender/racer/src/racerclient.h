@@ -1,7 +1,7 @@
+#include "GearStatusStubImpl.hpp"
+#include <v1/commonapi/GearSelectorProxy.hpp>
 #include <v1/commonapi/BrakeStatusProxy.hpp>
 #include <v1/commonapi/ManeuverProxy.hpp>
-#include <v1/commonapi/GearStatusProxy.hpp>
-#include "RacerStubImpl.hpp"
 
 #include <iostream>
 #include <thread>
@@ -26,17 +26,20 @@ public:
 
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
-    std::shared_ptr<GearStatusProxy<>> gearProxy;
+    std::shared_ptr<GearStatusStubImpl> gearService;
+    std::shared_ptr<GearSelectorProxy<>> gearselectorProxy;
     std::shared_ptr<BrakeStatusProxy<>> brakeProxy;
     std::shared_ptr<ManeuverProxy<>> maneuverProxy;
-    std::shared_ptr<RacerStubImpl> statusService;
 
-    void gearProxyInit();
+
+    void gearServiceInit();
+    void gearselectorProxyInit();
     void brakeProxyInit();
     void maneuverProxyInit();
-    void statusServiceInit();
 
-    int gear;
+    void setGear(uint8_t gear);
+
+    uint8_t gear;
     bool brake;
     float steering;
     float throttle;

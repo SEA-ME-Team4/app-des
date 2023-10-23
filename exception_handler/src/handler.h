@@ -1,7 +1,7 @@
 #include <v1/commonapi/SpeedStatusProxy.hpp>
 #include <v1/commonapi/BatteryStatusProxy.hpp>
 #include <v1/commonapi/ManeuverProxy.hpp>
-#include <v1/commonapi/RacerProxy.hpp>
+#include <v1/commonapi/GearSelectorProxy.hpp>
 #include <v1/commonapi/GearStatusProxy.hpp>
 #include "ToApplicationStubImpl.hpp"
 #include <iostream>
@@ -31,16 +31,16 @@ private:
     bool speedStatus;
     bool batteryStatus;
     bool inputStatus;
-    bool racerStatus;
+    bool gearselectorStatus;
     bool gearStatus;
 
     std::shared_ptr<CommonAPI::Runtime> runtime;
+    std::shared_ptr<ToApplicationStubImpl> handlerService;
     std::shared_ptr<SpeedStatusProxy<>> speedHandlerProxy;
     std::shared_ptr<BatteryStatusProxy<>> batteryHandlerProxy;
     std::shared_ptr<ManeuverProxy<>> inputHandlerProxy;
-    std::shared_ptr<RacerProxy<>> racerHandlerProxy;
+    std::shared_ptr<GearSelectorProxy<>> gearselectorHandlerProxy;
     std::shared_ptr<GearStatusProxy<>> gearHandlerProxy;
-    std::shared_ptr<ToApplicationStubImpl> handlerService;
 
     void handlerServiceInit();
 
@@ -55,7 +55,7 @@ private:
     std::chrono::time_point<std::chrono::steady_clock> speedStatusTime;
     std::chrono::time_point<std::chrono::steady_clock> batteryStatusTime;
     std::chrono::time_point<std::chrono::steady_clock> inputStatusTime;
-    std::chrono::time_point<std::chrono::steady_clock> racerStatusTime;
+    std::chrono::time_point<std::chrono::steady_clock> gearselectorStatusTime;
     std::chrono::time_point<std::chrono::steady_clock> gearStatusTime;
 
     unsigned short intervalCalculate(std::chrono::time_point<std::chrono::steady_clock> time_point);
