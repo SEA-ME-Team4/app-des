@@ -8,8 +8,6 @@ GridLayout {
     width: 886
     height: 553
 
-    property string currentGear: "P"
-    property bool isAmbient: false  
     property color ambientColor: "#000000"
     property real default_opacity: 1
     property real min_opacity: 0
@@ -42,7 +40,7 @@ GridLayout {
             anchors.centerIn: parent
             width: menuImages.width * 0.8
             height: width / sourceSize.width * sourceSize.height
-            opacity: (currentGear === "P" || mainlayout.brake) ? default_opacity : min_opacity
+            opacity: (mainlayout.is_P || mainlayout.brake) ? default_opacity : min_opacity
 
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
@@ -57,7 +55,7 @@ GridLayout {
             anchors.bottom: field.bottom
             width: menuImages.width * 0.8
             height: width / sourceSize.width * sourceSize.height
-            opacity: (currentGear === "R") ? default_opacity : min_opacity
+            opacity: (mainlayout.is_R) ? default_opacity : min_opacity
 
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
@@ -71,7 +69,7 @@ GridLayout {
             anchors.centerIn: field
             width: menuImages.width * 0.03
             height: width / sourceSize.width * sourceSize.height
-            opacity: ((currentGear === "D" || currentGear === "S") && !mainlayout.brake) ? default_opacity : min_opacity
+            opacity: ((mainlayout.is_D || mainlayout.is_S) && !mainlayout.brake) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -120,7 +118,7 @@ GridLayout {
             y: 380
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
+            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -136,7 +134,7 @@ GridLayout {
             y: 300
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
+            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -152,7 +150,7 @@ GridLayout {
             y: 220
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
+            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -168,7 +166,7 @@ GridLayout {
             y: 380
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
+            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -184,7 +182,7 @@ GridLayout {
             y: 300
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
+            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -200,7 +198,7 @@ GridLayout {
             y: 220
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (currentGear === "D" || currentGear === "S")) ? default_opacity : min_opacity
+            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {

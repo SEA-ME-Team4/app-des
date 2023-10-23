@@ -20,6 +20,12 @@ Rectangle {
     property int speed: 0
     property int gear: 0
 
+    property bool is_P: (gear==0) ? 1 : 0
+    property bool is_R: (gear==1) ? 1 : 0
+    property bool is_N: (gear==2) ? 1 : 0
+    property bool is_D: (gear==3) ? 1 : 0
+    property bool is_S: (gear==4) ? 1 : 0
+
     YouTubeSearch {
         id: youTubeSearch
     }

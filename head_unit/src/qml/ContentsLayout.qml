@@ -8,7 +8,7 @@ GridLayout {
     width: 886
     height: 553
     columns: 1
-
+    visible: (mainlayout.is_P || mainlayout.is_N) ? true : false
     property var youTubeSearch: null
 
     YouTubeSearch {
