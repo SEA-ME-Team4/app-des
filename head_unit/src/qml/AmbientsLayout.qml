@@ -15,7 +15,7 @@ GridLayout {
         property real hsvValue: 1.0
         property real hsvSaturation: 1.0
 
-        anchors.centerIn: parent
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
         readonly property color color: Qt.hsva(mousearea.angle, 1.0, 1.0, 1.0)
 
@@ -30,10 +30,6 @@ GridLayout {
                 readonly property real ringWidth: control.ringWidth / width / 2
                 readonly property real s: control.hsvSaturation
                 readonly property real v: control.hsvValue
-
-                onLogChanged: {
-                    console.log(log);
-                }
 
                 vertexShader: "
                     #version 310 es

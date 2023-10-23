@@ -83,7 +83,7 @@ GridLayout {
         width: 150
         height: 50
         color: "#ffffff"
-        anchors.right: parent.right
+        Layout.alignment: Qt.AlignRight
         font.bold: true
         font.pointSize: 20
         horizontalAlignment: Text.AlignHCenter

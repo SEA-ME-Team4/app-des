@@ -15,7 +15,7 @@ GridLayout {
              id: inputPanel
              z: 99
              width: parent.width
-             anchors.bottom: parent.bottom
+             Layout.alignment: Qt.AlignBottom
              visible: Qt.inputMethod.visible
      }
 
