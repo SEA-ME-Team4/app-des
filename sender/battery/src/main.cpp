@@ -21,7 +21,7 @@ int main() {
 
         // Percentage Threshold
         if ((battery_percent-100)>0) {battery_percent = 100;}
-        else if ((battery_percent-100)<0) {battery_percent = 0;}
+        else if ((battery_percent)<0) {battery_percent = 0;}
         
         // Filter Deque
         battery_filter.push_back(battery_percent);
@@ -30,6 +30,7 @@ int main() {
         // Find maximun value
         battery_filter_iterator = std::max_element(std::begin(battery_filter), std::end(battery_filter));
         filtered_battery_percent = *battery_filter_iterator;
+        std::cout<<"filtered percent : "<<filtered_battery_percent<<std::endl;
 
         // Send Filtered Battery Percentage 
         battery.setBattery(filtered_battery_percent);
