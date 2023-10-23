@@ -10,7 +10,6 @@ GridLayout {
 
     Button {
         id: home
-        text: "Home"
         implicitWidth: 50
         implicitHeight: 50
         background: Rectangle {
@@ -31,7 +30,6 @@ GridLayout {
 
     Button {
         id: youtube
-        text: "Youtube"
         implicitWidth: 50
         implicitHeight: 50
         background: Rectangle{
@@ -52,7 +50,6 @@ GridLayout {
 
     Button {
         id: ambients
-        text: "ambients"
         implicitWidth: 50
         implicitHeight: 50
         background: Rectangle {
@@ -83,7 +80,7 @@ GridLayout {
         width: 150
         height: 50
         color: "#ffffff"
-        anchors.right: parent.right
+        Layout.alignment: Qt.AlignRight
         font.bold: true
         font.pointSize: 20
         horizontalAlignment: Text.AlignHCenter

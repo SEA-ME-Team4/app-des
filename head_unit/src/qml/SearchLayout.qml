@@ -15,7 +15,7 @@ GridLayout {
              id: inputPanel
              z: 99
              width: parent.width
-             anchors.bottom: parent.bottom
+             Layout.alignment: Qt.AlignBottom
              visible: Qt.inputMethod.visible
      }
 
@@ -35,7 +35,6 @@ GridLayout {
     }
 
     Button {
-        text: "Search"
         implicitWidth: 30
         implicitHeight: 30
 
@@ -58,7 +57,6 @@ GridLayout {
     }
 
     Button {
-        text: "X"
         implicitWidth: 30
         implicitHeight: 30
 
