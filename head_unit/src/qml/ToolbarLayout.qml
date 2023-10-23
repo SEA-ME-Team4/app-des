@@ -10,7 +10,6 @@ GridLayout {
 
     Button {
         id: home
-        text: "Home"
         implicitWidth: 50
         implicitHeight: 50
         background: Rectangle {
@@ -31,7 +30,6 @@ GridLayout {
 
     Button {
         id: youtube
-        text: "Youtube"
         implicitWidth: 50
         implicitHeight: 50
         background: Rectangle{
@@ -52,7 +50,6 @@ GridLayout {
 
     Button {
         id: ambients
-        text: "ambients"
         implicitWidth: 50
         implicitHeight: 50
         background: Rectangle {
