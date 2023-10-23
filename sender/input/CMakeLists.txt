@@ -13,8 +13,8 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list "Brake" "Maneuver")
-set(proxy_list)
+set(stub_list "Brake" "Maneuver" "GearSelector")
+set(proxy_list "Gear")
 
 
 # Build Execution
@@ -49,6 +49,7 @@ if (BUILD_EXE)
         src/main.cpp
         src/gamepad.cpp
         src/input.cpp
+        src/GearSelectorStubImpl.cpp
         src/BrakeStatusStubImpl.cpp
         src/ManeuverStubImpl.cpp)
     target_link_libraries(${PROJECT_NAME}

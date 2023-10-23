@@ -8,29 +8,44 @@ RacerClient::RacerClient() {
 
     runtime = CommonAPI::Runtime::get();
 
-    gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Racer_Gear_Proxy");
-    gearProxyInit();
+    gearService = std::make_shared<GearStatusStubImpl>();
+    gearServiceInit();
+
+    gearselectorProxy = runtime->buildProxy<GearSelectorProxy>("local", "GearSelector", "Racer_GearSelector_Proxy");
+    gearselectorProxyInit();
 
     brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "Racer_Brake_Proxy");
     brakeProxyInit();
 
     maneuverProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Racer_Maneuver_Proxy");
     maneuverProxyInit();
-
-    statusService = std::make_shared<RacerStubImpl>();
-    statusServiceInit();
 }
 
 RacerClient::~RacerClient() {
 }
 
-void RacerClient::gearProxyInit() {
-    std::cout << "Checking Gear availability!" << std::endl;
-    while (!gearProxy->isAvailable())
+void RacerClient::setGear(uint8_t gear) {
+    this->gear = gear;
+    gearService->setGearAttribute(gear);
+}
+
+void RacerClient::gearServiceInit() {
+    while (!runtime->registerService("local", "GearStatus", gearService, "Racer_Gear_Service")) {
+        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    std::cout << "Successfully Registered Service!" << std::endl;
+    gearService->setGearAttribute(gear);
+}
+
+void RacerClient::gearselectorProxyInit() {
+    std::cout << "Checking GearSelector availability!" << std::endl;
+    while (!gearselectorProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
-    gearProxy->getGearAttribute().getChangedEvent().subscribe([&](const uint8_t& gear) {
-        this->gear = gear;
+    
+    gearselectorProxy->getGearSelectEvent().subscribe([&](const uint8_t& gear) {
+        this->setGear(gear);
     });
 }
 
@@ -57,14 +72,6 @@ void RacerClient::maneuverProxyInit() {
     });
 }
 
-void RacerClient::statusServiceInit() {
-    while (!runtime->registerService("local", "Racer", statusService, "Racer_Status_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered Service!" << std::endl;
-}
-
 int RacerClient::getGear() {
     return gear;
 }
@@ -82,12 +89,8 @@ bool RacerClient::validCheck() {
     if (!brakeProxy->isAvailable() && !maneuverProxy->isAvailable()) {
         return false;
     }
-    if (!gearProxy->isAvailable()) {
+    if (!gearselectorProxy->isAvailable()) {
         return false;
     }
     return true;
-}
-
-void RacerClient::statusUpdate() {
-    statusService->fireRacerStatusEvent(true);
 }

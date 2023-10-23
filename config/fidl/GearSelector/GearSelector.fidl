@@ -1,0 +1,11 @@
+package commonapi
+
+interface GearSelector {
+    version {major 1 minor 0}
+
+    broadcast GearSelect {
+    	out {
+    	    UInt8 setGear
+    	}
+    }
+}
