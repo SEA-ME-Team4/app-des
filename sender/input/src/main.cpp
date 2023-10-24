@@ -21,14 +21,12 @@ int main() {
             std::cout << "getGear: " << gamepad.getGear() << '\n' << std::endl;
         }
         // Emergency Stop
-        input.setBrake(true);
         input.setSteering(0);
         input.setThrottle(0);
         std::cout << "\nReturn: Gamepad Connection Lost\n" << std::endl;
     }
     else {
         // Emergency Stop
-        input.setBrake(true);
         input.setSteering(0);
         input.setThrottle(0);
         std::cout<<"\nReturn: Gamepad is Not Connected\n"<<std::endl;
