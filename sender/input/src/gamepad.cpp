@@ -48,6 +48,14 @@ bool Gamepad::read_data() {
     gamepad_button_a = PyObject_IsTrue(pInput);
     pInput = PyObject_GetAttrString(pReadData, "button_r3");
     gamepad_button_r3 = PyObject_IsTrue(pInput);
+
+    if (gamepad_button_y) {gamepad_gear = 0;}
+    else if (gamepad_button_x) {gamepad_gear = 1;}
+    else if (gamepad_button_b) {gamepad_gear = 2;}
+    else if (gamepad_button_a) {gamepad_gear = 3;}
+    else if (gamepad_gear==3 && gamepad_button_r3) {gamepad_gear = 4;}
+    else if (gamepad_gear==4 && !gamepad_button_r3) {gamepad_gear = 3;}
+
     return true;
 }
 
@@ -65,6 +73,10 @@ void Gamepad::setInitStatus(bool status) {
     this->status = status;
 }
 
+void Gamepad::setGear(int gear) {
+    this->gamepad_gear = gear;
+}
+
 bool Gamepad::getBrake() {
     return gamepad_brake;
 }
@@ -75,4 +87,8 @@ float Gamepad::getSteering() {
 
 float Gamepad::getThrottle() {
     return gamepad_inputRY;
+}
+
+int Gamepad::getGear() {
+    return gamepad_gear;
 }
