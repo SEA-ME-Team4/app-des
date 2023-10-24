@@ -4,9 +4,6 @@
 VehicleStatus::VehicleStatus() {
     runtime = CommonAPI::Runtime::get();
 
-    gearselectorService = std::make_shared<GearSelectorStubImpl>();
-    gearselectorServiceInit();
-
     gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "HeadUnit_Gear_Proxy");
     gearProxyInit();
 
@@ -15,22 +12,9 @@ VehicleStatus::VehicleStatus() {
 
     speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "HeadUnit_Speed_Proxy");
     speedProxyInit();
-
 }
 
 VehicleStatus::~VehicleStatus() {
-}
-
-void VehicleStatus::sendGear(quint8 gear) {
-    gearselectorService->fireGearSelectEvent(gear);
-}
-
-void VehicleStatus::gearselectorServiceInit() {
-    while (!runtime->registerService("local", "GearSelector", gearselectorService, "HeadUnit_GearSelector_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered Service!" << std::endl;
 }
 
 void VehicleStatus::gearProxyInit() {

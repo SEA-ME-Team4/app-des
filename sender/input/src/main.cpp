@@ -4,19 +4,21 @@
 int main() {
     Input input = Input();
     Gamepad gamepad = Gamepad();
-
     // Check Initial Status
     if (gamepad.getStatus()) {
         gamepad.setInitStatus(true);
+        gamepad.setGear(input.getGear());
         // Check Connection
         while (gamepad.read_data()) {
             input.setBrake(gamepad.getBrake());
             input.setSteering(gamepad.getSteering());
             input.setThrottle(gamepad.getThrottle());
+            input.sendGear(gamepad.getGear());
 
             std::cout << "getBrake: " << gamepad.getBrake() << '\n';
             std::cout << "getSteering: " << gamepad.getSteering() << '\n';
-            std::cout << "getThrottle: " << gamepad.getThrottle() << '\n' << std::endl;
+            std::cout << "getThrottle: " << gamepad.getThrottle() << '\n';
+            std::cout << "getGear: " << gamepad.getGear() << '\n' << std::endl;
         }
         // Emergency Stop
         input.setBrake(true);
