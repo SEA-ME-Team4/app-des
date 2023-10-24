@@ -11,7 +11,7 @@ GridLayout {
     property color ambientColor: "#000000"
     property real default_opacity: 1
     property real min_opacity: 0
-    property int  opacity_interval: 100
+    property int  opacity_interval: 500
 
     Item {
         id: menuImages
@@ -118,7 +118,7 @@ GridLayout {
             y: 380
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!mainlayout.brake && mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -134,7 +134,7 @@ GridLayout {
             y: 300
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -150,7 +150,7 @@ GridLayout {
             y: 220
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -166,7 +166,7 @@ GridLayout {
             y: 380
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -182,7 +182,7 @@ GridLayout {
             y: 300
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -198,7 +198,7 @@ GridLayout {
             y: 220
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
