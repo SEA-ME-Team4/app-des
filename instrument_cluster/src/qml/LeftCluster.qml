@@ -8,71 +8,11 @@ Rectangle{
     property color textcolor: "#f7f2f2"
     property int y_offset: 16
     property int left_angle_offset: -160
-    property int left_angle: Math.abs(parent.speed) + left_angle_offset
+    property int left_angle: Math.abs(parent.speed/5) + left_angle_offset
 
     Rectangle {
         x: 0
         y: 0
-        Text {
-            x: 36
-            y: 173
-            color: "white"
-            text: "60"
-            font.bold: false
-            font.family: "Sarabun"
-            font.pixelSize: 13
-        }
-
-        Text {
-            x: 52
-            y: 218
-            color: "white"
-            text: "40"
-            font.bold: false
-            font.family: "Sarabun"
-            font.pixelSize: 13
-        }
-
-        Text {
-            x: 215
-            y: 19
-            color: "white"
-            text: "180"
-            font.bold: false
-            font.family: "Sarabun"
-            font.pixelSize: 13
-        }
-
-        Text {
-            x: 36
-            y: 125
-            color: "white"
-            text: "80"
-            font.bold: false
-            font.family: "Sarabun"
-            font.pixelSize: 13
-        }
-
-        Text {
-            x: 83
-            y: 254
-            color: "white"
-            text: "20"
-            font.bold: false
-            font.family: "Sarabun"
-            font.pixelSize: 13
-        }
-
-
-        Text {
-            x: 121
-            y: 19
-            color: "white"
-            text: "140"
-            font.bold: false
-            font.family: "Sarabun"
-            font.pixelSize: 13
-        }
 
         Text {
             x: 129
@@ -83,33 +23,83 @@ Rectangle{
             font.family: "Sarabun"
             font.pixelSize: 13
         }
-
-
-        Text {
-            x: 168
-            y: 11
-            color: "white"
-            text: "160"
-            font.bold: false
-            font.family: "Sarabun"
-            font.pixelSize: 13
-        }
-
         Text {
             x: 83
-            y: 43
+            y: 254
             color: "white"
-            text: "120"
+            text: "100"
             font.bold: false
             font.family: "Sarabun"
             font.pixelSize: 13
         }
-
+        Text {
+            x: 52
+            y: 218
+            color: "white"
+            text: "200"
+            font.bold: false
+            font.family: "Sarabun"
+            font.pixelSize: 13
+        }
+        Text {
+            x: 36
+            y: 173
+            color: "white"
+            text: "300"
+            font.bold: false
+            font.family: "Sarabun"
+            font.pixelSize: 13
+        }
+        Text {
+            x: 36
+            y: 125
+            color: "white"
+            text: "400"
+            font.bold: false
+            font.family: "Sarabun"
+            font.pixelSize: 13
+        }
         Text {
             x: 52
             y: 80
             color: "white"
-            text: "100"
+            text: "500"
+            font.bold: false
+            font.family: "Sarabun"
+            font.pixelSize: 13
+        }
+        Text {
+            x: 83
+            y: 43
+            color: "white"
+            text: "600"
+            font.bold: false
+            font.family: "Sarabun"
+            font.pixelSize: 13
+        }
+        Text {
+            x: 121
+            y: 19
+            color: "white"
+            text: "700"
+            font.bold: false
+            font.family: "Sarabun"
+            font.pixelSize: 13
+        }
+        Text {
+            x: 168
+            y: 11
+            color: "white"
+            text: "800"
+            font.bold: false
+            font.family: "Sarabun"
+            font.pixelSize: 13
+        }
+        Text {
+            x: 215
+            y: 19
+            color: "white"
+            text: "900"
             font.bold: false
             font.family: "Sarabun"
             font.pixelSize: 13
@@ -199,10 +189,3 @@ Rectangle{
     }
 
 }
-
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/
