@@ -4,7 +4,7 @@ echo
 INIT_DIR=${pwd}
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 cd ${SCRIPT_DIR}
-sh config.sh
+sh app-config.sh
 
 check_and_run()
 {   
