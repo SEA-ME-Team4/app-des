@@ -13,11 +13,9 @@ Gamepad::Gamepad() {
 
 Gamepad::~Gamepad() {
     if (status) {
-        Py_XDECREF(pInputLX);
-        Py_XDECREF(pInputRY);
-        Py_XDECREF(pInputL);
-        Py_XDECREF(pInputR);
+        Py_XDECREF(pInputXY);
         Py_XDECREF(pInput);
+        Py_XDECREF(pReadData);
     }
     
     Py_XDECREF(pInstance);
@@ -27,18 +25,29 @@ Gamepad::~Gamepad() {
 }
 
 bool Gamepad::read_data() {
-    pInput = PyObject_CallMethod(pInstance, "read_data", NULL);
-    if (pInput==NULL && getStatus()==false) {return false;}
+    pReadData = PyObject_CallMethod(pInstance, "read_data", NULL);
+    if (pReadData==NULL && getStatus()==false) {return false;}
 
-    pInputL = PyObject_GetAttrString(pInput, "analog_stick_left");
-    pInputLX = PyObject_GetAttrString(pInputL, "x");
-    gamepad_inputLX = -(float)PyFloat_AsDouble(pInputLX);
+    pInput = PyObject_GetAttrString(pReadData, "analog_stick_left");
+    pInputXY = PyObject_GetAttrString(pInput, "x");
+    gamepad_inputLX = -(float)PyFloat_AsDouble(pInputXY);
 
-    pInputR = PyObject_GetAttrString(pInput, "analog_stick_right");
-    pInputRY = PyObject_GetAttrString(pInputR, "y");
-    gamepad_inputRY = (float)PyFloat_AsDouble(pInputRY);
+    pInput = PyObject_GetAttrString(pReadData, "analog_stick_right");
+    pInputXY = PyObject_GetAttrString(pInput, "y");
+    gamepad_inputRY = (float)PyFloat_AsDouble(pInputXY);
 
     (gamepad_inputRY<0) ? gamepad_brake = true : gamepad_brake =  false;
+
+    pInput = PyObject_GetAttrString(pReadData, "button_y");
+    gamepad_button_y = PyObject_IsTrue(pInput);
+    pInput = PyObject_GetAttrString(pReadData, "button_x");
+    gamepad_button_x = PyObject_IsTrue(pInput);
+    pInput = PyObject_GetAttrString(pReadData, "button_b");
+    gamepad_button_b = PyObject_IsTrue(pInput);
+    pInput = PyObject_GetAttrString(pReadData, "button_a");
+    gamepad_button_a = PyObject_IsTrue(pInput);
+    pInput = PyObject_GetAttrString(pReadData, "button_r3");
+    gamepad_button_r3 = PyObject_IsTrue(pInput);
     return true;
 }
 

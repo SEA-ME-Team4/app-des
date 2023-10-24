@@ -18,7 +18,8 @@ public:
 private:
     bool status;
     PyObject *pModule, *pClass, *pInstance;
-    PyObject *pInput, *pInputL, *pInputR, *pInputLX, *pInputRY;
+    PyObject *pReadData, *pInput, *pInputXY;
     float gamepad_inputLX, gamepad_inputRY;
     bool gamepad_brake;
+    bool gamepad_button_y, gamepad_button_x, gamepad_button_b, gamepad_button_a, gamepad_button_r3; 
 };
