@@ -67,8 +67,10 @@ void Input::setThrottle(float throttle) {
 }
 
 void Input::sendGear(uint8_t gear) {
-    gearselectorService->fireGearSelectEvent(gear);
-    std::cout << gear << std::endl;
+    if (this->gear!=gear) {
+        gearselectorService->fireGearSelectEvent(gear);
+        std::cout << (int)gear << std::endl;
+    }
 }
 
 int Input::getGear() {

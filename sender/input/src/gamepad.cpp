@@ -66,12 +66,8 @@ bool Gamepad::read_data() {
 
 bool Gamepad::getStatus() {
     const char* inputPath = "/dev/input/js0";
-    if (access(inputPath, F_OK)==0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    if (access(inputPath, F_OK)==0) {return true;}
+    else {return false;}
 }
 
 void Gamepad::setInitStatus(bool status) {
