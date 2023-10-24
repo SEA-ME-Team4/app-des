@@ -1,5 +1,8 @@
 echo [App Checker Initialize]
 echo
+INIT_DIR=${pwd}
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+cd ${SCRIPT_DIR}
 
 check_service()
 {   
@@ -25,5 +28,6 @@ do
     sleep 1
 done
 
+cd ${INIT_DIR}
 echo
 echo [App Checker Finalize]
