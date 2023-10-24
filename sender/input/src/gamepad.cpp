@@ -9,6 +9,7 @@ Gamepad::Gamepad() {
     pInstance = PyObject_CallObject(pClass, NULL);
 
     status = false;
+    changable = false;
 }
 
 Gamepad::~Gamepad() {
@@ -48,13 +49,17 @@ bool Gamepad::read_data() {
     gamepad_button_a = PyObject_IsTrue(pInput);
     pInput = PyObject_GetAttrString(pReadData, "button_r3");
     gamepad_button_r3 = PyObject_IsTrue(pInput);
+    
+    changable = (!gamepad_gear==0)||(gamepad_brake);
 
-    if (gamepad_button_y) {gamepad_gear = 0;}
-    else if (gamepad_button_x) {gamepad_gear = 1;}
-    else if (gamepad_button_b) {gamepad_gear = 2;}
-    else if (gamepad_button_a) {gamepad_gear = 3;}
-    else if (gamepad_gear==3 && gamepad_button_r3) {gamepad_gear = 4;}
-    else if (gamepad_gear==4 && !gamepad_button_r3) {gamepad_gear = 3;}
+    if (gamepad_button_y && gamepad_brake) {gamepad_gear = 0;}
+    else if (changable) {
+        if (gamepad_button_x) {gamepad_gear = 1;}
+        else if (gamepad_button_b) {gamepad_gear = 2;}
+        else if (gamepad_button_a) {gamepad_gear = 3;}
+        else if (gamepad_gear==3 && gamepad_button_r3) {gamepad_gear = 4;}
+        else if (gamepad_gear==4 && !gamepad_button_r3) {gamepad_gear = 3;}
+    }
 
     return true;
 }
