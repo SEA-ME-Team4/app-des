@@ -8,7 +8,7 @@
         "dlt" : "true"
     },
 
-    "routing" : "Handler_Service",
+    "routing" : "InstrumentCluster_Speed_Proxy",
 
     "services" :
     [

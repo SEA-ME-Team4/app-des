@@ -7,10 +7,10 @@
 * If a copy of the MPL was not distributed with this file, You can obtain one at
 * http://mozilla.org/MPL/2.0/.
 */
-#ifndef V1_COMMONAPI_Maneuver_PROXY_BASE_HPP_
-#define V1_COMMONAPI_Maneuver_PROXY_BASE_HPP_
+#ifndef V1_COMMONAPI_Input_Status_PROXY_BASE_HPP_
+#define V1_COMMONAPI_Input_Status_PROXY_BASE_HPP_
 
-#include <v1/commonapi/Maneuver.hpp>
+#include <v1/commonapi/InputStatus.hpp>
 
 
 
@@ -19,8 +19,10 @@
 #define HAS_DEFINED_COMMONAPI_INTERNAL_COMPILATION_HERE
 #endif
 
+#include <vector>
 
 #include <CommonAPI/Attribute.hpp>
+#include <CommonAPI/Event.hpp>
 #include <CommonAPI/Proxy.hpp>
 
 #if defined (HAS_DEFINED_COMMONAPI_INTERNAL_COMPILATION_HERE)
@@ -31,15 +33,21 @@
 namespace v1 {
 namespace commonapi {
 
-class ManeuverProxyBase
+class InputStatusProxyBase
     : virtual public CommonAPI::Proxy {
 public:
+    typedef CommonAPI::ObservableAttribute<bool> BrakeAttribute;
     typedef CommonAPI::ObservableAttribute<float> SteeringAttribute;
     typedef CommonAPI::ObservableAttribute<float> ThrottleAttribute;
+    typedef CommonAPI::Event<
+        uint8_t
+    > GearSelectEvent;
 
 
+    virtual BrakeAttribute& getBrakeAttribute() = 0;
     virtual SteeringAttribute& getSteeringAttribute() = 0;
     virtual ThrottleAttribute& getThrottleAttribute() = 0;
+    virtual GearSelectEvent& getGearSelectEvent() = 0;
 
     virtual std::future<void> getCompletionFuture() = 0;
 };
@@ -51,4 +59,4 @@ public:
 // Compatibility
 namespace v1_0 = v1;
 
-#endif // V1_COMMONAPI_Maneuver_PROXY_BASE_HPP_
+#endif // V1_COMMONAPI_Input_Status_PROXY_BASE_HPP_

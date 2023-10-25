@@ -7,10 +7,10 @@
 * If a copy of the MPL was not distributed with this file, You can obtain one at
 * http://mozilla.org/MPL/2.0/.
 */
-#ifndef V1_COMMONAPI_Maneuver_PROXY_HPP_
-#define V1_COMMONAPI_Maneuver_PROXY_HPP_
+#ifndef V1_COMMONAPI_Input_Status_PROXY_HPP_
+#define V1_COMMONAPI_Input_Status_PROXY_HPP_
 
-#include <v1/commonapi/ManeuverProxyBase.hpp>
+#include <v1/commonapi/InputStatusProxyBase.hpp>
 
 
 #if !defined (COMMONAPI_INTERNAL_COMPILATION)
@@ -30,15 +30,15 @@ namespace v1 {
 namespace commonapi {
 
 template <typename ... _AttributeExtensions>
-class ManeuverProxy
-    : virtual public Maneuver,
-      virtual public ManeuverProxyBase,
+class InputStatusProxy
+    : virtual public InputStatus,
+      virtual public InputStatusProxyBase,
       virtual public _AttributeExtensions... {
 public:
-    ManeuverProxy(std::shared_ptr<CommonAPI::Proxy> delegate);
-    ~ManeuverProxy();
+    InputStatusProxy(std::shared_ptr<CommonAPI::Proxy> delegate);
+    ~InputStatusProxy();
 
-    typedef Maneuver InterfaceType;
+    typedef InputStatus InterfaceType;
 
 
     /**
@@ -71,6 +71,12 @@ public:
     virtual std::future<void> getCompletionFuture();
 
     /**
+     * Returns the wrapper class that provides access to the attribute Brake.
+     */
+    virtual BrakeAttribute& getBrakeAttribute() {
+        return delegate_->getBrakeAttribute();
+    }
+    /**
      * Returns the wrapper class that provides access to the attribute Steering.
      */
     virtual SteeringAttribute& getSteeringAttribute() {
@@ -82,25 +88,50 @@ public:
     virtual ThrottleAttribute& getThrottleAttribute() {
         return delegate_->getThrottleAttribute();
     }
+    /**
+     * Returns the wrapper class that provides access to the broadcast GearSelect.
+     */
+    virtual GearSelectEvent& getGearSelectEvent() {
+        return delegate_->getGearSelectEvent();
+    }
 
 
 
  private:
-    std::shared_ptr< ManeuverProxyBase> delegate_;
+    std::shared_ptr< InputStatusProxyBase> delegate_;
 };
 
-typedef ManeuverProxy<> ManeuverProxyDefault;
+typedef InputStatusProxy<> InputStatusProxyDefault;
 
-namespace ManeuverExtensions {
+namespace InputStatusExtensions {
+    template <template <typename > class _ExtensionType>
+    class BrakeAttributeExtension {
+     public:
+        typedef _ExtensionType< InputStatusProxyBase::BrakeAttribute> extension_type;
+    
+        static_assert(std::is_base_of<typename CommonAPI::AttributeExtension< InputStatusProxyBase::BrakeAttribute>, extension_type>::value,
+                      "Not CommonAPI Attribute Extension!");
+    
+        BrakeAttributeExtension(InputStatusProxyBase& proxy): attributeExtension_(proxy.getBrakeAttribute()) {
+        }
+    
+        inline extension_type& getBrakeAttributeExtension() {
+            return attributeExtension_;
+        }
+    
+     private:
+        extension_type attributeExtension_;
+    };
+
     template <template <typename > class _ExtensionType>
     class SteeringAttributeExtension {
      public:
-        typedef _ExtensionType< ManeuverProxyBase::SteeringAttribute> extension_type;
+        typedef _ExtensionType< InputStatusProxyBase::SteeringAttribute> extension_type;
     
-        static_assert(std::is_base_of<typename CommonAPI::AttributeExtension< ManeuverProxyBase::SteeringAttribute>, extension_type>::value,
+        static_assert(std::is_base_of<typename CommonAPI::AttributeExtension< InputStatusProxyBase::SteeringAttribute>, extension_type>::value,
                       "Not CommonAPI Attribute Extension!");
     
-        SteeringAttributeExtension(ManeuverProxyBase& proxy): attributeExtension_(proxy.getSteeringAttribute()) {
+        SteeringAttributeExtension(InputStatusProxyBase& proxy): attributeExtension_(proxy.getSteeringAttribute()) {
         }
     
         inline extension_type& getSteeringAttributeExtension() {
@@ -114,12 +145,12 @@ namespace ManeuverExtensions {
     template <template <typename > class _ExtensionType>
     class ThrottleAttributeExtension {
      public:
-        typedef _ExtensionType< ManeuverProxyBase::ThrottleAttribute> extension_type;
+        typedef _ExtensionType< InputStatusProxyBase::ThrottleAttribute> extension_type;
     
-        static_assert(std::is_base_of<typename CommonAPI::AttributeExtension< ManeuverProxyBase::ThrottleAttribute>, extension_type>::value,
+        static_assert(std::is_base_of<typename CommonAPI::AttributeExtension< InputStatusProxyBase::ThrottleAttribute>, extension_type>::value,
                       "Not CommonAPI Attribute Extension!");
     
-        ThrottleAttributeExtension(ManeuverProxyBase& proxy): attributeExtension_(proxy.getThrottleAttribute()) {
+        ThrottleAttributeExtension(InputStatusProxyBase& proxy): attributeExtension_(proxy.getThrottleAttribute()) {
         }
     
         inline extension_type& getThrottleAttributeExtension() {
@@ -130,50 +161,50 @@ namespace ManeuverExtensions {
         extension_type attributeExtension_;
     };
 
-} // namespace ManeuverExtensions
+} // namespace InputStatusExtensions
 
 //
-// ManeuverProxy Implementation
+// InputStatusProxy Implementation
 //
 template <typename ... _AttributeExtensions>
-ManeuverProxy<_AttributeExtensions...>::ManeuverProxy(std::shared_ptr<CommonAPI::Proxy> delegate):
-        _AttributeExtensions(*(std::dynamic_pointer_cast< ManeuverProxyBase>(delegate)))...,
-        delegate_(std::dynamic_pointer_cast< ManeuverProxyBase>(delegate)) {
+InputStatusProxy<_AttributeExtensions...>::InputStatusProxy(std::shared_ptr<CommonAPI::Proxy> delegate):
+        _AttributeExtensions(*(std::dynamic_pointer_cast< InputStatusProxyBase>(delegate)))...,
+        delegate_(std::dynamic_pointer_cast< InputStatusProxyBase>(delegate)) {
 }
 
 template <typename ... _AttributeExtensions>
-ManeuverProxy<_AttributeExtensions...>::~ManeuverProxy() {
+InputStatusProxy<_AttributeExtensions...>::~InputStatusProxy() {
 }
 
 
 template <typename ... _AttributeExtensions>
-const CommonAPI::Address &ManeuverProxy<_AttributeExtensions...>::getAddress() const {
+const CommonAPI::Address &InputStatusProxy<_AttributeExtensions...>::getAddress() const {
     return delegate_->getAddress();
 }
 
 template <typename ... _AttributeExtensions>
-bool ManeuverProxy<_AttributeExtensions...>::isAvailable() const {
+bool InputStatusProxy<_AttributeExtensions...>::isAvailable() const {
     return delegate_->isAvailable();
 }
 
 template <typename ... _AttributeExtensions>
-bool ManeuverProxy<_AttributeExtensions...>::isAvailableBlocking() const {
+bool InputStatusProxy<_AttributeExtensions...>::isAvailableBlocking() const {
     return delegate_->isAvailableBlocking();
 }
 
 template <typename ... _AttributeExtensions>
-CommonAPI::ProxyStatusEvent& ManeuverProxy<_AttributeExtensions...>::getProxyStatusEvent() {
+CommonAPI::ProxyStatusEvent& InputStatusProxy<_AttributeExtensions...>::getProxyStatusEvent() {
     return delegate_->getProxyStatusEvent();
 }
 
 template <typename ... _AttributeExtensions>
-CommonAPI::InterfaceVersionAttribute& ManeuverProxy<_AttributeExtensions...>::getInterfaceVersionAttribute() {
+CommonAPI::InterfaceVersionAttribute& InputStatusProxy<_AttributeExtensions...>::getInterfaceVersionAttribute() {
     return delegate_->getInterfaceVersionAttribute();
 }
 
 
 template <typename ... _AttributeExtensions>
-std::future<void> ManeuverProxy<_AttributeExtensions...>::getCompletionFuture() {
+std::future<void> InputStatusProxy<_AttributeExtensions...>::getCompletionFuture() {
     return delegate_->getCompletionFuture();
 }
 
@@ -182,11 +213,12 @@ std::future<void> ManeuverProxy<_AttributeExtensions...>::getCompletionFuture() 
 
 namespace CommonAPI {
 template<template<typename > class _AttributeExtension>
-struct DefaultAttributeProxyHelper< ::v1::commonapi::ManeuverProxy,
+struct DefaultAttributeProxyHelper< ::v1::commonapi::InputStatusProxy,
     _AttributeExtension> {
-    typedef typename ::v1::commonapi::ManeuverProxy<
-            ::v1::commonapi::ManeuverExtensions::SteeringAttributeExtension<_AttributeExtension>, 
-            ::v1::commonapi::ManeuverExtensions::ThrottleAttributeExtension<_AttributeExtension>
+    typedef typename ::v1::commonapi::InputStatusProxy<
+            ::v1::commonapi::InputStatusExtensions::BrakeAttributeExtension<_AttributeExtension>, 
+            ::v1::commonapi::InputStatusExtensions::SteeringAttributeExtension<_AttributeExtension>, 
+            ::v1::commonapi::InputStatusExtensions::ThrottleAttributeExtension<_AttributeExtension>
     > class_t;
 };
 }
@@ -195,4 +227,4 @@ struct DefaultAttributeProxyHelper< ::v1::commonapi::ManeuverProxy,
 // Compatibility
 namespace v1_0 = v1;
 
-#endif // V1_COMMONAPI_Maneuver_PROXY_HPP_
+#endif // V1_COMMONAPI_Input_Status_PROXY_HPP_

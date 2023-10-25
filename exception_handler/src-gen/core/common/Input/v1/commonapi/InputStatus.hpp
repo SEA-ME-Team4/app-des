@@ -7,8 +7,8 @@
 * If a copy of the MPL was not distributed with this file, You can obtain one at
 * http://mozilla.org/MPL/2.0/.
 */
-#ifndef V1_COMMONAPI_GEAR_SELECTOR_HPP_
-#define V1_COMMONAPI_GEAR_SELECTOR_HPP_
+#ifndef V1_COMMONAPI_INPUT_STATUS_HPP_
+#define V1_COMMONAPI_INPUT_STATUS_HPP_
 
 
 
@@ -28,19 +28,19 @@
 namespace v1 {
 namespace commonapi {
 
-class GearSelector {
+class InputStatus {
 public:
-    virtual ~GearSelector() { }
+    virtual ~InputStatus() { }
 
     static inline const char* getInterface();
     static inline CommonAPI::Version getInterfaceVersion();
 };
 
-const char* GearSelector::getInterface() {
-    return ("commonapi.GearSelector:v1_0");
+const char* InputStatus::getInterface() {
+    return ("commonapi.InputStatus:v1_0");
 }
 
-CommonAPI::Version GearSelector::getInterfaceVersion() {
+CommonAPI::Version InputStatus::getInterfaceVersion() {
     return CommonAPI::Version(1, 0);
 }
 
@@ -55,4 +55,4 @@ namespace CommonAPI {
 // Compatibility
 namespace v1_0 = v1;
 
-#endif // V1_COMMONAPI_GEAR_SELECTOR_HPP_
+#endif // V1_COMMONAPI_INPUT_STATUS_HPP_

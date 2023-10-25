@@ -8,6 +8,7 @@
 #include <v1/commonapi/GearStatusProxy.hpp>
 #include <v1/commonapi/ToApplicationProxy.hpp>
 #include <QObject>
+#include <QTimer>
 
 using namespace v1_0::commonapi;
 
@@ -29,6 +30,9 @@ signals:
     void inputStatus(bool status);
     void racerStatus(bool status);
     void gearStatus(bool status);
+    
+public slots:
+    void checkAvailable();
 
 private:
     std::shared_ptr < CommonAPI::Runtime > runtime;
@@ -43,4 +47,7 @@ private:
     void inputProxyInit();
     void gearProxyInit();
     void errorProxyInit();
+
+    QTimer *errorProxyStatusTimer;
+    bool errorProxyStatus;
 };
