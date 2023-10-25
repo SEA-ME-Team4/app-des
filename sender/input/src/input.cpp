@@ -4,14 +4,8 @@
 Input::Input() {
     runtime = CommonAPI::Runtime::get();
 
-    brakeService = std::make_shared<BrakeStatusStubImpl>();
-    brakeServiceInit();
-
-    maneuverService = std::make_shared<ManeuverStubImpl>();
-    maneuverServiceInit();
-
-    gearselectorService = std::make_shared<GearSelectorStubImpl>();
-    gearselectorServiceInit();
+    inputService = std::make_shared<InputStatusStubImpl>();
+    inputServiceInit();
 
     gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "Input_Gear_Proxy");
     gearProxyInit();
@@ -20,28 +14,12 @@ Input::Input() {
 Input::~Input() {
 }
 
-void Input::brakeServiceInit() {
-    while (!runtime->registerService("local", "BrakeStatus", brakeService, "Input_Brake_Service")) {
+void Input::inputServiceInit() {
+    while (!runtime->registerService("local", "InputStatus", inputService, "Input_Input_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
-    std::cout << "Successfully Registered Brake Service!" << std::endl;
-}
-
-void Input::maneuverServiceInit() {
-    while (!runtime->registerService("local", "Maneuver", maneuverService, "Input_Maneuver_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered Maneuver Service!" << std::endl;
-}
-
-void Input::gearselectorServiceInit() {
-    while (!runtime->registerService("local", "GearSelector", gearselectorService, "Input_GearSelector_Service")) {
-        std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    }
-    std::cout << "Successfully Registered GearSelector Service!" << std::endl;
+    std::cout << "Successfully Registered Input Service!" << std::endl;
 }
 
 void Input::gearProxyInit() {
@@ -55,20 +33,20 @@ void Input::gearProxyInit() {
 }
 
 void Input::setBrake(bool brake) {
-    brakeService->setBrakeAttribute(brake);
+    inputService->setBrakeAttribute(brake);
 }
 
 void Input::setSteering(float steering) {
-    maneuverService->setSteeringAttribute(steering);
+    inputService->setSteeringAttribute(steering);
 }
 
 void Input::setThrottle(float throttle) {
-    maneuverService->setThrottleAttribute(throttle);
+    inputService->setThrottleAttribute(throttle);
 }
 
 void Input::sendGear(uint8_t gear) {
     if (this->gear!=gear) {
-        gearselectorService->fireGearSelectEvent(gear);
+        inputService->fireGearSelectEvent(gear);
         std::cout << (int)gear << std::endl;
     }
 }

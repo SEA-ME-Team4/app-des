@@ -13,7 +13,7 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list "Brake" "Maneuver" "GearSelector")
+set(stub_list "Input")
 set(proxy_list "Gear")
 
 
@@ -49,9 +49,7 @@ if (BUILD_EXE)
         src/main.cpp
         src/gamepad.cpp
         src/input.cpp
-        src/GearSelectorStubImpl.cpp
-        src/BrakeStatusStubImpl.cpp
-        src/ManeuverStubImpl.cpp)
+        src/InputStatusStubImpl.cpp)
     target_link_libraries(${PROJECT_NAME}
         ${PYTHON_LIBRARIES}
         CommonAPI)

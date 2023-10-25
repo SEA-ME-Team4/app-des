@@ -1,8 +1,0 @@
-package commonapi
-
-interface Maneuver {
-    version {major 1 minor 0}
-  
-    attribute Float Steering
-    attribute Float Throttle
-}

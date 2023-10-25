@@ -9,8 +9,8 @@ VehicleClient::VehicleClient() {
     batteryProxy = runtime->buildProxy<BatteryStatusProxy>("local", "BatteryStatus", "InstrumentCluster_Battery_Proxy");
     batteryProxyInit();
 
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "InstrumentCluster_Brake_Proxy");
-    brakeProxyInit();
+    inputProxy = runtime->buildProxy<InputStatusProxy>("local", "InputStatus", "InstrumentCluster_Input_Proxy");
+    inputProxyInit();
 
     gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "InstrumentCluster_Gear_Proxy");
     gearProxyInit();
@@ -42,12 +42,12 @@ void VehicleClient::batteryProxyInit() {
     });
 }
 
-void VehicleClient::brakeProxyInit() {
-    std::cout << "Checking Brake availability!" << std::endl;
-    while (!brakeProxy->isAvailable())
+void VehicleClient::inputProxyInit() {
+    std::cout << "Checking Input availability!" << std::endl;
+    while (!inputProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
-    brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
+    inputProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
         emit brakeChanged(brake);
     });
 }

@@ -1,0 +1,14 @@
+package commonapi
+
+interface InputStatus {
+    version {major 1 minor 0}
+
+    attribute Boolean Brake
+    attribute Float Steering
+    attribute Float Throttle
+    broadcast GearSelect {
+    	out {
+    	    UInt8 setGear
+    	}
+    }
+}

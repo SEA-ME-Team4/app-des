@@ -12,7 +12,7 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(proxy_stub_list "Battery" "Brake" "Gear" "Speed" "Maneuver" "GearSelector" "ExceptionHandler")
+set(proxy_stub_list "Battery" "Gear" "Speed" "Input" "ExceptionHandler")
 
 # Build Library
 if (BUILD_LIB)
