@@ -21,7 +21,6 @@ VehicleClient::VehicleClient() {
 
     errorProxyStatusTimer = new QTimer(this);
     errorProxyStatusTimer->start(1000);
-    std::cout<<1123123<<std::endl;
     connect(errorProxyStatusTimer, SIGNAL(timeout()), this, SLOT(checkAvailable()));
 }
 
@@ -87,7 +86,6 @@ void VehicleClient::errorProxyInit() {
 }
 
 void VehicleClient::checkAvailable() {
-    std::cout<<1123123<<std::endl;
     if (!errorProxy->isAvailable()) {
         errorProxyStatus = false;
         emit racerStatus(false);
