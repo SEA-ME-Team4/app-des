@@ -1,6 +1,4 @@
-#include "BrakeStatusStubImpl.hpp"
-#include "ManeuverStubImpl.hpp"
-#include "GearSelectorStubImpl.hpp"
+#include "InputStatusStubImpl.hpp"
 #include <v1/commonapi/GearStatusProxy.hpp>
 
 #include <iostream>
@@ -21,14 +19,10 @@ public:
 
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
-    std::shared_ptr<BrakeStatusStubImpl> brakeService;
-    std::shared_ptr<ManeuverStubImpl> maneuverService;
-    std::shared_ptr<GearSelectorStubImpl> gearselectorService;
+    std::shared_ptr<InputStatusStubImpl> inputService;
     std::shared_ptr<GearStatusProxy<>> gearProxy;
 
-    void brakeServiceInit();
-    void maneuverServiceInit();
-    void gearselectorServiceInit();
+    void inputServiceInit();
     void gearProxyInit();
 
     int gear;

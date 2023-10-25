@@ -4,7 +4,7 @@
 #include <CommonAPI/CommonAPI.hpp>
 #include <v1/commonapi/SpeedStatusProxy.hpp>
 #include <v1/commonapi/BatteryStatusProxy.hpp>
-#include <v1/commonapi/BrakeStatusProxy.hpp>
+#include <v1/commonapi/InputStatusProxy.hpp>
 #include <v1/commonapi/GearStatusProxy.hpp>
 #include <v1/commonapi/ToApplicationProxy.hpp>
 #include <QObject>
@@ -34,13 +34,13 @@ private:
     std::shared_ptr < CommonAPI::Runtime > runtime;
     std::shared_ptr<SpeedStatusProxy<>> speedProxy;
     std::shared_ptr<BatteryStatusProxy<>> batteryProxy;
-    std::shared_ptr<BrakeStatusProxy<>> brakeProxy;
+    std::shared_ptr<InputStatusProxy<>> inputProxy;
     std::shared_ptr<GearStatusProxy<>> gearProxy;
     std::shared_ptr<ToApplicationProxy<>> errorProxy;
 
     void speedProxyInit();
     void batteryProxyInit();
-    void brakeProxyInit();
+    void inputProxyInit();
     void gearProxyInit();
     void errorProxyInit();
 };

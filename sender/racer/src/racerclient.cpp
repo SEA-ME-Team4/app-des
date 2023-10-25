@@ -11,14 +11,8 @@ RacerClient::RacerClient() {
     gearService = std::make_shared<GearStatusStubImpl>();
     gearServiceInit();
 
-    gearselectorProxy = runtime->buildProxy<GearSelectorProxy>("local", "GearSelector", "Racer_GearSelector_Proxy");
-    gearselectorProxyInit();
-
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "Racer_Brake_Proxy");
-    brakeProxyInit();
-
-    maneuverProxy = runtime->buildProxy<ManeuverProxy>("local", "Maneuver", "Racer_Maneuver_Proxy");
-    maneuverProxyInit();
+    inputProxy = runtime->buildProxy<InputStatusProxy>("local", "InputStatus", "Racer_Input_Proxy");
+    inputProxyInit();
 }
 
 RacerClient::~RacerClient() {
@@ -38,37 +32,24 @@ void RacerClient::gearServiceInit() {
     gearService->setGearAttribute(gear);
 }
 
-void RacerClient::gearselectorProxyInit() {
-    std::cout << "Checking GearSelector availability!" << std::endl;
-    while (!gearselectorProxy->isAvailable())
+void RacerClient::inputProxyInit() {
+    std::cout << "Checking Input availability!" << std::endl;
+    while (!inputProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
-    
-    gearselectorProxy->getGearSelectEvent().subscribe([&](const uint8_t& gear) {
-        this->setGear(gear);
-    });
-}
-
-void RacerClient::brakeProxyInit() {
-    std::cout << "Checking Brake availability!" << std::endl;
-    while (!brakeProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
+    inputProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
         this->brake = brake;
     });
-}
 
-void RacerClient::maneuverProxyInit() {
-    std::cout << "Checking Maneuver availability!" << std::endl;
-    while (!maneuverProxy->isAvailable())
-        usleep(10);
-    std::cout << "Available..." << std::endl;
-    maneuverProxy->getSteeringAttribute().getChangedEvent().subscribe([&](const float& steering) {
+    inputProxy->getSteeringAttribute().getChangedEvent().subscribe([&](const float& steering) {
         this->steering = steering;
     });
-    maneuverProxy->getThrottleAttribute().getChangedEvent().subscribe([&](const float& throttle) {
+    inputProxy->getThrottleAttribute().getChangedEvent().subscribe([&](const float& throttle) {
         this->throttle = throttle;
+    });
+
+    inputProxy->getGearSelectEvent().subscribe([&](const uint8_t& gear) {
+        this->setGear(gear);
     });
 }
 
@@ -86,10 +67,7 @@ float RacerClient::getThrottle() {
 }
 
 bool RacerClient::validCheck() {
-    if (!brakeProxy->isAvailable() && !maneuverProxy->isAvailable()) {
-        return false;
-    }
-    if (!gearselectorProxy->isAvailable()) {
+    if (!inputProxy->isAvailable()) {
         return false;
     }
     return true;
