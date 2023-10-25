@@ -67,8 +67,6 @@ float RacerClient::getThrottle() {
 }
 
 bool RacerClient::validCheck() {
-    if (!inputProxy->isAvailable()) {
-        return false;
-    }
+    if (!(inputProxy->isAvailable())) {return false;}
     return true;
 }
