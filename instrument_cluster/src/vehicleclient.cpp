@@ -17,6 +17,11 @@ VehicleClient::VehicleClient() {
 
     errorProxy = runtime->buildProxy<ToApplicationProxy>("local", "ToApplication", "InstrumentCluster_Error_Proxy");
     errorProxyInit();
+    errorProxyStatus = true;
+
+    errorProxyStatusTimer = new QTimer(this);
+    errorProxyStatusTimer->start(1000);
+    connect(errorProxyStatusTimer, SIGNAL(timeout()), this, SLOT(checkAvailable()));
 }
 
 VehicleClient::~VehicleClient() {
@@ -71,13 +76,22 @@ void VehicleClient::errorProxyInit() {
         if (name=="speed_error") {emit speedStatus(false);}
         else if (name=="battery_error") {emit batteryStatus(false);}
         else if (name=="input_error") {emit inputStatus(false);}
-        else if (name=="racer_error") {emit racerStatus(false);}
         else if (name=="gear_error") {emit gearStatus(false);}
 
         else if (name=="speed_okay") {emit speedStatus(true);}
         else if (name=="battery_okay") {emit batteryStatus(true);}
         else if (name=="input_okay") {emit inputStatus(true);}
-        else if (name=="racer_okay") {emit racerStatus(true);}
         else if (name=="gear_okay") {emit gearStatus(true);}
     });
+}
+
+void VehicleClient::checkAvailable() {
+    if (!errorProxy->isAvailable()) {
+        errorProxyStatus = false;
+        emit racerStatus(false);
+    }
+    else if (!errorProxyStatus) {
+        errorProxyStatus = true;
+        emit racerStatus(true);
+    }
 }
