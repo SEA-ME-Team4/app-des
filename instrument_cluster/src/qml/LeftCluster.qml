@@ -8,7 +8,8 @@ Rectangle{
     property color textcolor: "#f7f2f2"
     property int y_offset: 16
     property int left_angle_offset: -160
-    property int left_angle: Math.abs(parent.speed/5) + left_angle_offset
+    property int real_left_angle: Math.abs(parent.speed/5) + left_angle_offset
+    property int left_angle: if (real_left_angle>20) ? 20 : real_left_angle
 
     Rectangle {
         x: 0
