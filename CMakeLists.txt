@@ -7,6 +7,7 @@ set(INSTALL_DIRECTORY /usr/bin/${PROJECT_NAME})
 add_subdirectory(library)
 add_subdirectory(head_unit)
 add_subdirectory(instrument_cluster)
+add_subdirectory(racer)
 add_subdirectory(sender)
 add_subdirectory(exception_handler)
 
