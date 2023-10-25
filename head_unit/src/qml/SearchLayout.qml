@@ -12,26 +12,26 @@ GridLayout {
     property var webEngineView
 
     InputPanel {
-             id: inputPanel
-             z: 99
-             width: parent.width
-             Layout.alignment: Qt.AlignBottom
-             visible: Qt.inputMethod.visible
+            id: inputPanel
+            z: 99
+            width: parent.width
+            anchors.bottom: parent.bottom
+            visible: Qt.inputMethod.visible
      }
 
-     TextField {
-         id: textField
-         width: 500
-         height: 50
-         placeholderText: "Search YouTube"
-         placeholderTextColor: "#000000"
-         Layout.fillWidth: true
-         focus: true
-         onActiveFocusChanged: {
-             if (activeFocus) {
-                 inputPanel.open(textField)
-             }
-         }
+    TextField {
+        id: textField
+        width: 500
+        height: 50
+        placeholderText: "Search YouTube"
+        placeholderTextColor: "#000000"
+        Layout.fillWidth: true
+        focus: true
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                inputPanel.open(textField)
+            }
+        }
     }
 
     Button {
