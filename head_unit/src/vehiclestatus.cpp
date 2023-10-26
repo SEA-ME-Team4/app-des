@@ -7,8 +7,8 @@ VehicleStatus::VehicleStatus() {
     gearProxy = runtime->buildProxy<GearStatusProxy>("local", "GearStatus", "HeadUnit_Gear_Proxy");
     gearProxyInit();
 
-    brakeProxy = runtime->buildProxy<BrakeStatusProxy>("local", "BrakeStatus", "HeadUnit_Brake_Proxy");
-    brakeProxyInit();
+    inputProxy = runtime->buildProxy<InputStatusProxy>("local", "InputStatus", "HeadUnit_Input_Proxy");
+    inputProxyInit();
 
     speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "HeadUnit_Speed_Proxy");
     speedProxyInit();
@@ -27,12 +27,12 @@ void VehicleStatus::gearProxyInit() {
     });
 }
 
-void VehicleStatus::brakeProxyInit() {
+void VehicleStatus::inputProxyInit() {
     std::cout << "Checking Brake availability!" << std::endl;
-    while (!brakeProxy->isAvailable())
+    while (!inputProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
-    brakeProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
+    inputProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
         emit brakeChanged(brake);
     });
 }
