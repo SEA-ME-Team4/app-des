@@ -24,7 +24,7 @@ void RacerClient::setGear(uint8_t gear) {
 }
 
 void RacerClient::gearServiceInit() {
-    while (!runtime->registerService("local", "GearStatus", gearService, "Racer_Gear_Service")) {
+    while (!runtime->registerService("local", "GearStatus", gearService, "Gear_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
