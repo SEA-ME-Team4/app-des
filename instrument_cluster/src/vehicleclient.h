@@ -19,6 +19,8 @@ public:
     VehicleClient();
     ~VehicleClient();
 
+Q_INVOKABLE int getGear();
+
 signals:
     void speedChanged(qint16 speed);
     void batteryChanged(quint8 battery);
@@ -50,4 +52,6 @@ private:
 
     QTimer *errorProxyStatusTimer;
     bool errorProxyStatus;
+
+    int gear;
 };

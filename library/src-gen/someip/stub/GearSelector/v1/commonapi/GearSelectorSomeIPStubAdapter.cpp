@@ -35,7 +35,7 @@ std::shared_ptr<CommonAPI::SomeIP::StubAdapter> createGearSelectorSomeIPStubAdap
 void initializeGearSelectorSomeIPStubAdapter() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
         "local:commonapi.GearSelector:v1_0:GearSelector",
-         0x4, 0x2c, 1, 0);
+         0x1238, 0x567c, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerStubAdapterCreateMethod(
         "commonapi.GearSelector:v1_0",
         &createGearSelectorSomeIPStubAdapter);

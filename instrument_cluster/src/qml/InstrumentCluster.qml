@@ -12,7 +12,7 @@ Rectangle {
     property int speed: 0
     property int battery: 0
     property bool brake: false
-    property int gear: 0
+    property int gear: vehicleclient.getGear()
 
     property bool racer_status: true
     property bool speed_status: true

@@ -33,7 +33,7 @@ std::shared_ptr<CommonAPI::SomeIP::Proxy> createGearSelectorSomeIPProxy(
 void initializeGearSelectorSomeIPProxy() {
     CommonAPI::SomeIP::AddressTranslator::get()->insert(
         "local:commonapi.GearSelector:v1_0:GearSelector",
-        0x4, 0x2c, 1, 0);
+        0x1238, 0x567c, 1, 0);
     CommonAPI::SomeIP::Factory::get()->registerProxyCreateMethod(
         "commonapi.GearSelector:v1_0",
         &createGearSelectorSomeIPProxy);
@@ -47,7 +47,7 @@ GearSelectorSomeIPProxy::GearSelectorSomeIPProxy(
     const CommonAPI::SomeIP::Address &_address,
     const std::shared_ptr<CommonAPI::SomeIP::ProxyConnection> &_connection)
         : CommonAPI::SomeIP::Proxy(_address, _connection),
-          gearSelect_(*this, 0x8006, CommonAPI::SomeIP::event_id_t(0x8006), CommonAPI::SomeIP::event_type_e::ET_EVENT , CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, std::make_tuple(static_cast< CommonAPI::SomeIP::IntegerDeployment<uint8_t>* >(nullptr)))
+          gearSelect_(*this, 0x8005, CommonAPI::SomeIP::event_id_t(0x8005), CommonAPI::SomeIP::event_type_e::ET_EVENT , CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE, false, std::make_tuple(static_cast< CommonAPI::SomeIP::IntegerDeployment<uint8_t>* >(nullptr)))
 {
 }
 

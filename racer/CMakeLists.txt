@@ -14,7 +14,7 @@ endif()
 
 # Set Depend Library
 set(stub_list "Gear")
-set(proxy_list "Input")
+set(proxy_list "Input" "GearSelector")
 
 # Build Execution
 if (BUILD_EXE)

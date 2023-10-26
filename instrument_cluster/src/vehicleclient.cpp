@@ -27,6 +27,10 @@ VehicleClient::VehicleClient() {
 VehicleClient::~VehicleClient() {
 }
 
+int VehicleClient::getGear() {
+    return gear;
+}
+
 void VehicleClient::speedProxyInit() {
     std::cout << "Checking Speed availability!" << std::endl;
     while (!speedProxy->isAvailable())
@@ -63,6 +67,7 @@ void VehicleClient::gearProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     gearProxy->getGearAttribute().getChangedEvent().subscribe([&](const uint8_t& gear) {
+        this->gear = gear;
         emit gearChanged(gear);
     });
 }

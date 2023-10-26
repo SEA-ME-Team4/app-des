@@ -15,6 +15,8 @@ GridLayout {
     property int  opacity_interval: 100
     property ButtonGroup buttonGroup
 
+    property bool gearChange: ((!mainlayout.is_P) || (mainlayout.is_P && mainlayout.brake)) ? true : false
+
     Button {
         id: gear_P
         implicitWidth: button_size
@@ -28,7 +30,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: mainlayout.brake
 
         contentItem: Text {
             text: qsTr("P")
@@ -38,6 +40,10 @@ GridLayout {
             font.bold: true
             anchors.centerIn: parent
             opacity: gear_P.opacity
+        }
+
+        onClicked: {
+            vehiclestatus.sendGear(0)
         }
 
         Behavior on opacity {
@@ -57,7 +63,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("R")
@@ -67,6 +73,10 @@ GridLayout {
             font.bold: true
             anchors.centerIn: parent
             opacity: gear_R.opacity
+        }
+
+        onClicked: {
+            vehiclestatus.sendGear(1)
         }
 
         Behavior on opacity {
@@ -86,7 +96,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("N")
@@ -96,6 +106,10 @@ GridLayout {
             font.bold: true
             anchors.centerIn: parent
             opacity: gear_N.opacity
+        }
+
+        onClicked: {
+            vehiclestatus.sendGear(2)
         }
 
         Behavior on opacity {
@@ -115,7 +129,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("D")
@@ -125,6 +139,10 @@ GridLayout {
             font.bold: true
             anchors.centerIn: parent
             opacity: gear_D.opacity
+        }
+
+        onClicked: {
+            vehiclestatus.sendGear(3)
         }
 
         Behavior on opacity {
@@ -144,7 +162,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("S")
@@ -154,6 +172,10 @@ GridLayout {
             font.bold: true
             anchors.centerIn: parent
             opacity: gear_S.opacity
+        }
+
+        onClicked: {
+            vehiclestatus.sendGear(4)
         }
 
         Behavior on opacity {

@@ -18,7 +18,7 @@ Rectangle {
 
     property bool brake: false
     property int speed: 0
-    property int gear: 0
+    property int gear: vehiclestatus.getGear()
 
     property bool is_P: (gear==0) ? 1 : 0
     property bool is_R: (gear==1) ? 1 : 0

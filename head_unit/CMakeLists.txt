@@ -16,8 +16,8 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list)
-set(proxy_list "Brake" "Speed" "Gear")
+set(stub_list "GearSelector")
+set(proxy_list "Input" "Speed" "Gear")
 
 
 # Build Execution
@@ -51,7 +51,8 @@ if (BUILD_EXE)
         src/main.cpp
         src/qml.qrc
         src/youtubesearch.cpp
-        src/vehiclestatus.cpp)
+        src/vehiclestatus.cpp
+        src/GearSelectorStubImpl.cpp)
     target_compile_definitions(${PROJECT_NAME}
         PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
     target_link_libraries(${PROJECT_NAME}
