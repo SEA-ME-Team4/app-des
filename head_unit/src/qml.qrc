@@ -22,5 +22,6 @@
         <file>images/rearlight.png</file>
         <file>images/white-line-left.png</file>
         <file>images/white-line-right.png</file>
+        <file>images/gamepad.png</file>
     </qresource>
 </RCC>
