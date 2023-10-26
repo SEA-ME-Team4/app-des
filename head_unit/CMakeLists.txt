@@ -51,7 +51,8 @@ if (BUILD_EXE)
         src/main.cpp
         src/qml.qrc
         src/youtubesearch.cpp
-        src/vehiclestatus.cpp)
+        src/vehiclestatus.cpp
+        src/GearSelectorStubImpl.cpp)
     target_compile_definitions(${PROJECT_NAME}
         PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
     target_link_libraries(${PROJECT_NAME}

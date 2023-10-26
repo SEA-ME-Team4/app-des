@@ -15,6 +15,8 @@ GridLayout {
     property int  opacity_interval: 100
     property ButtonGroup buttonGroup
 
+    property bool gearChange: ((!mainlayout.is_P) || (mainlayout.is_P && mainlayout.brake)) ? true : false
+
     Button {
         id: gear_P
         implicitWidth: button_size
@@ -28,7 +30,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: mainlayout.brake
 
         contentItem: Text {
             text: qsTr("P")
@@ -57,7 +59,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("R")
@@ -86,7 +88,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("N")
@@ -115,7 +117,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("D")
@@ -144,7 +146,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: false
+        enabled: gearChange
 
         contentItem: Text {
             text: qsTr("S")
