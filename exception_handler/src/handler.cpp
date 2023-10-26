@@ -71,10 +71,11 @@ void Handler::errorEvent(std::string name) {
     else if (name=="gear_error") {gearStatus=false;}
 
     handlerService->fireErrorEvent(name);
-    std::cout<<"Service '"<<name<<"' Error Detected!"<<std::endl;
+    std::cout<<"Service "<<name<<" Detected!"<<std::endl;
 }
 
 void Handler::handlerProcess() {
+    std::cout<<"\n[Handler]"<<std::endl;
     checkTime = std::chrono::steady_clock::now();
     intervalCalculate(speedStatusTime)>SPEED_INTERVAL_MAX ? errorCheck("speed") : okayCheck("speed");
     intervalCalculate(batteryStatusTime)>BATTERY_INTERVAL_MAX ? errorCheck("battery") : okayCheck("battery");
