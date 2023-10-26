@@ -1,7 +1,8 @@
 #include "racerclient.h"
 
 RacerClient::RacerClient() {
-    gear=0;
+    hu_gear=0;
+    ip_gear=0;
     brake=true;
     steering=0;
     throttle=0;
@@ -13,12 +14,16 @@ RacerClient::RacerClient() {
 
     inputProxy = runtime->buildProxy<InputStatusProxy>("local", "InputStatus", "Racer_Input_Proxy");
     inputProxyInit();
+
+    gearselectorProxy = runtime->buildProxy<GearSelectorProxy>("local", "GearSelector", "Racer_GearSelector_Proxy");
+    gearselectorProxyInit();
 }
 
 RacerClient::~RacerClient() {
 }
 
 void RacerClient::setGear(uint8_t gear) {
+    if ()
     this->gear = gear;
     gearService->setGearAttribute(gear);
 }
@@ -49,7 +54,26 @@ void RacerClient::inputProxyInit() {
     });
 
     inputProxy->getGearSelectEvent().subscribe([&](const uint8_t& gear) {
-        this->setGear(gear);
+        ip_gear = gear;
+        if (hu_gear==6) {this->setGear(ip_gear);}
+    });
+}
+
+
+void RacerClient::gearselectorProxyInit() {
+    std::cout << "Checking GearSelector availability!" << std::endl;
+    while (!gearselectorProxy->isAvailable())
+        usleep(10);
+    std::cout << "Available..." << std::endl;
+    gearselectorProxy->getGearSelectEvent().subscribe([&](const uint8_t& gear) {
+        if (!gear==6) {
+            setGear(hu_gear);
+        }
+        else {
+            ip_gear = hu_gear;
+            setGear(ip_gear);
+        }
+        hu_gear = gear;
     });
 }
 
