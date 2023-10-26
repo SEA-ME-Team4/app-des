@@ -15,13 +15,27 @@ VehicleStatus::VehicleStatus() {
 
     speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "HeadUnit_Speed_Proxy");
     speedProxyInit();
+
+    gearHere = true;
 }
 
 VehicleStatus::~VehicleStatus() {
 }
 
 void VehicleStatus::sendGear(quint8 gear) {
-    gearselectorService->fireGearSelectEvent(gear);
+    if (gear==6) {
+        if (gearHere) {
+            gearHere = false;
+            gearselectorService->fireGearSelectEvent(gear);
+        }
+        else {
+            gearHere = true;
+            gearselectorService->fireGearSelectEvent(this->gear);
+        }
+    }
+    else {
+        gearselectorService->fireGearSelectEvent(gear);
+    }
 }
 
 int VehicleStatus::getGear() {

@@ -41,6 +41,7 @@ private:
     void speedProxyInit();
     
     int gear;
+    bool gearHere;
 };
 
 #endif
