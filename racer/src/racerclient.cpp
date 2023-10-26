@@ -70,7 +70,7 @@ void RacerClient::gearselectorProxyInit() {
             setGear(gear);
         }
         else {
-            ip_gear = hu_gear;
+            ip_gear = this->gear;
             setGear(ip_gear);
         }
         hu_gear = gear;
