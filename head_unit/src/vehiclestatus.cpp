@@ -24,6 +24,10 @@ void VehicleStatus::sendGear(quint8 gear) {
     gearselectorService->fireGearSelectEvent(gear);
 }
 
+int VehicleStatus::getGear() {
+    return gear;
+}
+
 void VehicleStatus::gearselectorServiceInit() {
     while (!runtime->registerService("local", "GearSelector", gearselectorService, "HeadUnit_GearSelector_Service")) {
         std::cout << "Register Service failed, trying again in 100 milliseconds..." << std::endl;
@@ -38,6 +42,7 @@ void VehicleStatus::gearProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     gearProxy->getGearAttribute().getChangedEvent().subscribe([&](const uint8_t& gear) {
+        this->gear = gear;
         emit gearChanged(gear);
     });
 }

@@ -21,6 +21,7 @@ public:
     ~VehicleStatus();
 
 Q_INVOKABLE void sendGear(quint8 gear);
+Q_INVOKABLE int getGear();
 
 signals:
     void brakeChanged(bool brake);
@@ -38,6 +39,8 @@ private:
     void gearProxyInit();
     void inputProxyInit();
     void speedProxyInit();
+    
+    int gear;
 };
 
 #endif
