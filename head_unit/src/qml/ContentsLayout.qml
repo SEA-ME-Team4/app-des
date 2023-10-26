@@ -21,6 +21,7 @@ GridLayout {
         height: parent.height * 0.25
         youTubeSearch: youTubeSearchInternal
         webEngineView: youtubeLayout.webEngineView
+        visible: (mainlayout.is_P || mainlayout.is_N) ? true : false
     }
 
     YoutubeLayout {
@@ -28,5 +29,6 @@ GridLayout {
         width: parent.width
         height: parent.height * 0.75
         youTubeSearch: youTubeSearchInternal
+        visible: (mainlayout.is_P || mainlayout.is_N) ? true : false
     }
 }
