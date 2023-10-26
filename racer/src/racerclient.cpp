@@ -66,7 +66,7 @@ void RacerClient::gearselectorProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     gearselectorProxy->getGearSelectEvent().subscribe([&](const uint8_t& gear) {
-        if (!(gear==6)) {
+        if (gear!=6) {
             setGear(gear);
         }
         else {

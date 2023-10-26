@@ -14,10 +14,10 @@ GridLayout {
     property real min_opacity: 0.7
     property real default_opacity: 1
     property int  opacity_interval: 100
-    property bool control: true
+    property bool gearHear: true
     property ButtonGroup buttonGroup
 
-    property bool gearChange: ((!mainlayout.is_P) || (mainlayout.is_P && mainlayout.brake)) ? true : false
+    property bool gearChange: (gearHear && ((!mainlayout.is_P) || (mainlayout.is_P && mainlayout.brake))) ? true : false
 
     Button {
         id: gamepad
@@ -28,23 +28,30 @@ GridLayout {
         Layout.topMargin: 20
 
         background: null
+        checkable: true
+        checked: false
 
         Image {
             id: game
             anchors.fill: parent
-            source: "../images/gamepad.png"
+            source: "/images/gamepad.png"
             fillMode: Image.PreserveAspectFit
         }
 
         onClicked: {
             vehiclestatus.sendGear(6)
-            control=false
+            if (gearHear==true) {
+                gearHear = false
+            }
+            else {
+                gearHear = true
+            }
         }
-
+        
         ColorOverlay {
             anchors.fill: game
             source: game
-            color: control ? "red" : "#ffffff"
+            color: gearHear ? "red" : "#ffffff"
         }
     }
 
@@ -61,7 +68,7 @@ GridLayout {
             color: "transparent"
         }
 
-        enabled: mainlayout.brake
+        enabled: (mainlayout.brake && gearHear) ? true : false
 
         contentItem: Text {
             text: qsTr("P")
@@ -74,7 +81,7 @@ GridLayout {
         }
 
         onClicked: {
-            control ? vehiclestatus.sendGear(0) : control=true
+            vehiclestatus.sendGear(0)
         }
 
         Behavior on opacity {
@@ -107,7 +114,7 @@ GridLayout {
         }
 
         onClicked: {
-            control ? vehiclestatus.sendGear(1) : control=true
+            vehiclestatus.sendGear(1)
         }
 
         Behavior on opacity {
@@ -140,7 +147,7 @@ GridLayout {
         }
 
         onClicked: {
-            control ? vehiclestatus.sendGear(2) : control=true
+            vehiclestatus.sendGear(2)
         }
 
         Behavior on opacity {
@@ -173,7 +180,7 @@ GridLayout {
         }
 
         onClicked: {
-            control ? vehiclestatus.sendGear(3) : control=true
+            vehiclestatus.sendGear(3)
         }
 
         Behavior on opacity {
@@ -206,7 +213,7 @@ GridLayout {
         }
 
         onClicked: {
-            control ? vehiclestatus.sendGear(4) : control=true
+            vehiclestatus.sendGear(4)
         }
 
         Behavior on opacity {
