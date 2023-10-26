@@ -7,10 +7,9 @@
 * If a copy of the MPL was not distributed with this file, You can obtain one at
 * http://mozilla.org/MPL/2.0/.
 */
-#ifndef V1_COMMONAPI_Gear_Selector_PROXY_BASE_HPP_
-#define V1_COMMONAPI_Gear_Selector_PROXY_BASE_HPP_
+#ifndef V1_COMMONAPI_GEAR_SELECTOR_HPP_
+#define V1_COMMONAPI_GEAR_SELECTOR_HPP_
 
-#include <v1/commonapi/GearSelector.hpp>
 
 
 
@@ -19,10 +18,7 @@
 #define HAS_DEFINED_COMMONAPI_INTERNAL_COMPILATION_HERE
 #endif
 
-#include <vector>
-
-#include <CommonAPI/Event.hpp>
-#include <CommonAPI/Proxy.hpp>
+#include <CommonAPI/Types.hpp>
 
 #if defined (HAS_DEFINED_COMMONAPI_INTERNAL_COMPILATION_HERE)
 #undef COMMONAPI_INTERNAL_COMPILATION
@@ -32,24 +28,31 @@
 namespace v1 {
 namespace commonapi {
 
-class GearSelectorProxyBase
-    : virtual public CommonAPI::Proxy {
+class GearSelector {
 public:
-    typedef CommonAPI::Event<
-        uint8_t
-    > GearSelectEvent;
+    virtual ~GearSelector() { }
 
-
-    virtual GearSelectEvent& getGearSelectEvent() = 0;
-
-    virtual std::future<void> getCompletionFuture() = 0;
+    static inline const char* getInterface();
+    static inline CommonAPI::Version getInterfaceVersion();
 };
+
+const char* GearSelector::getInterface() {
+    return ("commonapi.GearSelector:v1_0");
+}
+
+CommonAPI::Version GearSelector::getInterfaceVersion() {
+    return CommonAPI::Version(1, 0);
+}
+
 
 } // namespace commonapi
 } // namespace v1
+
+namespace CommonAPI {
+}
 
 
 // Compatibility
 namespace v1_0 = v1;
 
-#endif // V1_COMMONAPI_Gear_Selector_PROXY_BASE_HPP_
+#endif // V1_COMMONAPI_GEAR_SELECTOR_HPP_

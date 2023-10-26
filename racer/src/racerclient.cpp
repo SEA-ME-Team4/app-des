@@ -23,7 +23,6 @@ RacerClient::~RacerClient() {
 }
 
 void RacerClient::setGear(uint8_t gear) {
-    if ()
     this->gear = gear;
     gearService->setGearAttribute(gear);
 }

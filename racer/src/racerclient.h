@@ -36,6 +36,7 @@ private:
 
     void setGear(uint8_t gear);
 
+    uint8_t gear;
     uint8_t hu_gear;
     uint8_t ip_gear;
     bool brake;
