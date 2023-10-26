@@ -16,7 +16,7 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list)
+set(stub_list "GearSelector")
 set(proxy_list "Input" "Speed" "Gear")
 
 

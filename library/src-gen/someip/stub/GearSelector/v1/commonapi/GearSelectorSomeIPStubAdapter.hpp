@@ -69,8 +69,8 @@ public:
         // Provided events/fields
         {
             std::set<CommonAPI::SomeIP::eventgroup_id_t> itsEventGroups;
-            itsEventGroups.insert(CommonAPI::SomeIP::eventgroup_id_t(0x8006));
-            CommonAPI::SomeIP::StubAdapter::registerEvent(CommonAPI::SomeIP::event_id_t(0x8006), itsEventGroups, CommonAPI::SomeIP::event_type_e::ET_EVENT, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE);
+            itsEventGroups.insert(CommonAPI::SomeIP::eventgroup_id_t(0x8005));
+            CommonAPI::SomeIP::StubAdapter::registerEvent(CommonAPI::SomeIP::event_id_t(0x8005), itsEventGroups, CommonAPI::SomeIP::event_type_e::ET_EVENT, CommonAPI::SomeIP::reliability_type_e::RT_RELIABLE);
         }
     }
 
@@ -87,7 +87,7 @@ void GearSelectorSomeIPStubAdapterInternal<_Stub, _Stubs...>::fireGearSelectEven
     >>
         ::sendEvent(
             *this,
-            CommonAPI::SomeIP::event_id_t(0x8006),
+            CommonAPI::SomeIP::event_id_t(0x8005),
             false,
              deployed_setGear 
     );
