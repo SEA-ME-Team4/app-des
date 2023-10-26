@@ -12,9 +12,9 @@
 #include <limits>
 
 #define SPEED_INTERVAL_MAX 100 //milli
-#define BATTERY_INTERVAL_MAX 100 //milli
+#define BATTERY_INTERVAL_MAX 1000 //milli
 #define INPUT_INTERVAL_MAX 100 //milli
-#define GEAR_INTERVAL_MAX 100 //milli
+#define GEAR_INTERVAL_MAX 500 //milli
 
 using namespace v1::commonapi;
 
