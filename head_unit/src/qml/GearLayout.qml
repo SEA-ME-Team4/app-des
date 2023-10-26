@@ -42,6 +42,10 @@ GridLayout {
             opacity: gear_P.opacity
         }
 
+        onClicked: {
+            vehiclestatus.sendGear(0)
+        }
+
         Behavior on opacity {
             NumberAnimation { duration: opacity_interval }
         }
@@ -69,6 +73,10 @@ GridLayout {
             font.bold: true
             anchors.centerIn: parent
             opacity: gear_R.opacity
+        }
+
+        onClicked: {
+            vehiclestatus.sendGear(1)
         }
 
         Behavior on opacity {
@@ -100,6 +108,10 @@ GridLayout {
             opacity: gear_N.opacity
         }
 
+        onClicked: {
+            vehiclestatus.sendGear(2)
+        }
+
         Behavior on opacity {
             NumberAnimation { duration: opacity_interval }
         }
@@ -129,6 +141,10 @@ GridLayout {
             opacity: gear_D.opacity
         }
 
+        onClicked: {
+            vehiclestatus.sendGear(3)
+        }
+
         Behavior on opacity {
             NumberAnimation { duration: opacity_interval }
         }
@@ -156,6 +172,10 @@ GridLayout {
             font.bold: true
             anchors.centerIn: parent
             opacity: gear_S.opacity
+        }
+
+        onClicked: {
+            vehiclestatus.sendGear(4)
         }
 
         Behavior on opacity {
