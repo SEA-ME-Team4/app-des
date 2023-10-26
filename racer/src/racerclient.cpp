@@ -1,6 +1,7 @@
 #include "racerclient.h"
 
 RacerClient::RacerClient() {
+    gear=0;
     hu_gear=0;
     ip_gear=0;
     brake=true;
@@ -33,7 +34,7 @@ void RacerClient::gearServiceInit() {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
     std::cout << "Successfully Registered Gear Service!" << std::endl;
-    gearService->setGearAttribute(gear);
+    setGear(gear);
 }
 
 void RacerClient::inputProxyInit() {
