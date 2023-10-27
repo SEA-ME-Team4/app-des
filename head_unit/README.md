@@ -11,7 +11,9 @@
 
 ## Structure
 
-![HeadUnit drawio](https://github.com/SEA-ME-Team4/app-hu/assets/120576021/68c2b601-d3a6-436c-a9a4-f8ac84e28245)
+<p align="center">
+  <img src="https://github.com/SEA-ME-Team4/app-hu/assets/120576021/68c2b601-d3a6-436c-a9a4-f8ac84e28245">
+</p>
 
 ## Description
 
