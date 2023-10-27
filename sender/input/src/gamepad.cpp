@@ -51,7 +51,7 @@ bool Gamepad::read_data() {
     gamepad_button_r3 = PyObject_IsTrue(pInput);
     
     gearChanged = true;
-    changable = (!gamepad_gear==0)||(gamepad_brake);
+    changable = (gamepad_gear!=0)||(gamepad_brake);
 
     if (gamepad_button_y && gamepad_brake) {gamepad_gear = 0;}
     else if (changable) {
