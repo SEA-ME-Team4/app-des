@@ -36,8 +36,8 @@ The head unit Qt application compatible with Yocto Project
 
 ## Reference
 
-1. [CommonAPI C++](https://covesa.github.io/capicxx-core-tools/)
-2. [CommonAPI C++ Core Runtime](https://github.com/COVESA/capicxx-core-runtime)
-3. [CommonAPI C++ SOME/IP Runtime](https://github.com/COVESA/capicxx-someip-runtime)
-4. [vsomeip](https://github.com/COVESA/vsomeip)
-5. [Qt5](https://doc.qt.io/qt-5.15/)
+- [CommonAPI C++](https://covesa.github.io/capicxx-core-tools/)
+- [CommonAPI C++ Core Runtime](https://github.com/COVESA/capicxx-core-runtime)
+- [CommonAPI C++ SOME/IP Runtime](https://github.com/COVESA/capicxx-someip-runtime)
+- [vsomeip](https://github.com/COVESA/vsomeip)
+- [Qt5](https://doc.qt.io/qt-5.15/)
