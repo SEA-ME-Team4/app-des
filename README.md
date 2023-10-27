@@ -32,7 +32,9 @@ The head unit Qt application compatible with Yocto Project
 
 ## Architecture
 
-![app-hu drawio](https://github.com/SEA-ME-Team4/app-hu/assets/120576021/703187ac-73b8-4028-b188-6a80643bfd1f)
+<p align="center">
+  <img src="https://github.com/SEA-ME-Team4/app-hu/assets/120576021/703187ac-73b8-4028-b188-6a80643bfd1f">
+</p>
 
 ## Reference
 
