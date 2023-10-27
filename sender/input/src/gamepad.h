@@ -9,6 +9,7 @@ public:
 
     void setInitStatus(bool status);
     void setGear(int gear);
+    void setRacerGear(int gear);
     bool getStatus();
     bool onGearChanged();
 
@@ -27,6 +28,7 @@ private:
     bool gamepad_brake;
     bool gamepad_button_y, gamepad_button_x, gamepad_button_b, gamepad_button_a, gamepad_button_r3; 
     int gamepad_gear;
+    int racer_gear;
     bool changable;
     bool gearChanged;
 };

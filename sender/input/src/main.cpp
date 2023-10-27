@@ -8,8 +8,10 @@ int main() {
     if (gamepad.getStatus()) {
         gamepad.setInitStatus(true);
         gamepad.setGear(input.getGear());
+        gamepad.setRacerGear(input.getGear());
         // Check Connection
         while (gamepad.read_data()) {
+            gamepad.setRacerGear(input.getGear());
             input.setBrake(gamepad.getBrake());
             input.setSteering(gamepad.getSteering());
             input.setThrottle(gamepad.getThrottle());

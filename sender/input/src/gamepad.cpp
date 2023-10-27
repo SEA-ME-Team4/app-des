@@ -10,6 +10,8 @@ Gamepad::Gamepad() {
 
     status = false;
     changable = false;
+    racer_gear = 0;
+    gamepad_gear = 0;
 }
 
 Gamepad::~Gamepad() {
@@ -51,7 +53,7 @@ bool Gamepad::read_data() {
     gamepad_button_r3 = PyObject_IsTrue(pInput);
     
     gearChanged = true;
-    changable = (gamepad_gear!=0)||(gamepad_brake);
+    changable = (gamepad_gear!=0)||(gamepad_brake)||(racer_gear);
 
     if (gamepad_button_y && gamepad_brake) {gamepad_gear = 0;}
     else if (changable) {
@@ -75,6 +77,10 @@ bool Gamepad::getStatus() {
 
 void Gamepad::setInitStatus(bool status) {
     this->status = status;
+}
+
+void Gamepad::setRacerGear(int gear) {
+    this->racer_gear = gear;
 }
 
 void Gamepad::setGear(int gear) {
