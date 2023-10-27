@@ -25,8 +25,6 @@
 | racerclient.h <br/> racerclient.cpp | Connect with CommonAPI Runtime and Build Service and Proxy <br/> Gamepad and Vehicle is detached (communicate by vsomeip) <br/> Gear Selection Handling between head unit and joystick |
 | GearStatusStubImpl.hpp <br/> GearStatusStubImpl.cpp | Implementation of the generated skeleton for the stub <br/> Inherited from the stub-default implementation |
 
----
-
 ## Reference
 
 - [Python Piracer Package](https://pypi.org/project/piracer-py/)
