@@ -9,7 +9,9 @@
 
 ## Structure
 
-![InstrumentCluster drawio](https://github.com/SEA-ME-Team4/app-hu/assets/120576021/d5972534-e14a-49e3-bc36-9d27ad03406e)
+<p align="center">
+  <img src="https://github.com/SEA-ME-Team4/app-hu/assets/120576021/d5972534-e14a-49e3-bc36-9d27ad03406e">
+</p>
 
 ## Description
 
