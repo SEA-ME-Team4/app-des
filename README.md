@@ -12,16 +12,23 @@ The head unit Qt application compatible with Yocto Project
 - Binding can be easily changed (SOME/IP ↔ D-Bus)
 
 ### In Head Unit
-
 - Gear Selection (Primary)
 - Ambient Lighting
 - Youtube API
 - Speed & Brake responsive design
 
+<p align="center">
+  <img src="https://github.com/SEA-ME-Team4/DES_PDC-System/assets/120576021/37d02e4e-ab26-452d-b556-36c3700a429d">
+</p>
+
 ### In Instrument Cluster
 
 - Vehicle Information (Speed, Battery, Brake, Gear)
 - Status Indicator (Exception Handler)
+
+<p align="center">
+  <img src="https://github.com/SEA-ME-Team4/DES_PDC-System/assets/120576021/35d223cf-3034-4fc7-97ee-3d0ab84f30c2">
+</p>
 
 ### In Piracer
 
