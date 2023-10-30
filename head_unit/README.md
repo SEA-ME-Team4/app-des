@@ -17,6 +17,10 @@
 
 ## Description
 
+<p align="center">
+  <img src="https://github.com/SEA-ME-Team4/DES_PDC-System/assets/120576021/37d02e4e-ab26-452d-b556-36c3700a429d">
+</p>
+
 ### Graphic (QML)
 
 | FileName | Description |
