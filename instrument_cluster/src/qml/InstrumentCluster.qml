@@ -9,9 +9,9 @@ Rectangle {
 
     property int timer_interval: 1000/120
 
-    property int speed: 0
-    property int battery: 0
-    property bool brake: false
+    property int speed: vehicleclient.getSpeed()
+    property int battery: vehicleclient.getBattery()
+    property bool brake: vehicleclient.getBrake()
     property int gear: vehicleclient.getGear()
 
     property bool racer_status: true
