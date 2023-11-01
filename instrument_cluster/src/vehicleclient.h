@@ -19,6 +19,9 @@ public:
     VehicleClient();
     ~VehicleClient();
 
+Q_INVOKABLE int getSpeed();
+Q_INVOKABLE int getBattery();
+Q_INVOKABLE bool getBrake();
 Q_INVOKABLE int getGear();
 
 signals:
@@ -53,5 +56,8 @@ private:
     QTimer *errorProxyStatusTimer;
     bool errorProxyStatus;
 
+    int speed;
+    int battery;
+    bool brake;
     int gear;
 };
