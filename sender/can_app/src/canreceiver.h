@@ -10,10 +10,12 @@
 class CanReceiver
 {
 public:
-    CanReceiver(const char* port_name, canid_t can_id);
+    CanReceiver(const char* port_name, canid_t can_id_1, canid_t can_id_2);
     ~CanReceiver();
     bool canRead();
+    canid_t getID();
     int16_t getSpeed();
+    uint8_t getDistance();
 
 private:
     int s;
@@ -23,5 +25,7 @@ private:
     struct can_frame frame;
     int nbytes;
     float speed;
-    int decimal0, decimal1, decimal2;
+    float distance;
+    int speed_decimal0, speed_decimal1, speed_decimal2;
+    int distance_decimal0, distance_decimal1, distance_decimal2;
 };

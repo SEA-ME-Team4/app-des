@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 # Set Project Name
-project(speed LANGUAGES CXX)
+project(can_app LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,7 +13,7 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list "Speed")
+set(stub_list "Speed" "Distance")
 set(proxy_list)
 
 
@@ -45,9 +45,10 @@ if (BUILD_EXE)
     # Build Execution
     add_executable(${PROJECT_NAME}
         src/main.cpp
-        src/speed.cpp
+        src/can_app.cpp
         src/canreceiver.cpp
-        src/SpeedStatusStubImpl.cpp)
+        src/SpeedStatusStubImpl.cpp
+        src/DistanceStatusStubImpl.cpp)
     target_link_libraries(${PROJECT_NAME}
         CommonAPI)
 

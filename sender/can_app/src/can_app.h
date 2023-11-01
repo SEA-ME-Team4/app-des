@@ -1,4 +1,5 @@
 #include "SpeedStatusStubImpl.hpp"
+#include "DistanceStatusStubImpl.hpp"
 
 #include <iostream>
 #include <thread>
@@ -7,15 +8,18 @@
 
 using namespace v1::commonapi;
 
-class Speed {
+class Can_App {
 public:
-    Speed();
-    ~Speed();
+    Can_App();
+    ~Can_App();
     void setSpeed(int16_t speed);
+    void setDistance(uint8_t distance);
 
 private:
     std::shared_ptr<CommonAPI::Runtime> runtime;
     std::shared_ptr<SpeedStatusStubImpl> speedService;
+    std::shared_ptr<DistanceStatusStubImpl> distanceService;
 
     void speedServiceInit();
+    void distanceServiceInit();
 };
