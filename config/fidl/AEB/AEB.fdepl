@@ -1,0 +1,28 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "AEB.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.AEB {
+    SomeIpServiceID = 4666
+
+    broadcast Status {
+        SomeIpEventID = 32772
+        SomeIpEventGroups = { 32772 }
+
+        SomeIpReliable = true
+    }
+
+    method OnOff {
+        SomeIpMethodID = 11000
+        SomeIpNotifierID = 33110
+        SomeIpNotifierEventGroups = { 33110 }
+        SomeIpReliable = true
+    }
+}
+
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.AEB {
+        InstanceId = "AEB"
+
+        SomeIpInstanceID = 22142
+    }
+}

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(app-hu LANGUAGES CXX)
+project(app-des LANGUAGES CXX)
 
 set(INSTALL_DIRECTORY /usr/bin/${PROJECT_NAME})
 

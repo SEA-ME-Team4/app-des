@@ -1,0 +1,22 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "Distance.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.DistanceStatus {
+    SomeIpServiceID = 4665
+
+     attribute Distance {
+        SomeIpGetterID = 10000
+        SomeIpSetterID = 10001
+        SomeIpNotifierID = 33100
+        SomeIpNotifierEventGroups = { 33100 }
+
+        SomeIpAttributeReliable = true
+        }
+    }
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance commonapi.DistanceStatus {
+        InstanceId = "DistanceStatus"
+
+        SomeIpInstanceID = 22141
+    }
+}

@@ -17,7 +17,7 @@ endif()
 
 # Set Depend Library
 set(stub_list)
-set(proxy_list "Battery" "Input" "Gear" "Speed" "ExceptionHandler")
+set(proxy_list "Battery" "Input" "Gear" "Speed" "ExceptionHandler" "AEB")
 
 
 # Build Execution
