@@ -16,6 +16,9 @@ VehicleStatus::VehicleStatus() {
     speedProxy = runtime->buildProxy<SpeedStatusProxy>("local", "SpeedStatus", "HeadUnit_Speed_Proxy");
     speedProxyInit();
 
+    distanceProxy = runtime->buildProxy<DistanceStatusProxy>("local", "DistanceStatus", "HeadUnit_Distance_Proxy");
+    distanceProxyInit();
+
     gearHere = true;
 }
 
@@ -40,6 +43,18 @@ void VehicleStatus::sendGear(quint8 gear) {
 
 int VehicleStatus::getGear() {
     return gear;
+}
+
+bool VehicleStatus::getBrake() {
+    return brake;
+}
+
+int VehicleStatus::getSpeed() {
+    return speed;
+}
+
+int VehicleStatus::getDistance() {
+    return distance;
 }
 
 void VehicleStatus::gearselectorServiceInit() {
@@ -67,6 +82,7 @@ void VehicleStatus::inputProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     inputProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
+        this->brake = brake;
         emit brakeChanged(brake);
     });
 }
@@ -77,6 +93,18 @@ void VehicleStatus::speedProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     speedProxy->getSpeedAttribute().getChangedEvent().subscribe([&](const int16_t& speed) {
+        this->speed = speed;
         emit speedChanged(speed);
+    });
+}
+
+void VehicleStatus::distanceProxyInit() {
+    std::cout << "Checking Distance availability!" << std::endl;
+    while (!distanceProxy->isAvailable())
+        usleep(10);
+    std::cout << "Available..." << std::endl;
+    distanceProxy->getDistanceAttribute().getChangedEvent().subscribe([&](const int16_t& distance) {
+        this->distance = distance;
+        emit distanceChanged(distance);
     });
 }
