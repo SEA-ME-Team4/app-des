@@ -60,6 +60,7 @@ void VehicleClient::batteryProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     batteryProxy->getBatteryAttribute().getChangedEvent().subscribe([&](const uint8_t& battery) {
+        this->battery = battery;
         emit batteryChanged(battery);
     });
 }
@@ -70,6 +71,7 @@ void VehicleClient::inputProxyInit() {
         usleep(10);
     std::cout << "Available..." << std::endl;
     inputProxy->getBrakeAttribute().getChangedEvent().subscribe([&](const bool& brake) {
+        this->brake = brake;
         emit brakeChanged(brake);
     });
 }
