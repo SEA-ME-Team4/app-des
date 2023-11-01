@@ -13,8 +13,8 @@ if (!INSTALL_DIR)
 endif()
 
 # Set Depend Library
-set(stub_list "Gear")
-set(proxy_list "Input" "GearSelector")
+set(stub_list "Gear" "AEB")
+set(proxy_list "Input" "GearSelector" "Distance")
 
 # Build Execution
 if (BUILD_EXE)
