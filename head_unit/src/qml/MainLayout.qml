@@ -16,8 +16,9 @@ Rectangle {
 
     property var searchResults: []
 
-    property bool brake: false
-    property int speed: 0
+    property bool brake: vehiclestatus.getBrake()
+    property int speed: vehiclestatus.getSpeed()
+    property int distance: vehiclestatus.getDistance()
     property int gear: vehiclestatus.getGear()
 
     property bool is_P: (gear==0) ? 1 : 0
@@ -79,6 +80,7 @@ Rectangle {
         id: vehiclestatus
         onBrakeChanged: {mainlayout.brake = brake}
         onSpeedChanged: {mainlayout.speed = speed}
+        onDistanceChanged: {mainlayout.distance = distance}
         onGearChanged: {mainlayout.gear = gear}
     }
 }
