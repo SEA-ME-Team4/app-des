@@ -23,7 +23,7 @@ public:
     VehicleStatus();
     ~VehicleStatus();
 
-Q_INVOKABLE void sendGear();
+Q_INVOKABLE void sendGear(quint8 gear);
 Q_INVOKABLE int getGear();
 Q_INVOKABLE bool getBrake();
 Q_INVOKABLE int getSpeed();
