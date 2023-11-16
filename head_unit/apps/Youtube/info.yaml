@@ -1,0 +1,9 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      'Youtube'
+icon:    'icon.png'
+code:    'qml/Youtube.qml'
+runtime: 'qml'
+name:
+  en: 'Youtube'

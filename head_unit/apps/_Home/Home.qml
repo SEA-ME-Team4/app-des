@@ -1,12 +1,12 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
-import QtWebEngine 1.8
 import QtGraphicalEffects 1.0
+import QtApplicationManager.Application 2.0
 
-GridLayout {
+ApplicationManagerWindow {
     width: 886
-    height: 553
+    height: 540
 
     property color ambientColor: "#000000"
     property real default_opacity: 1
@@ -21,7 +21,7 @@ GridLayout {
         Image {
             id: field
             visible: true
-            source: "/images/field.png"
+            source: "images/field.png"
             anchors.centerIn: parent
             width: menuImages.width * 0.8
             height: width / sourceSize.width * sourceSize.height
@@ -35,7 +35,7 @@ GridLayout {
 
         Image {
             id: car_highlights
-            source: "/images/car-highlights.png"
+            source: "images/car-highlights.png"
             visible: true
             anchors.centerIn: parent
             width: menuImages.width * 0.8
@@ -49,7 +49,7 @@ GridLayout {
 
         Image {
             id: rearlight
-            source: "/images/rearlight.png"
+            source: "images/rearlight.png"
             visible: true
             anchors.right: field.right
             anchors.bottom: field.bottom
@@ -64,7 +64,7 @@ GridLayout {
 
         Image {
             id: arrow
-            source: "/images/arrow-0.png"
+            source: "images/arrow-0.png"
             visible: true
             anchors.centerIn: field
             width: menuImages.width * 0.03
@@ -80,7 +80,7 @@ GridLayout {
 
         Image {
             id: left_brake
-            source: "/images/red-border-left.png"
+            source: "images/red-border-left.png"
             visible: true
             x: 300
             y: 190
@@ -96,7 +96,7 @@ GridLayout {
 
         Image {
             id: right_brake
-            source: "/images/red-border-right.png"
+            source: "images/red-border-right.png"
             visible: true
             x: 490
             y: 190
@@ -112,7 +112,7 @@ GridLayout {
 
         Image {
             id: white_left1
-            source: "/images/white-line-left.png"
+            source: "images/white-line-left.png"
             visible: true
             x: 300
             y: 380
@@ -128,7 +128,7 @@ GridLayout {
 
         Image {
             id: white_left2
-            source: "/images/white-line-left.png"
+            source: "images/white-line-left.png"
             visible: true
             x: 330
             y: 300
@@ -144,7 +144,7 @@ GridLayout {
 
         Image {
             id: white_left3
-            source: "/images/white-line-left.png"
+            source: "images/white-line-left.png"
             visible: true
             x: 360
             y: 220
@@ -160,7 +160,7 @@ GridLayout {
 
         Image {
             id: white_right1
-            source: "/images/white-line-right.png"
+            source: "images/white-line-right.png"
             visible: true
             x: 530
             y: 380
@@ -176,7 +176,7 @@ GridLayout {
 
         Image {
             id: white_right2
-            source: "/images/white-line-right.png"
+            source: "images/white-line-right.png"
             visible: true
             x: 500
             y: 300
@@ -192,7 +192,7 @@ GridLayout {
 
         Image {
             id: white_right3
-            source: "/images/white-line-right.png"
+            source: "images/white-line-right.png"
             visible: true
             x: 470
             y: 220

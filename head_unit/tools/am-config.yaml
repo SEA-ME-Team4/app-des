@@ -1,0 +1,8 @@
+formatVersion: 1
+formatType: am-configuration
+---
+applications:
+  builtinAppsManifestDir: "head_unit/apps"
+
+ui:
+  mainQml: "head_unit/system-ui/system-ui.qml"

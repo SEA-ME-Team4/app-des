@@ -11,6 +11,8 @@
 #include <v1/commonapi/SpeedStatusProxy.hpp>
 #include <v1/commonapi/DistanceStatusProxy.hpp>
 #include <QObject>
+#include <QtQml>
+#include <QQmlExtensionPlugin>
 
 using namespace v1_0::commonapi;
 
@@ -21,7 +23,7 @@ public:
     VehicleStatus();
     ~VehicleStatus();
 
-Q_INVOKABLE void sendGear(quint8 gear);
+Q_INVOKABLE void sendGear();
 Q_INVOKABLE int getGear();
 Q_INVOKABLE bool getBrake();
 Q_INVOKABLE int getSpeed();

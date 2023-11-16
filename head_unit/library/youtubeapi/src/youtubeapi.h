@@ -1,5 +1,5 @@
-#ifndef YOUTUBESEARCH_H
-#define YOUTUBESEARCH_H
+#ifndef YOUTUBEAPI_H
+#define YOUTUBEAPI_H
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -11,11 +11,13 @@
 #include <QDebug>
 #include <QNetworkReply>
 #include <QSslConfiguration>
+#include <QtQml>
+#include <QQmlExtensionPlugin>
 
-class YouTubeSearch : public QObject {
+class YoutubeAPI : public QObject {
     Q_OBJECT
 public:
-    YouTubeSearch();
+    YoutubeAPI();
 
     //Q_INVOKABLE: Using macro, can call member function of C++ in QML
     Q_INVOKABLE void searchVideos(const QString& query);
