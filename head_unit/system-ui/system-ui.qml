@@ -140,7 +140,7 @@ Rectangle {
         onDistanceChanged: {mainlayout.distance = distance}
         onGearChanged: {
             mainlayout.gear = gear
-            if (is_D || is_R) {
+            if (is_D || is_S) {
                 if (ApplicationManager.application(homeApp).runState === Am.NotRunning) {
                     ApplicationManager.startApplication(homeApp);
                 }
@@ -158,7 +158,7 @@ Rectangle {
                     if (windowsModel.get(i).applicationId == pdcApp) {
                         windowsModel.move(i, windowsModel.count-1, 1)
                     }
-                }                
+                }
             }
         }
     }
