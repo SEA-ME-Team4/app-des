@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.VirtualKeyboard 2.0
 
+
 GridLayout {
     columns: 3
     width: 886
@@ -10,14 +11,6 @@ GridLayout {
 
     property var youTubeSearch
     property var webEngineView
-
-    InputPanel {
-            id: inputPanel
-            z: 99
-            width: parent.width
-            anchors.bottom: parent.bottom
-            visible: Qt.inputMethod.visible
-     }
 
     TextField {
         id: textField
@@ -27,19 +20,16 @@ GridLayout {
         placeholderTextColor: "#000000"
         Layout.fillWidth: true
         focus: true
-        onActiveFocusChanged: {
-            if (activeFocus) {
-                inputPanel.open(textField)
-            }
-        }
+        anchors.top: parent.top
     }
 
     Button {
         implicitWidth: 30
         implicitHeight: 30
+        anchors.verticalCenter: textField.verticalCenter
 
         contentItem: Image {
-            source: "/images/search_glass.png"
+            source: "images/search_glass.png"
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
         }
@@ -59,9 +49,10 @@ GridLayout {
     Button {
         implicitWidth: 30
         implicitHeight: 30
+        anchors.verticalCenter: textField.verticalCenter
 
         contentItem: Image {
-            source: "/images/X.png"
+            source: "images/X.png"
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
         }

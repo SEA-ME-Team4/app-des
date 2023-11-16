@@ -3,13 +3,14 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
+
 GridLayout {
-    width: 138
-    height: 600
+    width: parent.width
+    height: parent.height
     columns: 1
     rows: 6
 
-    property int text_size: 30
+    property int text_size: 25
     property int button_size: 70
     property real min_opacity: 0.7
     property real default_opacity: 1
@@ -25,7 +26,6 @@ GridLayout {
         implicitHeight: button_size
         Layout.alignment: Qt.AlignHCenter
         ButtonGroup.group: buttonGroup
-        Layout.topMargin: 20
 
         background: null
         checkable: true
@@ -34,7 +34,7 @@ GridLayout {
         Image {
             id: game
             anchors.fill: parent
-            source: "/images/gamepad.png"
+            source: "images/gamepad.png"
             fillMode: Image.PreserveAspectFit
         }
 
@@ -62,7 +62,6 @@ GridLayout {
         Layout.alignment: Qt.AlignHCenter
         visible: true
         ButtonGroup.group: buttonGroup
-        Layout.topMargin: 20
         opacity: (mainlayout.is_P) ? default_opacity : min_opacity
         background: Rectangle {
             color: "transparent"

@@ -1,0 +1,9 @@
+formatVersion: 1
+formatType: am-application
+---
+id:      '_Home'
+icon:    'icon.png'
+code:    'Home.qml'
+runtime: 'qml'
+name:
+  en: 'Home'

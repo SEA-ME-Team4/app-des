@@ -1,11 +1,13 @@
-#include "youtubesearch.h"
+#include "youtubeapi.h"
+#include <QDebug>
 
-YouTubeSearch::YouTubeSearch() {
+YoutubeAPI::YoutubeAPI() {
     manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &YouTubeSearch::handleNetworkData);
+    connect(manager, &QNetworkAccessManager::finished, this, &YoutubeAPI::handleNetworkData);
+    qDebug() <<"123123123123123123123123\n\n\n\n";
 }
 
-void YouTubeSearch::searchVideos(const QString& query) {
+void YoutubeAPI::searchVideos(const QString& query) {
     QNetworkRequest request(QUrl("https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + 
     "&maxResults=5&key=YOUR_KEY"));
 
@@ -23,7 +25,7 @@ void YouTubeSearch::searchVideos(const QString& query) {
     manager->get(request);
 }
 
-void YouTubeSearch::handleNetworkData(QNetworkReply *reply) {
+void YoutubeAPI::handleNetworkData(QNetworkReply *reply) {
     if(reply->error() == QNetworkReply::NoError) {
         QByteArray responseData = reply->readAll();
         QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData);

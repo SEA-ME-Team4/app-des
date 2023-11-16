@@ -2,72 +2,39 @@ cmake_minimum_required(VERSION 3.5)
 
 project(head_unit LANGUAGES CXX)
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
-
 # Set Installation Path (If not set in Upper CMakeLists.txt)
 if (!INSTALL_DIR)
     set(INSTALL_DIRECTORY /usr/bin/app-hu)
 endif()
 
-# Set Depend Library
-set(stub_list "GearSelector")
-set(proxy_list "Input" "Speed" "Gear" "Distance" "AEB")
-
-
 # Build Execution
 if (BUILD_EXE)
-    # Include Directories
-    foreach(stub ${stub_list})
-        include_directories(
-            src-gen/core/stub/${stub}
-            src-gen/core/skel/${stub}
-            src-gen/core/common/${stub}
-        )
-    endforeach()
-    foreach(proxy ${proxy_list})
-        include_directories(
-            src-gen/core/proxy/${proxy}
-            src-gen/core/common/${proxy}
-        )
-    endforeach()
+    # Install System-UI
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/system-ui/
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/system-ui/)
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/system-ui/
+        DESTINATION ${INSTALL_DIRECTORY}/${PROJECT_NAME}/system-ui/)
+endif()
 
-    # Find CommonAPI
-    find_package(CommonAPI REQUIRED)
-    # Find Qt Application
-    find_package(Qt5 COMPONENTS Core Quick Gui Network Multimedia WebEngine REQUIRED)
+# Build Application
+if (BUILD_APP)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/apps/
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/apps/)
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/apps/
+        DESTINATION ${INSTALL_DIRECTORY}/${PROJECT_NAME}/apps)
+endif()
 
-    include_directories(
-        src
-        ${COMMONAPI_INCLUDE_DIRS})
+# Build Library
+if (BUILD_LIB)
+    add_subdirectory(library)
+endif()
 
-    # Build Execution
-    add_executable(${PROJECT_NAME}
-        src/main.cpp
-        src/qml.qrc
-        src/youtubesearch.cpp
-        src/vehiclestatus.cpp
-        src/GearSelectorStubImpl.cpp)
-    target_compile_definitions(${PROJECT_NAME}
-        PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-    target_link_libraries(${PROJECT_NAME}
-        PRIVATE Qt5::Core Qt5::Quick Qt5::Gui Qt5::Network Qt5::Multimedia Qt5::WebEngine
-        CommonAPI)
-
-    # Install Execution
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
-        DESTINATION ${INSTALL_DIRECTORY}/${PROJECT_NAME}/execute
-        PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE)
-
+# Build Configuration
+if (BUILD_CONF)
     # Install Shell Script
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/tools/
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/tools/)
     install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tools/
         DESTINATION ${INSTALL_DIRECTORY}/${PROJECT_NAME}
-        FILE_PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE WORLD_EXECUTE)
+        FILE_PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ)
 endif()
