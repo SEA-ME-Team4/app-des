@@ -50,7 +50,7 @@ target_link_libraries(${PROJECT_NAME}
     Qt5::Core Qt5::Quick Qt5::Qml 
     CommonAPI)
 
-set(PLUGIN_PATH ${Qt5_DIR}/../../qt5/qml/User/${PROJECT_NAME})
+set(PLUGIN_PATH /lib/qml/User/${PROJECT_NAME})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${PLUGIN_PATH}
         PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
