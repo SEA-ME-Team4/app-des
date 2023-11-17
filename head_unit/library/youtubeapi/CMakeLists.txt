@@ -26,7 +26,7 @@ target_compile_definitions(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     Qt5::Core Qt5::Quick Qt5::Qml Qt5::Gui Qt5::Network Qt5::Multimedia Qt5::WebEngine Qt5::VirtualKeyboard)
 
-set(PLUGIN_PATH ${Qt5_DIR}/../../qt5/qml/User/${PROJECT_NAME})
+set(PLUGIN_PATH usr/lib/qml/User/${PROJECT_NAME})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${PLUGIN_PATH}
     PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
