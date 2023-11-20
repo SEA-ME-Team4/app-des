@@ -7,3 +7,17 @@ code:    'Home.qml'
 runtime: 'qml'
 name:
   en: 'Home'
+
+intents:
+- id: Brake
+  name:
+    en: Brake
+- id: Speed
+  name:
+    en: Speed
+- id: Gear
+  name:
+    en: Gear
+- id: Ambient
+  name:
+    en: Ambient

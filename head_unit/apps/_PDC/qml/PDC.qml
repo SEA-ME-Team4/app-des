@@ -5,6 +5,8 @@ ApplicationManagerWindow {
     width: 886
     height: 540
 
+    property int distance: 0
+
     property int splitInitX : 300
     property int priority: 0
     property int splitX : (priority===0) ? splitInitX : ((priority===1) ? 0 : width)
@@ -49,6 +51,14 @@ ApplicationManagerWindow {
 
         Component.onCompleted: {
             opacity = 1
+        }
+    }
+
+    IntentHandler {
+        intentIds: [ "Distance" ]
+        onRequestReceived: {
+            if (request.intentId === "Distance") {distance = request.parameters["Distance"]}
+            request.sendReply({ "succeeded" : true})
         }
     }
 }

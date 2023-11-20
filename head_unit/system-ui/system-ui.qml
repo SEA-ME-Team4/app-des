@@ -129,17 +129,26 @@ Rectangle {
     // Initialization
     Component.onCompleted: {
         ApplicationManager.application(homeApp).start()
-//        ApplicationManager.application(pdcApp).start()
     }
 
     // Connect with CommonAPI
     VehicleStatus {
         id: vehiclestatus
-        onBrakeChanged: {mainlayout.brake = brake}
-        onSpeedChanged: {mainlayout.speed = speed}
-        onDistanceChanged: {mainlayout.distance = distance}
+        onBrakeChanged: {
+            mainlayout.brake = brake
+            IntentClient.sendIntentRequest("Brake", { "Brake" : brake } )
+        }
+        onSpeedChanged: {
+            mainlayout.speed = speed
+            IntentClient.sendIntentRequest("Speed", { "Speed" : speed } )
+        }
+        onDistanceChanged: {
+            mainlayout.distance = distance
+            IntentClient.sendIntentRequest("Distance", { "Distance" : distance } )
+        }
         onGearChanged: {
             mainlayout.gear = gear
+            IntentClient.sendIntentRequest("Gear", { "Gear" : gear } )
             if (is_D || is_S) {
                 if (ApplicationManager.application(homeApp).runState === Am.NotRunning) {
                     ApplicationManager.startApplication(homeApp);
