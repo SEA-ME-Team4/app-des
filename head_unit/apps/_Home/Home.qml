@@ -11,7 +11,7 @@ ApplicationManagerWindow {
     property bool brake: false
     property int speed: 0
     property int gear: 0
-    property color ambient: "#000000"
+    property string ambient: "#000000"
 
     property bool is_P: (gear==0) ? 1 : 0
     property bool is_R: (gear==1) ? 1 : 0
@@ -37,11 +37,11 @@ ApplicationManagerWindow {
             height: width / sourceSize.width * sourceSize.height
         }
 
-//        ColorOverlay {
-//            anchors.fill: field
-//            source: field
-//            color: ambientsLayout.ambientColor
-//        }
+        ColorOverlay {
+            anchors.fill: field
+            source: field
+            color: ambient
+        }
 
         Image {
             id: car_highlights
@@ -218,12 +218,12 @@ ApplicationManagerWindow {
     }
 
     IntentHandler {
-        intentIds: [ "Brake", "Speed", "Gear" ]
+        intentIds: [ "Home" ]
         onRequestReceived: {
-            if (request.intentId === "Brake") {brake = request.parameters["Brake"]}                
-            if (request.intentId === "Speed") {speed = request.parameters["Speed"]}
-            if (request.intentId === "Gear") {gear = request.parameters["Gear"]}
-            if (request.intentId === "Ambient") {ambient = request.parameters["Ambient"]}
+            brake = request.parameters["brake"]
+            speed = request.parameters["speed"]
+            gear = request.parameters["gear"]
+            ambient = request.parameters["ambient"]
             request.sendReply({ "succeeded" : true })
         }
     }

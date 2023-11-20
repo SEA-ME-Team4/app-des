@@ -9,6 +9,6 @@ name:
   en: 'PDC'
 
 intents:
-- id: Distance
+- id: PDC
   name:
-    en: Distance
+    en: PDC

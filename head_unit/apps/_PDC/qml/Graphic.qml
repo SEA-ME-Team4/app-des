@@ -11,7 +11,6 @@ Rectangle {
 
 		Image {
 			anchors.fill: parent
-			fillMode: Image.PreserveAspectFit
 			source: "images/car-highlights.png"
 		}
 

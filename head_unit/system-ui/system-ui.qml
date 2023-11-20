@@ -23,6 +23,8 @@ Rectangle {
     property int speed: vehiclestatus.getSpeed()
     property int distance: vehiclestatus.getDistance()
     property int gear: vehiclestatus.getGear()
+    property string ambient: "#00000000"
+    property var ambientresponse
 
     property bool is_P: (gear==0) ? 1 : 0
     property bool is_R: (gear==1) ? 1 : 0
@@ -130,25 +132,39 @@ Rectangle {
     Component.onCompleted: {
         ApplicationManager.application(homeApp).start()
     }
+    
+    // Send Information to Application via Intent
+    Connections {
+        target: ambientresponse
+        onReplyReceived: {
+            ambient = ambientresponse.result["ambient"]
+        }
+    }
+    Timer {
+        interval: 100
+        running: true
+        repeat: true
+        onTriggered: {
+            if (ApplicationManager.application(pdcApp).runState === Am.Running) {
+                IntentClient.sendIntentRequest("PDC", { "distance" : distance } )
+            }
+            if (ApplicationManager.application(ambientApp).runState === Am.Running) {
+                ambientresponse = IntentClient.sendIntentRequest("Ambient", { "request" : true } )
+            }
+            if (ApplicationManager.application(homeApp).runState === Am.Running) {
+                IntentClient.sendIntentRequest("Home", { "brake" : brake, "speed" : speed, "gear" : gear, "ambient" : ambient } )
+            }
+        }
+    }
 
     // Connect with CommonAPI
     VehicleStatus {
         id: vehiclestatus
-        onBrakeChanged: {
-            mainlayout.brake = brake
-            IntentClient.sendIntentRequest("Brake", { "Brake" : brake } )
-        }
-        onSpeedChanged: {
-            mainlayout.speed = speed
-            IntentClient.sendIntentRequest("Speed", { "Speed" : speed } )
-        }
-        onDistanceChanged: {
-            mainlayout.distance = distance
-            IntentClient.sendIntentRequest("Distance", { "Distance" : distance } )
-        }
+        onBrakeChanged: {mainlayout.brake = brake}
+        onSpeedChanged: {mainlayout.speed = speed}
+        onDistanceChanged: {mainlayout.distance = distance}
         onGearChanged: {
             mainlayout.gear = gear
-            IntentClient.sendIntentRequest("Gear", { "Gear" : gear } )
             if (is_D || is_S) {
                 if (ApplicationManager.application(homeApp).runState === Am.NotRunning) {
                     ApplicationManager.startApplication(homeApp);

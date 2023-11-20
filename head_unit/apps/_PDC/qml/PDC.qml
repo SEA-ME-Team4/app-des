@@ -55,10 +55,10 @@ ApplicationManagerWindow {
     }
 
     IntentHandler {
-        intentIds: [ "Distance" ]
+        intentIds: [ "PDC" ]
         onRequestReceived: {
-            if (request.intentId === "Distance") {distance = request.parameters["Distance"]}
-            request.sendReply({ "succeeded" : true})
+            distance = request.parameters["distance"]
+            request.sendReply({ "succeeded" : true })
         }
     }
 }

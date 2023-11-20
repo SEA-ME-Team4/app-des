@@ -9,15 +9,6 @@ name:
   en: 'Home'
 
 intents:
-- id: Brake
+- id: Home
   name:
-    en: Brake
-- id: Speed
-  name:
-    en: Speed
-- id: Gear
-  name:
-    en: Gear
-- id: Ambient
-  name:
-    en: Ambient
+    en: Home
