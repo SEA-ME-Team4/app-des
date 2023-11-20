@@ -16,7 +16,7 @@ initial_service()
 initial_service head_unit
 initial_service instrument_cluster
 initial_service input
-initial_service speed
+initial_service can_app
 initial_service battery
 initial_service racer
 initial_service exception_handler
