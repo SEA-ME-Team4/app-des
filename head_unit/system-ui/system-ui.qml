@@ -23,6 +23,8 @@ Rectangle {
     property int speed: vehiclestatus.getSpeed()
     property int distance: vehiclestatus.getDistance()
     property int gear: vehiclestatus.getGear()
+    property string ambient: "#00000000"
+    property var ambientresponse
 
     property bool is_P: (gear==0) ? 1 : 0
     property bool is_R: (gear==1) ? 1 : 0
@@ -87,8 +89,7 @@ Rectangle {
             width: 886
             height: 540
             window: model.window
-            opacity : model.index===(windowsModel.count-1) ? 1 : 0.5
-            Behavior on opacity { NumberAnimation { duration: 200} }
+            opacity : 1
         }
     }
 
@@ -129,7 +130,30 @@ Rectangle {
     // Initialization
     Component.onCompleted: {
         ApplicationManager.application(homeApp).start()
-//        ApplicationManager.application(pdcApp).start()
+    }
+    
+    // Send Information to Application via Intent
+    Connections {
+        target: ambientresponse
+        onReplyReceived: {
+            ambient = ambientresponse.result["ambient"]
+        }
+    }
+    Timer {
+        interval: 100
+        running: true
+        repeat: true
+        onTriggered: {
+            if (ApplicationManager.application(pdcApp).runState === Am.Running) {
+                IntentClient.sendIntentRequest("PDC", { "distance" : distance, "ambient" : ambient } )
+            }
+            if (ApplicationManager.application(ambientApp).runState === Am.Running) {
+                ambientresponse = IntentClient.sendIntentRequest("Ambient", { "request" : true } )
+            }
+            if (ApplicationManager.application(homeApp).runState === Am.Running) {
+                IntentClient.sendIntentRequest("Home", { "brake" : brake, "speed" : speed, "gear" : gear, "ambient" : ambient } )
+            }
+        }
     }
 
     // Connect with CommonAPI

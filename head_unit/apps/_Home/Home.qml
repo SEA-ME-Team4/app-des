@@ -8,39 +8,46 @@ ApplicationManagerWindow {
     width: 886
     height: 540
 
-    property color ambientColor: "#000000"
+    property bool brake: false
+    property int speed: 0
+    property int gear: 0
+    property string ambient: "#00000000"
+
+    property bool is_P: (gear==0) ? 1 : 0
+    property bool is_R: (gear==1) ? 1 : 0
+    property bool is_N: (gear==2) ? 1 : 0
+    property bool is_D: (gear==3) ? 1 : 0
+    property bool is_S: (gear==4) ? 1 : 0
+
     property real default_opacity: 1
     property real min_opacity: 0
     property int  opacity_interval: 500
 
-    Item {
+    Rectangle {
         id: menuImages
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-
+        anchors.fill: parent
+        color: "black"
         Image {
             id: field
             visible: true
             source: "images/field.png"
-            anchors.centerIn: parent
-            width: menuImages.width * 0.8
-            height: width / sourceSize.width * sourceSize.height
+			anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
         }
 
         ColorOverlay {
             anchors.fill: field
             source: field
-            color: ambientsLayout.ambientColor
+            color: ambient
         }
 
         Image {
             id: car_highlights
             source: "images/car-highlights.png"
             visible: true
-            anchors.centerIn: parent
-            width: menuImages.width * 0.8
-            height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.is_P || mainlayout.brake) ? default_opacity : min_opacity
+			anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+            opacity: (is_P || brake) ? default_opacity : min_opacity
 
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
@@ -55,7 +62,7 @@ ApplicationManagerWindow {
             anchors.bottom: field.bottom
             width: menuImages.width * 0.8
             height: width / sourceSize.width * sourceSize.height
-            opacity: (mainlayout.is_R) ? default_opacity : min_opacity
+            opacity: (is_R) ? default_opacity : min_opacity
 
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
@@ -69,7 +76,7 @@ ApplicationManagerWindow {
             anchors.centerIn: field
             width: menuImages.width * 0.03
             height: width / sourceSize.width * sourceSize.height
-            opacity: ((mainlayout.is_D || mainlayout.is_S) && !mainlayout.brake) ? default_opacity : min_opacity
+            opacity: ((is_D || is_S) && !brake) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -86,7 +93,7 @@ ApplicationManagerWindow {
             y: 190
             width: menuImages.width * 0.1
             height: width / sourceSize.width * sourceSize.height
-            opacity: mainlayout.brake ? default_opacity : min_opacity
+            opacity: brake ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -102,7 +109,7 @@ ApplicationManagerWindow {
             y: 190
             width: menuImages.width * 0.1
             height: width / sourceSize.width * sourceSize.height
-            opacity: mainlayout.brake ? default_opacity : min_opacity
+            opacity: brake ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -118,7 +125,7 @@ ApplicationManagerWindow {
             y: 380
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (!mainlayout.brake && mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!brake && speed > 0 && (is_D || is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -134,7 +141,7 @@ ApplicationManagerWindow {
             y: 300
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!brake &&speed > 0 && (is_D || is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -150,7 +157,7 @@ ApplicationManagerWindow {
             y: 220
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!brake &&speed > 0 && (is_D || is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -166,7 +173,7 @@ ApplicationManagerWindow {
             y: 380
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!brake &&speed > 0 && (is_D || is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -182,7 +189,7 @@ ApplicationManagerWindow {
             y: 300
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!brake &&speed > 0 && (is_D || is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
@@ -198,12 +205,23 @@ ApplicationManagerWindow {
             y: 220
             width: menuImages.width * 0.05
             height: width / sourceSize.width * sourceSize.height
-            opacity: (!mainlayout.brake &&mainlayout.speed > 0 && (mainlayout.is_D || mainlayout.is_S)) ? default_opacity : min_opacity
+            opacity: (!brake &&speed > 0 && (is_D || is_S)) ? default_opacity : min_opacity
 
 
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
             }
+        }
+    }
+
+    IntentHandler {
+        intentIds: [ "Home" ]
+        onRequestReceived: {
+            brake = request.parameters["brake"]
+            speed = request.parameters["speed"]
+            gear = request.parameters["gear"]
+            ambient = request.parameters["ambient"]
+            request.sendReply({ "succeeded" : true })
         }
     }
 }

@@ -51,7 +51,7 @@ then
     check_and_run instrument_cluster
     sleep 2
     check_and_run input
-    check_and_run speed
+    check_and_run can_app
     check_and_run battery
     check_and_run racer
     check_and_run exception_handler

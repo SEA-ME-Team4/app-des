@@ -37,7 +37,7 @@ then
     killer instrument_cluster
     killer head_unit
     killer input
-    killer speed
+    killer can_app
     killer battery
     killer racer
     killer exception_handler

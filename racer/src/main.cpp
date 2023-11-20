@@ -18,6 +18,7 @@ int main() {
             throttle = racerclient.getThrottle();
 
             piracer.setRacer(gear, brake, steering, throttle);
+            sleep(0.01);
         }
         else {
             piracer.emergencyStop();

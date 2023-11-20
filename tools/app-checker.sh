@@ -21,7 +21,7 @@ do
     check_service instrument_cluster
     check_service head_unit
     check_service input
-    check_service speed
+    check_service can_app
     check_service battery
     check_service racer
     check_service exception_handler
