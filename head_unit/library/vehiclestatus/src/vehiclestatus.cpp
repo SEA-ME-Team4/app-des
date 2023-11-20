@@ -103,7 +103,7 @@ void VehicleStatus::distanceProxyInit() {
     while (!distanceProxy->isAvailable())
         usleep(10);
     std::cout << "Available..." << std::endl;
-    distanceProxy->getDistanceAttribute().getChangedEvent().subscribe([&](const int8_t& distance) {
+    distanceProxy->getDistanceAttribute().getChangedEvent().subscribe([&](const uint8_t& distance) {
         this->distance = distance;
         emit distanceChanged(distance);
     });
