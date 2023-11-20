@@ -89,8 +89,7 @@ Rectangle {
             width: 886
             height: 540
             window: model.window
-            opacity : model.index===(windowsModel.count-1) ? 1 : 0.5
-            Behavior on opacity { NumberAnimation { duration: 200} }
+            opacity : 1
         }
     }
 
@@ -146,7 +145,7 @@ Rectangle {
         repeat: true
         onTriggered: {
             if (ApplicationManager.application(pdcApp).runState === Am.Running) {
-                IntentClient.sendIntentRequest("PDC", { "distance" : distance } )
+                IntentClient.sendIntentRequest("PDC", { "distance" : distance, "ambient" : ambient } )
             }
             if (ApplicationManager.application(ambientApp).runState === Am.Running) {
                 ambientresponse = IntentClient.sendIntentRequest("Ambient", { "request" : true } )

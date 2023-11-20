@@ -1,11 +1,15 @@
 import QtQuick 2.12
+import QtGraphicalEffects 1.0
 import QtApplicationManager.Application 2.0
 
 ApplicationManagerWindow {
+    id: pdc
     width: 886
     height: 540
 
     property int distance: 0
+    property string ambient: "#00000000"
+
 
     property int splitInitX : 300
     property int priority: 0
@@ -58,6 +62,7 @@ ApplicationManagerWindow {
         intentIds: [ "PDC" ]
         onRequestReceived: {
             distance = request.parameters["distance"]
+            ambient = request.parameters["ambient"]
             request.sendReply({ "succeeded" : true })
         }
     }

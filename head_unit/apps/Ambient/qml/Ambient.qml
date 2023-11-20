@@ -10,6 +10,30 @@ ApplicationManagerWindow {
 
     property string ambient: control.color
 
+    Rectangle {
+        color: "black"
+        anchors.fill: parent
+        Image {
+            id: field
+            anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
+            source: "images/field.png"
+        }
+        Image {
+            anchors.fill: parent
+            source: "images/car-highlights.png"
+            fillMode: Image.PreserveAspectFit
+        }
+        ColorOverlay {
+            anchors.fill: field
+            source: field
+            color: ambient
+        }
+    }
+
+
+
     Control {
         id: control
         property real ringWidth: 20
@@ -32,12 +56,8 @@ ApplicationManagerWindow {
                 readonly property real s: control.hsvSaturation
                 readonly property real v: control.hsvValue
 
-                onLogChanged: {
-                    console.log(log);
-                }
-
                 vertexShader: "
-                    #version 300 es
+                    #version 310 es
 
                     in vec4 qt_Vertex;
                     in vec2 qt_MultiTexCoord0;
@@ -50,7 +70,7 @@ ApplicationManagerWindow {
                     }"
 
                 fragmentShader: "
-                    #version 300 es
+                    #version 310 es
 
                     precision mediump float;
 

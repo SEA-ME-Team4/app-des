@@ -3,7 +3,7 @@ formatType: am-application
 ---
 id:      'Ambient'
 icon:    'icon.png'
-code:    'Ambient.qml'
+code:    'qml/Ambient.qml'
 runtime: 'qml'
 name:
   en: 'Ambient Lighting'
@@ -12,3 +12,6 @@ intents:
 - id: Ambient
   name:
     en: Ambient
+
+opengl:
+  desktopProfile: compatibility

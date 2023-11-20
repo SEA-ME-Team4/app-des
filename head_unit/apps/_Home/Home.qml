@@ -11,7 +11,7 @@ ApplicationManagerWindow {
     property bool brake: false
     property int speed: 0
     property int gear: 0
-    property string ambient: "#000000"
+    property string ambient: "#00000000"
 
     property bool is_P: (gear==0) ? 1 : 0
     property bool is_R: (gear==1) ? 1 : 0
@@ -25,16 +25,14 @@ ApplicationManagerWindow {
 
     Rectangle {
         id: menuImages
-        width: parent.width
-        height: parent.height
+        anchors.fill: parent
         color: "black"
         Image {
             id: field
             visible: true
             source: "images/field.png"
-            anchors.centerIn: parent
-            width: menuImages.width * 0.8
-            height: width / sourceSize.width * sourceSize.height
+			anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
         }
 
         ColorOverlay {
@@ -47,9 +45,8 @@ ApplicationManagerWindow {
             id: car_highlights
             source: "images/car-highlights.png"
             visible: true
-            anchors.centerIn: parent
-            width: menuImages.width * 0.8
-            height: width / sourceSize.width * sourceSize.height
+			anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
             opacity: (is_P || brake) ? default_opacity : min_opacity
 
             Behavior on opacity {
