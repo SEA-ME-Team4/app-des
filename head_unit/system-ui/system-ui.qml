@@ -16,13 +16,15 @@ Rectangle {
     property string pdcApp: "_PDC"
     property string ambientApp: "Ambient"
     property string youtubeApp: "Youtube"
+    property string beforeApp: "_Home"
 
     signal iconReClicked(string applicationId)
 
-    property bool brake: vehiclestatus.getBrake()
+    property bool brake: true
     property int speed: vehiclestatus.getSpeed()
     property int distance: vehiclestatus.getDistance()
     property int gear: vehiclestatus.getGear()
+    property int init_gear: vehiclestatus.getGear()
     property string ambient: "#00000000"
     property var ambientresponse
 
@@ -31,7 +33,7 @@ Rectangle {
     property bool is_N: (gear==2) ? 1 : 0
     property bool is_D: (gear==3) ? 1 : 0
     property bool is_S: (gear==4) ? 1 : 0
-    property bool is_Moving: (is_S || is_D || is_R) ? 1 : 0
+    property bool is_Moving: (init_gear==0 || init_gear==2) ? 0 : 1
 
     // VirtualKeyboard
     InputPanel {
@@ -69,7 +71,7 @@ Rectangle {
                     enabled: is_Moving ? false : true
                     onClicked: {
                         mainlayout.focus = true
-                        model.isRunning ? iconReClicked(applicationId) : application.start()
+                        show(applicationId)
                     }
                 }
                 width: 60; height: 60
@@ -114,47 +116,14 @@ Rectangle {
             windowsModel.append({"window":window, "applicationId":window.application.id});
         }
     }
-
-    // For Rotating windowsModel with custom signal (iconReClicked)
-    Connections {
-        target: mainlayout
-        onIconReClicked: {
-            for (var i = 0; i < windowsModel.count; i++) {
-                if (windowsModel.get(i).applicationId === applicationId) {
-                    windowsModel.move(i, windowsModel.count-1, 1)
-                }
-            }
-        }
-    }
-
-    // Initialization
-    Component.onCompleted: {
-        ApplicationManager.application(homeApp).start()
-    }
     
-    // Send Information to Application via Intent
-    Connections {
-        target: ambientresponse
-        onReplyReceived: {
-            ambient = ambientresponse.result["ambient"]
-        }
-    }
-    Timer {
-        interval: 100
-        running: true
-        repeat: true
-        onTriggered: {
-            if (ApplicationManager.application(pdcApp).runState === Am.Running) {
-                IntentClient.sendIntentRequest("PDC", { "distance" : distance, "ambient" : ambient } )
-            }
-            if (ApplicationManager.application(ambientApp).runState === Am.Running) {
-                ambientresponse = IntentClient.sendIntentRequest("Ambient", { "request" : true } )
-            }
-            if (ApplicationManager.application(homeApp).runState === Am.Running) {
-                IntentClient.sendIntentRequest("Home", { "brake" : brake, "speed" : speed, "gear" : gear, "ambient" : ambient } )
-            }
-        }
-    }
+    // Communicate with Application via Intent
+    // Communicate with Application via Intent
+    // Communicate with Application via Intent
+    // Communicate with Application via Intent
+    // Communicate with Application via Intent
+    // Communicate with Application via Intent
+    // Communicate with Application via Intent
 
     // Connect with CommonAPI
     VehicleStatus {
@@ -165,24 +134,40 @@ Rectangle {
         onGearChanged: {
             mainlayout.gear = gear
             if (is_D || is_S) {
-                if (ApplicationManager.application(homeApp).runState === Am.NotRunning) {
-                    ApplicationManager.startApplication(homeApp);
-                }
-                for (var i = 0; i < windowsModel.count; i++) {
-                    if (windowsModel.get(i).applicationId === homeApp) {
-                        windowsModel.move(i, windowsModel.count-1, 1)
-                    }
-                }
+                if (!is_Moving) {beforeApp = windowsModel.get(windowsModel.count-1).applicationId}
+                is_Moving = true
+                show(homeApp)
             }
             else if (is_R) {
-                if (ApplicationManager.application(pdcApp).runState === Am.NotRunning) {
-                    ApplicationManager.startApplication(pdcApp);
-                }
-                for (var i = 0; i < windowsModel.count; i++) {
-                    if (windowsModel.get(i).applicationId == pdcApp) {
-                        windowsModel.move(i, windowsModel.count-1, 1)
-                    }
-                }
+                if (!is_Moving) {beforeApp = windowsModel.get(windowsModel.count-1).applicationId}
+                is_Moving = true
+                show(pdcApp)
+            }
+            else if (is_P || is_N) {
+                show(beforeApp)
+                is_Moving = false
+            }
+        }
+    }
+
+    // Initialization
+    Component.onCompleted: {
+        if (is_R) {
+            ApplicationManager.application(pdcApp).start()
+        }
+        else {
+            ApplicationManager.application(homeApp).start()
+        }
+    }
+
+    // Custom Function for Show
+    function show(nameApp) {
+        if (ApplicationManager.application(nameApp).runState === Am.NotRunning) {
+            ApplicationManager.startApplication(nameApp);
+        }
+        for (var i = 0; i < windowsModel.count; i++) {
+            if (windowsModel.get(i).applicationId == nameApp) {
+                windowsModel.move(i, windowsModel.count-1, 1)
             }
         }
     }
