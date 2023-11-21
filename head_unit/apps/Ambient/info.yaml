@@ -12,6 +12,3 @@ intents:
 - id: Ambient
   name:
     en: Ambient
-
-opengl:
-  desktopProfile: compatibility

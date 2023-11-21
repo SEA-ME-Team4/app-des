@@ -62,7 +62,8 @@ ApplicationManagerWindow {
             anchors.bottom: field.bottom
             width: menuImages.width * 0.8
             height: width / sourceSize.width * sourceSize.height
-            opacity: (is_R) ? default_opacity : min_opacity
+            //opacity: (is_R) ? default_opacity : min_opacity
+            opacity: 0
 
             Behavior on opacity {
                 NumberAnimation { duration: opacity_interval }
