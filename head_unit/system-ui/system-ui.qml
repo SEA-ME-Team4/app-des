@@ -18,15 +18,12 @@ Rectangle {
     property string youtubeApp: "Youtube"
     property string beforeApp: "_Home"
 
-    signal iconReClicked(string applicationId)
-
     property bool brake: true
     property int speed: vehiclestatus.getSpeed()
     property int distance: vehiclestatus.getDistance()
     property int gear: vehiclestatus.getGear()
     property int init_gear: vehiclestatus.getGear()
     property string ambient: "#00000000"
-    property var ambientresponse
 
     property bool is_P: (gear==0) ? 1 : 0
     property bool is_R: (gear==1) ? 1 : 0
